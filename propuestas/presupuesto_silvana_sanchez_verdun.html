@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Propuesta — Dra. Silvana Sanchez Verdún · Elbufalo IA</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+      background: #f5f6f8;
+      color: #1a1d2e;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+    }
+
+    /* PORTADA */
+    .cover {
+      background: #0a0f2e;
+      padding: 72px 64px 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(218,165,32,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .cover-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #c9a227;
+      margin-bottom: 20px;
+    }
+    .cover-title {
+      font-size: 38px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+    .cover-title span { color: #c9a227; }
+    .cover-subtitle {
+      font-size: 16px;
+      color: rgba(255,255,255,0.55);
+      font-weight: 300;
+      margin-bottom: 48px;
+    }
+    .cover-meta {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .cover-meta-item {
+      border-left: 2px solid #c9a227;
+      padding-left: 12px;
+    }
+    .cover-meta-item .label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 3px;
+    }
+    .cover-meta-item .value {
+      font-size: 13px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    /* SECCIONES */
+    .section {
+      padding: 56px 64px;
+      border-bottom: 1px solid #eef0f5;
+    }
+    .section:last-child { border-bottom: none; }
+
+    .section-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #c9a227;
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #0a0f2e;
+      margin-bottom: 20px;
+      line-height: 1.3;
+    }
+    .section-text {
+      font-size: 14px;
+      color: #444a60;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    /* PROBLEMA */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .problem-card {
+      background: #f9f5e8;
+      border-top: 3px solid #c9a227;
+      border-radius: 4px;
+      padding: 24px 20px;
+    }
+    .problem-card .problem-num {
+      font-size: 28px;
+      font-weight: 800;
+      color: #c9a227;
+      margin-bottom: 8px;
+      line-height: 1;
+    }
+    .problem-card .problem-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0a0f2e;
+      margin-bottom: 8px;
+    }
+    .problem-card .problem-desc {
+      font-size: 12px;
+      color: #666d84;
+      line-height: 1.65;
+    }
+
+    /* FUNNEL */
+    .funnel-wrapper {
+      margin-top: 36px;
+      position: relative;
+    }
+
+    .funnel-stages {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .funnel-stage {
+      display: grid;
+      grid-template-columns: 40px 1fr 220px;
+      gap: 0;
+      align-items: stretch;
+      margin-bottom: 4px;
+    }
+
+    .funnel-stage-num {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 800;
+      color: #c9a227;
+      padding-right: 12px;
+    }
+
+    .funnel-stage-bar {
+      border-radius: 3px;
+      padding: 20px 28px;
+      position: relative;
+    }
+
+    .funnel-stage-bar::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-top: 10px solid currentColor;
+      z-index: 2;
+    }
+
+    .funnel-stage:last-child .funnel-stage-bar::after {
+      display: none;
+    }
+
+    .funnel-s1 .funnel-stage-bar { background: #0a0f2e; }
+    .funnel-s1 .funnel-stage-bar::after { color: #0a0f2e; border-top-color: #0a0f2e; }
+    .funnel-s2 .funnel-stage-bar { background: #172254; }
+    .funnel-s2 .funnel-stage-bar::after { border-top-color: #172254; }
+    .funnel-s3 .funnel-stage-bar { background: #1e2f70; }
+    .funnel-s3 .funnel-stage-bar::after { border-top-color: #1e2f70; }
+    .funnel-s4 .funnel-stage-bar { background: #c9a227; }
+    .funnel-s4 .funnel-stage-bar::after { border-top-color: #c9a227; }
+    .funnel-s5 .funnel-stage-bar { background: #a07d18; }
+
+    .funnel-stage-bar .stage-title {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .funnel-s1 .stage-title,
+    .funnel-s2 .stage-title,
+    .funnel-s3 .stage-title { color: #ffffff; }
+    .funnel-s4 .stage-title,
+    .funnel-s5 .stage-title { color: #0a0f2e; }
+
+    .funnel-stage-bar .stage-desc {
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .funnel-s1 .stage-desc,
+    .funnel-s2 .stage-desc,
+    .funnel-s3 .stage-desc { color: rgba(255,255,255,0.6); }
+    .funnel-s4 .stage-desc,
+    .funnel-s5 .stage-desc { color: rgba(0,0,0,0.55); }
+
+    .funnel-stage-meta {
+      padding-left: 20px;
+      display: flex;
+      align-items: center;
+    }
+    .funnel-meta-box {
+      background: #f5f6f8;
+      border-radius: 4px;
+      padding: 12px 16px;
+      width: 100%;
+    }
+    .funnel-meta-box .meta-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #c9a227;
+      margin-bottom: 4px;
+    }
+    .funnel-meta-box .meta-items {
+      font-size: 11px;
+      color: #555b72;
+      line-height: 1.65;
+    }
+
+    /* CANALES */
+    .channels-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 28px;
+    }
+    .channel-card {
+      background: #f5f6f8;
+      border-radius: 4px;
+      padding: 20px 16px;
+      text-align: center;
+      border-bottom: 3px solid #c9a227;
+    }
+    .channel-card .channel-icon {
+      width: 40px;
+      height: 40px;
+      background: #0a0f2e;
+      border-radius: 8px;
+      margin: 0 auto 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+    .channel-card .channel-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: #0a0f2e;
+      margin-bottom: 4px;
+    }
+    .channel-card .channel-desc {
+      font-size: 11px;
+      color: #777d94;
+      line-height: 1.55;
+    }
+
+    /* STACK */
+    .stack-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 28px;
+    }
+    .stack-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 16px 20px;
+      background: #f5f6f8;
+      border-radius: 4px;
+    }
+    .stack-dot {
+      width: 8px;
+      height: 8px;
+      background: #c9a227;
+      border-radius: 50%;
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+    .stack-item-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0a0f2e;
+      margin-bottom: 3px;
+    }
+    .stack-item-desc {
+      font-size: 12px;
+      color: #666d84;
+      line-height: 1.6;
+    }
+
+    /* PLANES */
+    .plans-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 28px;
+    }
+    .plan-card {
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .plan-card.featured {
+      box-shadow: 0 8px 32px rgba(201,162,39,0.2);
+    }
+    .plan-header {
+      padding: 28px 28px 24px;
+    }
+    .plan-card:not(.featured) .plan-header {
+      background: #f5f6f8;
+    }
+    .plan-card.featured .plan-header {
+      background: #0a0f2e;
+    }
+    .plan-badge {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 2px;
+      margin-bottom: 16px;
+    }
+    .plan-card:not(.featured) .plan-badge {
+      background: #eef0f5;
+      color: #555b72;
+    }
+    .plan-card.featured .plan-badge {
+      background: #c9a227;
+      color: #0a0f2e;
+    }
+    .plan-name {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .plan-card:not(.featured) .plan-name { color: #0a0f2e; }
+    .plan-card.featured .plan-name { color: #ffffff; }
+    .plan-price {
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .plan-card:not(.featured) .plan-price { color: #0a0f2e; }
+    .plan-card.featured .plan-price { color: #c9a227; }
+    .plan-price-sub {
+      font-size: 12px;
+    }
+    .plan-card:not(.featured) .plan-price-sub { color: #888da0; }
+    .plan-card.featured .plan-price-sub { color: rgba(255,255,255,0.45); }
+    .plan-maint {
+      margin-top: 12px;
+      font-size: 12px;
+      padding-top: 12px;
+      border-top: 1px solid;
+    }
+    .plan-card:not(.featured) .plan-maint {
+      border-color: #e4e6ee;
+      color: #666d84;
+    }
+    .plan-card.featured .plan-maint {
+      border-color: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.5);
+    }
+    .plan-maint strong {
+      font-weight: 700;
+    }
+    .plan-card:not(.featured) .plan-maint strong { color: #0a0f2e; }
+    .plan-card.featured .plan-maint strong { color: #ffffff; }
+
+    .plan-body {
+      padding: 24px 28px 28px;
+      background: white;
+      border: 1px solid #eef0f5;
+      border-top: none;
+    }
+    .plan-card.featured .plan-body {
+      border-color: #c9a227;
+    }
+    .plan-includes-title {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #c9a227;
+      margin-bottom: 14px;
+    }
+    .plan-feature {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-bottom: 10px;
+      font-size: 13px;
+      color: #2a2e3d;
+      line-height: 1.5;
+    }
+    .plan-feature:last-child { margin-bottom: 0; }
+    .plan-check {
+      width: 18px;
+      height: 18px;
+      background: #c9a227;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      font-weight: 800;
+      color: #0a0f2e;
+      margin-top: 1px;
+    }
+
+    /* MODALIDAD */
+    .modal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .modal-item {
+      padding: 20px 24px;
+      background: #f5f6f8;
+      border-radius: 4px;
+    }
+    .modal-item .modal-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #c9a227;
+      margin-bottom: 6px;
+    }
+    .modal-item .modal-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: #0a0f2e;
+    }
+    .modal-item .modal-sub {
+      font-size: 12px;
+      color: #777d94;
+      margin-top: 3px;
+      line-height: 1.55;
+    }
+
+    /* CRM PREVIEW */
+    .crm-preview-link {
+      margin-top: 28px;
+      display: block;
+      background: #f5f6f8;
+      border: 2px dashed #c9a227;
+      border-radius: 4px;
+      padding: 28px;
+      text-align: center;
+      text-decoration: none;
+    }
+    .crm-preview-link .crm-prev-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #c9a227;
+      margin-bottom: 8px;
+    }
+    .crm-preview-link .crm-prev-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #0a0f2e;
+      margin-bottom: 4px;
+    }
+    .crm-preview-link .crm-prev-desc {
+      font-size: 13px;
+      color: #666d84;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: #0a0f2e;
+      padding: 40px 64px;
+    }
+    .footer-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+    .footer-role {
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 20px;
+    }
+    .footer-contacts {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .footer-contact {
+      font-size: 12px;
+      color: rgba(255,255,255,0.55);
+    }
+    .footer-contact a {
+      color: #c9a227;
+      text-decoration: none;
+    }
+
+    @media print {
+      body { background: white; }
+      .page { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- PORTADA -->
+  <div class="cover">
+    <div class="cover-label">Propuesta de automatización · Elbufalo IA</div>
+    <div class="cover-title">Sistema de captación,<br /><span>nurturing y ventas con IA</span></div>
+    <div class="cover-subtitle">Dra. Silvana Sanchez Verdún · Medicina Estética · Corrientes</div>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <div class="label">Cliente</div>
+        <div class="value">Dra. Silvana Sanchez Verdún</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="label">Fecha</div>
+        <div class="value">07 de abril de 2026</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="label">Preparado por</div>
+        <div class="value">Andrea Arizcun · Elbufalo IA</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="label">Estado</div>
+        <div class="value">Propuesta inicial</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EL PROBLEMA -->
+  <div class="section">
+    <div class="section-label">El diagnóstico</div>
+    <div class="section-title">Tenés leads. El problema es lo que pasa después.</div>
+    <div class="section-text">
+      Tu campaña de Meta está funcionando. Llegan entre 20 y 50 leads por día. Pero sin un sistema que los reciba, clasifique y acompañe, la mayoría se enfría antes de convertir. El cuello de botella no es la captación — es el seguimiento.
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-num">20–50</div>
+        <div class="problem-title">Leads diarios sin sistema</div>
+        <div class="problem-desc">Cada lead que no recibe respuesta inmediata tiene un 80% menos de probabilidad de convertir pasadas las primeras horas.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">0</div>
+        <div class="problem-title">Seguimiento automatizado</div>
+        <div class="problem-desc">Sin CRM ni secuencias automáticas, el seguimiento depende de la disponibilidad de una persona. Con este volumen, es imposible.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">3x</div>
+        <div class="problem-title">El valor del upsell perdido</div>
+        <div class="problem-desc">Una paciente que viene por un tratamiento puede comprar tres si el sistema la acompaña bien. Sin seguimiento, esa oportunidad no existe.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CANALES DE CAPTACIÓN -->
+  <div class="section">
+    <div class="section-label">Captación multicanal</div>
+    <div class="section-title">Todos los canales conectados a un solo sistema</div>
+    <div class="section-text">
+      El sistema recibe leads de cualquier punto de contacto y los incorpora automáticamente al CRM sin intervención manual.
+    </div>
+    <div class="channels-grid">
+      <div class="channel-card">
+        <div class="channel-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="24" height="24" rx="4" fill="#0a0f2e"/>
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" fill="#c9a227"/>
+          </svg>
+        </div>
+        <div class="channel-name">Instagram</div>
+        <div class="channel-desc">DMs y comentarios capturados y derivados al flujo automático</div>
+      </div>
+      <div class="channel-card">
+        <div class="channel-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" fill="#c9a227"/>
+          </svg>
+        </div>
+        <div class="channel-name">Meta Ads</div>
+        <div class="channel-desc">Lead Forms de campañas conectados directo al CRM</div>
+      </div>
+      <div class="channel-card">
+        <div class="channel-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#c9a227"/>
+          </svg>
+        </div>
+        <div class="channel-name">WhatsApp Business</div>
+        <div class="channel-desc">API oficial de Meta — sin riesgo de ban, escala sin límite</div>
+      </div>
+      <div class="channel-card">
+        <div class="channel-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 3h18a1 1 0 011 1v16a1 1 0 01-1 1H3a1 1 0 01-1-1V4a1 1 0 011-1zm17 4.238l-7.928 7.1L4 7.216V19h16V7.238zM4.511 5l7.55 6.662L19.502 5H4.511z" fill="#c9a227"/>
+          </svg>
+        </div>
+        <div class="channel-name">Landing + Formulario</div>
+        <div class="channel-desc">Pagina de captura propia con form conectado al sistema</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FUNNEL -->
+  <div class="section">
+    <div class="section-label">El funnel</div>
+    <div class="section-title">Seis etapas automáticas desde el primer contacto hasta el upsell</div>
+    <div class="funnel-wrapper">
+      <div class="funnel-stages">
+
+        <div class="funnel-stage funnel-s1">
+          <div class="funnel-stage-num">01</div>
+          <div class="funnel-stage-bar">
+            <div class="stage-title">Bienvenida inmediata</div>
+            <div class="stage-desc">El lead llega por cualquier canal. El sistema lo recibe en segundos, lo saluda por su nombre y abre la conversación.</div>
+          </div>
+          <div class="funnel-stage-meta">
+            <div class="funnel-meta-box">
+              <div class="meta-label">Acciones automáticas</div>
+              <div class="meta-items">Respuesta instantánea · Registro en CRM · Asignación de etapa</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="funnel-stage funnel-s2">
+          <div class="funnel-stage-num">02</div>
+          <div class="funnel-stage-bar">
+            <div class="stage-title">Calificación del lead</div>
+            <div class="stage-desc">El agente IA pregunta qué tratamiento le interesa, su disponibilidad y si ya fue paciente. Clasifica el lead en el CRM automáticamente.</div>
+          </div>
+          <div class="funnel-stage-meta">
+            <div class="funnel-meta-box">
+              <div class="meta-label">Acciones automáticas</div>
+              <div class="meta-items">Preguntas de calificación · Tag por tratamiento · Priorización en CRM</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="funnel-stage funnel-s3">
+          <div class="funnel-stage-num">03</div>
+          <div class="funnel-stage-bar">
+            <div class="stage-title">Agendamiento del turno</div>
+            <div class="stage-desc">El agente muestra disponibilidad real del calendario y confirma el turno. Envía recordatorio 24hs antes por WhatsApp y email.</div>
+          </div>
+          <div class="funnel-stage-meta">
+            <div class="funnel-meta-box">
+              <div class="meta-label">Acciones automáticas</div>
+              <div class="meta-items">Alta en Google Calendar · Confirmación por WhatsApp y Gmail · Recordatorio automatico</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="funnel-stage funnel-s4">
+          <div class="funnel-stage-num">04</div>
+          <div class="funnel-stage-bar">
+            <div class="stage-title">Re-engagement de leads que no concretan</div>
+            <div class="stage-desc">Cuando un lead calificado no agenda turno, el sistema activa una secuencia automática de emails con contenido de valor, testimonios y una oferta de servicios personalizada según el tratamiento que consultó.</div>
+          </div>
+          <div class="funnel-stage-meta">
+            <div class="funnel-meta-box">
+              <div class="meta-label">Acciones automáticas</div>
+              <div class="meta-items">Secuencia de emails por Gmail · Contenido por tratamiento de interés · Oferta con llamada a la acción · Reactivacion al CRM si responde</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="funnel-stage funnel-s4">
+          <div class="funnel-stage-num">05</div>
+          <div class="funnel-stage-bar">
+            <div class="stage-title">Seguimiento post-consulta</div>
+            <div class="stage-desc">Dias después de la consulta, el sistema contacta a la paciente para ver cómo está y propone el siguiente paso o tratamiento complementario.</div>
+          </div>
+          <div class="funnel-stage-meta">
+            <div class="funnel-meta-box">
+              <div class="meta-label">Acciones automáticas</div>
+              <div class="meta-items">Mensaje de seguimiento · Propuesta de tratamiento complementario · Actualización de etapa en CRM</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="funnel-stage funnel-s5">
+          <div class="funnel-stage-num">06</div>
+          <div class="funnel-stage-bar">
+            <div class="stage-title">Upsell y campañas de promociones</div>
+            <div class="stage-desc">El sistema segmenta las pacientes por tratamiento y envía campañas personalizadas con promociones, recordatorios de mantenimiento o novedades.</div>
+          </div>
+          <div class="funnel-stage-meta">
+            <div class="funnel-meta-box">
+              <div class="meta-label">Acciones automáticas</div>
+              <div class="meta-items">Segmentación por interés · Envio de campañas · Deteccion de oportunidades de recompra</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- STACK TÉCNICO -->
+  <div class="section">
+    <div class="section-label">Stack tecnológico</div>
+    <div class="section-title">Herramientas profesionales, integradas y sin fricciones</div>
+    <div class="stack-grid">
+      <div class="stack-item">
+        <div class="stack-dot"></div>
+        <div>
+          <div class="stack-item-title">WhatsApp Business API (Meta oficial)</div>
+          <div class="stack-item-desc">Canal principal de comunicación. API oficial — sin riesgo de ban, escala con el volumen de tu negocio.</div>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-dot"></div>
+        <div>
+          <div class="stack-item-title">Airtable CRM con panel autoadministrado</div>
+          <div class="stack-item-desc">Panel visual donde ves cada lead, su etapa en el funnel y el historial de interacciones. Lo administrás vos sin depender de nadie.</div>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-dot"></div>
+        <div>
+          <div class="stack-item-title">n8n — Motor de automatización</div>
+          <div class="stack-item-desc">Conecta todos los canales y herramientas. Ejecuta los flujos automáticamente sin intervención humana.</div>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-dot"></div>
+        <div>
+          <div class="stack-item-title">Google Calendar + Gmail</div>
+          <div class="stack-item-desc">Agenda de turnos en tiempo real y recordatorios automáticos por email integrados al flujo.</div>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-dot"></div>
+        <div>
+          <div class="stack-item-title">Meta Lead Forms</div>
+          <div class="stack-item-desc">Los leads de tus campañas de Meta ingresan automáticamente al CRM sin pasos manuales.</div>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-dot"></div>
+        <div>
+          <div class="stack-item-title">Landing page con formulario propio</div>
+          <div class="stack-item-desc">Página de captura optimizada para conversión, conectada directamente al sistema.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MANTENIMIENTO -->
+  <div class="section">
+    <div class="section-label">Mantenimiento mensual</div>
+    <div class="section-title">Que incluye el servicio mensual</div>
+    <div class="section-text">El sistema trabaja todos los dias, y requiere supervision y ajustes continuos para que funcione bien a medida que tu negocio crece. Esto es lo que cubre el mantenimiento:</div>
+    <div class="stack-grid">
+      <div class="stack-item">
+        <div class="stack-dot"></div>
+        <div>
+          <div class="stack-item-title">Monitoreo del agente IA</div>
+          <div class="stack-item-desc">Revision periodica de las conversaciones para detectar respuestas incorrectas o situaciones no contempladas y corregirlas.</div>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-dot"></div>
+        <div>
+          <div class="stack-item-title">Ajustes de flujos y mensajes</div>
+          <div class="stack-item-desc">Modificacion de textos del agente, secuencias de emails o pasos del funnel cuando cambien tus servicios, precios o promociones.</div>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-dot"></div>
+        <div>
+          <div class="stack-item-title">Soporte tecnico ante incidencias</div>
+          <div class="stack-item-desc">Atencion ante cualquier problema de integracion, caida de conexion entre herramientas o error en el sistema. Tiempo de respuesta: dentro de las 24hs habiles.</div>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-dot"></div>
+        <div>
+          <div class="stack-item-title">Actualizaciones de integraciones</div>
+          <div class="stack-item-desc">Adaptacion del sistema ante cambios en las plataformas conectadas (WhatsApp API, Airtable, Google Calendar, Gmail, Meta).</div>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-dot"></div>
+        <div>
+          <div class="stack-item-title">Reporte mensual de metricas</div>
+          <div class="stack-item-desc">Informe con los datos clave del mes: leads recibidos, tasa de conversion por etapa, turnos agendados y oportunidades de mejora detectadas.</div>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-dot"></div>
+        <div>
+          <div class="stack-item-title">Mejoras menores incluidas</div>
+          <div class="stack-item-desc">Pequenos ajustes de logica, nuevas respuestas del agente o cambios en la configuracion del CRM sin costo adicional dentro del servicio mensual.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLANES -->
+  <div class="section">
+    <div class="section-label">Inversión</div>
+    <div class="section-title">Dos opciones según el alcance que necesitás</div>
+    <div class="plans-grid">
+
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-badge">Plan Esencial</div>
+          <div class="plan-name">Automatización base</div>
+          <div class="plan-price">USD 1.500</div>
+          <div class="plan-price-sub">pago único · 50% adelanto / 50% al entregar</div>
+          <div class="plan-maint">Mantenimiento: <strong>USD 150 / mes</strong></div>
+        </div>
+        <div class="plan-body">
+          <div class="plan-includes-title">Incluye</div>
+          <div class="plan-feature"><div class="plan-check">✓</div> Agente IA conversacional en WhatsApp Business API</div>
+          <div class="plan-feature"><div class="plan-check">✓</div> CRM en Airtable con panel visual por etapas</div>
+          <div class="plan-feature"><div class="plan-check">✓</div> Captacion desde Meta Lead Forms e Instagram</div>
+          <div class="plan-feature"><div class="plan-check">✓</div> Funnel de 3 etapas: bienvenida, calificacion y agendamiento</div>
+          <div class="plan-feature"><div class="plan-check">✓</div> Agenda integrada con Google Calendar</div>
+          <div class="plan-feature"><div class="plan-check">✓</div> Recordatorios automaticos por WhatsApp y Gmail</div>
+          <div class="plan-feature"><div class="plan-check">✓</div> 30 dias de soporte post-entrega</div>
+        </div>
+      </div>
+
+      <div class="plan-card featured">
+        <div class="plan-header">
+          <div class="plan-badge">Plan Completo · Recomendado</div>
+          <div class="plan-name">Sistema completo de ventas</div>
+          <div class="plan-price">USD 2.200</div>
+          <div class="plan-price-sub">pago único · 50% adelanto / 50% al entregar</div>
+          <div class="plan-maint">Mantenimiento: <strong>USD 150 / mes</strong></div>
+        </div>
+        <div class="plan-body">
+          <div class="plan-includes-title">Todo el Plan Esencial, más</div>
+          <div class="plan-feature"><div class="plan-check">✓</div> Funnel completo de 6 etapas incluyendo re-engagement, seguimiento y upsell</div>
+          <div class="plan-feature"><div class="plan-check">✓</div> Landing page propia con formulario de captura optimizado</div>
+          <div class="plan-feature"><div class="plan-check">✓</div> Panel autoadministrado — modificas textos y flujos sin necesitar ayuda tecnica</div>
+          <div class="plan-feature"><div class="plan-check">✓</div> Campañas de promociones segmentadas por tratamiento</div>
+          <div class="plan-feature"><div class="plan-check">✓</div> Seguimiento post-consulta y deteccion de oportunidades de recompra</div>
+          <div class="plan-feature"><div class="plan-check">✓</div> Integracion completa con Meta Ads para leads automaticos</div>
+          <div class="plan-feature"><div class="plan-check">✓</div> Documentacion del sistema + capacitacion de uso</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODALIDAD -->
+  <div class="section">
+    <div class="section-label">Modalidad de trabajo</div>
+    <div class="section-title">Cómo arrancamos</div>
+    <div class="modal-grid">
+      <div class="modal-item">
+        <div class="modal-label">Paso 1</div>
+        <div class="modal-value">Reunion de diagnóstico</div>
+        <div class="modal-sub">Videollamada para mapear tu flujo actual, definir los mensajes del agente y configurar el sistema a tu medida.</div>
+      </div>
+      <div class="modal-item">
+        <div class="modal-label">Paso 2</div>
+        <div class="modal-value">Primer pago y arranque</div>
+        <div class="modal-sub">50% del plan elegido al confirmar. Empezamos de inmediato.</div>
+      </div>
+      <div class="modal-item">
+        <div class="modal-label">Paso 3</div>
+        <div class="modal-value">Desarrollo con revisiones</div>
+        <div class="modal-sub">Implementacion por modulos con revisiones en conjunto. Ajustamos hasta que funcione exactamente como necesitas.</div>
+      </div>
+      <div class="modal-item">
+        <div class="modal-label">Paso 4</div>
+        <div class="modal-value">Entrega y pago final</div>
+        <div class="modal-sub">Sistema funcionando al 100% + documentacion + capacitacion. Segundo pago al entregar.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-name">Andrea Arizcun</div>
+    <div class="footer-role">Elbufalo IA — Agencia de Automatización Inteligente con IA</div>
+    <div class="footer-contacts">
+      <div class="footer-contact"><a href="https://elbufalo.site" target="_blank" style="color:#c9a227;text-decoration:none;">elbufalo.site</a></div>
+      <div class="footer-contact"><a href="mailto:elbufaloia@gmail.com">elbufaloia@gmail.com</a></div>
+      <div class="footer-contact"><a href="https://wa.me/541157083080">+54 11 5708-3080</a></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

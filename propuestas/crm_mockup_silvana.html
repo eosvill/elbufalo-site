@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CRM — Panel de Pacientes · Dra. Silvana</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+      background: #eef0f5;
+      color: #1a1d2e;
+      font-size: 13px;
+      min-height: 100vh;
+    }
+
+    /* TOPBAR */
+    .topbar {
+      background: #0a0f2e;
+      padding: 0 28px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .topbar-logo {
+      font-size: 13px;
+      font-weight: 800;
+      color: #c9a227;
+      letter-spacing: 0.05em;
+    }
+    .topbar-sep {
+      width: 1px;
+      height: 20px;
+      background: rgba(255,255,255,0.15);
+    }
+    .topbar-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.65);
+    }
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .topbar-badge {
+      background: #c9a227;
+      color: #0a0f2e;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+    .topbar-avatar {
+      width: 32px;
+      height: 32px;
+      background: #172254;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: #c9a227;
+    }
+
+    /* SUBBAR */
+    .subbar {
+      background: white;
+      padding: 0 28px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #e4e6ee;
+    }
+    .subbar-tabs {
+      display: flex;
+      gap: 0;
+      height: 100%;
+    }
+    .subbar-tab {
+      padding: 0 20px;
+      font-size: 12px;
+      font-weight: 500;
+      color: #888da0;
+      border-bottom: 2px solid transparent;
+      display: flex;
+      align-items: center;
+      cursor: default;
+    }
+    .subbar-tab.active {
+      color: #0a0f2e;
+      border-bottom-color: #c9a227;
+      font-weight: 700;
+    }
+    .subbar-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .btn {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 7px 16px;
+      border-radius: 3px;
+      cursor: default;
+      letter-spacing: 0.02em;
+    }
+    .btn-primary {
+      background: #0a0f2e;
+      color: #ffffff;
+    }
+    .btn-secondary {
+      background: #f5f6f8;
+      color: #555b72;
+      border: 1px solid #e4e6ee;
+    }
+
+    /* STATS */
+    .stats-bar {
+      padding: 16px 28px;
+      display: flex;
+      gap: 12px;
+    }
+    .stat-card {
+      background: white;
+      border-radius: 4px;
+      padding: 14px 20px;
+      flex: 1;
+      border-left: 3px solid transparent;
+    }
+    .stat-card.s1 { border-left-color: #6b7cff; }
+    .stat-card.s2 { border-left-color: #f59e0b; }
+    .stat-card.s3 { border-left-color: #10b981; }
+    .stat-card.s4 { border-left-color: #c9a227; }
+    .stat-card.s5 { border-left-color: #ef4444; }
+    .stat-value {
+      font-size: 22px;
+      font-weight: 800;
+      color: #0a0f2e;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      font-size: 11px;
+      color: #888da0;
+    }
+
+    /* KANBAN */
+    .kanban {
+      padding: 0 28px 28px;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+      align-items: start;
+    }
+
+    .kanban-col {
+      background: #f5f6f8;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .kanban-header {
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #e4e6ee;
+    }
+    .kanban-header-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .kanban-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    .col-nueva .kanban-dot { background: #6b7cff; }
+    .col-calificado .kanban-dot { background: #f59e0b; }
+    .col-reengagement .kanban-dot { background: #ef4444; }
+    .col-agendado .kanban-dot { background: #10b981; }
+    .col-postconsulta .kanban-dot { background: #c9a227; }
+    .col-upsell .kanban-dot { background: #8b5cf6; }
+
+    .kanban-col-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: #0a0f2e;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .kanban-count {
+      font-size: 10px;
+      font-weight: 700;
+      background: #e4e6ee;
+      color: #555b72;
+      padding: 2px 8px;
+      border-radius: 20px;
+    }
+
+    .kanban-cards {
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 4px;
+      padding: 14px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+    .card-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: #0a0f2e;
+    }
+    .card-source {
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .source-meta { background: #e8eeff; color: #4a5bcc; }
+    .source-ig { background: #fde8f5; color: #b0368a; }
+    .source-web { background: #e8f5e9; color: #2e7d32; }
+    .source-wa { background: #e8f9f0; color: #1a7a45; }
+
+    .card-treatment {
+      font-size: 11px;
+      color: #666d84;
+      margin-bottom: 8px;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 8px;
+      border-top: 1px solid #f0f1f5;
+    }
+    .card-time {
+      font-size: 10px;
+      color: #aab0c4;
+    }
+    .card-status {
+      font-size: 9px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 20px;
+    }
+    .status-new { background: #eef0ff; color: #6b7cff; }
+    .status-warm { background: #fff8e8; color: #c17d10; }
+    .status-ok { background: #e8f9f0; color: #1a7a45; }
+    .status-follow { background: #fff3e0; color: #c9a227; }
+    .status-hot { background: #f3e8ff; color: #7c3aed; }
+
+    .card-note {
+      font-size: 10px;
+      color: #888da0;
+      background: #f9fafc;
+      padding: 6px 8px;
+      border-radius: 3px;
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    .kanban-add {
+      margin: 0 10px 10px;
+      padding: 8px;
+      border: 1px dashed #d0d3de;
+      border-radius: 4px;
+      text-align: center;
+      font-size: 11px;
+      color: #aab0c4;
+      cursor: default;
+    }
+
+    /* NOTA DEMO */
+    .demo-banner {
+      background: #0a0f2e;
+      padding: 14px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+    .demo-banner-text {
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+    }
+    .demo-banner-text strong {
+      color: #c9a227;
+    }
+
+    @media (max-width: 1300px) {
+      .kanban { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <div class="topbar-logo">Elbufalo IA</div>
+      <div class="topbar-sep"></div>
+      <div class="topbar-title">Panel de Pacientes — Dra. Silvana Sanchez Verdún</div>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-badge">EN VIVO</div>
+      <div class="topbar-avatar">SS</div>
+    </div>
+  </div>
+
+  <!-- SUBBAR -->
+  <div class="subbar">
+    <div class="subbar-tabs">
+      <div class="subbar-tab active">Kanban de pacientes</div>
+      <div class="subbar-tab">Tabla</div>
+      <div class="subbar-tab">Calendario</div>
+      <div class="subbar-tab">Reportes</div>
+    </div>
+    <div class="subbar-actions">
+      <div class="btn btn-secondary">Filtrar</div>
+      <div class="btn btn-primary">+ Nueva paciente</div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat-card s1">
+      <div class="stat-value">47</div>
+      <div class="stat-label">Nuevas consultas hoy</div>
+    </div>
+    <div class="stat-card s2">
+      <div class="stat-value">23</div>
+      <div class="stat-label">En calificacion</div>
+    </div>
+    <div class="stat-card s3">
+      <div class="stat-value">12</div>
+      <div class="stat-label">Turnos agendados</div>
+    </div>
+    <div class="stat-card s4">
+      <div class="stat-value">8</div>
+      <div class="stat-label">En seguimiento</div>
+    </div>
+    <div class="stat-card s5">
+      <div class="stat-value">5</div>
+      <div class="stat-label">Oportunidades upsell</div>
+    </div>
+  </div>
+
+  <!-- KANBAN -->
+  <div class="kanban">
+
+    <!-- NUEVA CONSULTA -->
+    <div class="kanban-col col-nueva">
+      <div class="kanban-header">
+        <div class="kanban-header-left">
+          <div class="kanban-dot"></div>
+          <div class="kanban-col-title">Nueva consulta</div>
+        </div>
+        <div class="kanban-count">47</div>
+      </div>
+      <div class="kanban-cards">
+
+        <div class="card">
+          <div class="card-top">
+            <div class="card-name">Maria Gonzalez</div>
+            <div class="card-source source-meta">Meta Ads</div>
+          </div>
+          <div class="card-treatment">Armonizacion facial</div>
+          <div class="card-note">Respondio el formulario de la campaña hace 4 minutos</div>
+          <div class="card-footer">
+            <div class="card-time">Hace 4 min</div>
+            <div class="card-status status-new">Nuevo</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div class="card-name">Luciana Perez</div>
+            <div class="card-source source-ig">Instagram</div>
+          </div>
+          <div class="card-treatment">Lipolisis abdominal</div>
+          <div class="card-note">Escribio por DM preguntando por precios</div>
+          <div class="card-footer">
+            <div class="card-time">Hace 12 min</div>
+            <div class="card-status status-new">Nuevo</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div class="card-name">Valentina Torres</div>
+            <div class="card-source source-wa">WhatsApp</div>
+          </div>
+          <div class="card-treatment">Rellenos faciales</div>
+          <div class="card-footer">
+            <div class="card-time">Hace 28 min</div>
+            <div class="card-status status-new">Nuevo</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div class="card-name">Carolina Diaz</div>
+            <div class="card-source source-web">Web</div>
+          </div>
+          <div class="card-treatment">Toxina botulinica</div>
+          <div class="card-footer">
+            <div class="card-time">Hace 45 min</div>
+            <div class="card-status status-new">Nuevo</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="kanban-add">+ Agregar paciente</div>
+    </div>
+
+    <!-- CALIFICADA -->
+    <div class="kanban-col col-calificado">
+      <div class="kanban-header">
+        <div class="kanban-header-left">
+          <div class="kanban-dot"></div>
+          <div class="kanban-col-title">Calificada</div>
+        </div>
+        <div class="kanban-count">23</div>
+      </div>
+      <div class="kanban-cards">
+
+        <div class="card">
+          <div class="card-top">
+            <div class="card-name">Romina Alvarez</div>
+            <div class="card-source source-meta">Meta Ads</div>
+          </div>
+          <div class="card-treatment">Lipolisis + Armonizacion</div>
+          <div class="card-note">Interesada en combo. Pregunto por financiacion. Presupuesto alto.</div>
+          <div class="card-footer">
+            <div class="card-time">Hace 1 hora</div>
+            <div class="card-status status-warm">Caliente</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div class="card-name">Agustina Soria</div>
+            <div class="card-source source-ig">Instagram</div>
+          </div>
+          <div class="card-treatment">Aumento de gluteos</div>
+          <div class="card-note">Quiere turno para la semana que viene</div>
+          <div class="card-footer">
+            <div class="card-time">Hace 2 horas</div>
+            <div class="card-status status-warm">Caliente</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div class="card-name">Florencia Medina</div>
+            <div class="card-source source-wa">WhatsApp</div>
+          </div>
+          <div class="card-treatment">Rejuvenecimiento facial</div>
+          <div class="card-footer">
+            <div class="card-time">Hace 3 horas</div>
+            <div class="card-status status-warm">Tibia</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="kanban-add">+ Agregar paciente</div>
+    </div>
+
+    <!-- RE-ENGAGEMENT -->
+    <div class="kanban-col col-reengagement">
+      <div class="kanban-header">
+        <div class="kanban-header-left">
+          <div class="kanban-dot"></div>
+          <div class="kanban-col-title">Sin respuesta</div>
+        </div>
+        <div class="kanban-count">11</div>
+      </div>
+      <div class="kanban-cards">
+
+        <div class="card">
+          <div class="card-top">
+            <div class="card-name">Graciela Molina</div>
+            <div class="card-source source-meta">Meta Ads</div>
+          </div>
+          <div class="card-treatment">Lipolisis abdominal</div>
+          <div class="card-note">Email 1 de 3 enviado hace 2 dias. Sin apertura aun.</div>
+          <div class="card-footer">
+            <div class="card-time">Hace 2 dias</div>
+            <div class="card-status" style="background:#fde8e8;color:#c0392b;">Email enviado</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div class="card-name">Vanesa Rios</div>
+            <div class="card-source source-ig">Instagram</div>
+          </div>
+          <div class="card-treatment">Armonizacion facial</div>
+          <div class="card-note">Email 2 de 3 enviado. Abrio el email pero no respondio.</div>
+          <div class="card-footer">
+            <div class="card-time">Hace 5 dias</div>
+            <div class="card-status" style="background:#fff3e0;color:#c17d10;">Email abierto</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div class="card-name">Beatriz Campos</div>
+            <div class="card-source source-wa">WhatsApp</div>
+          </div>
+          <div class="card-treatment">Rejuvenecimiento facial</div>
+          <div class="card-note">Secuencia completa enviada. Sin respuesta. Archivada en 3 dias.</div>
+          <div class="card-footer">
+            <div class="card-time">Hace 7 dias</div>
+            <div class="card-status" style="background:#f0f1f5;color:#888da0;">Secuencia completa</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div class="card-name">Lorena Ibarra</div>
+            <div class="card-source source-meta">Meta Ads</div>
+          </div>
+          <div class="card-treatment">Toxina botulinica</div>
+          <div class="card-note">Respondio el email con consulta de precio. Reactivada al funnel.</div>
+          <div class="card-footer">
+            <div class="card-time">Hoy</div>
+            <div class="card-status" style="background:#e8f9f0;color:#1a7a45;">Reactivada</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="kanban-add">+ Agregar paciente</div>
+    </div>
+
+    <!-- TURNO AGENDADO -->
+    <div class="kanban-col col-agendado">
+      <div class="kanban-header">
+        <div class="kanban-header-left">
+          <div class="kanban-dot"></div>
+          <div class="kanban-col-title">Turno agendado</div>
+        </div>
+        <div class="kanban-count">12</div>
+      </div>
+      <div class="kanban-cards">
+
+        <div class="card">
+          <div class="card-top">
+            <div class="card-name">Natalia Ruiz</div>
+            <div class="card-source source-meta">Meta Ads</div>
+          </div>
+          <div class="card-treatment">Armonizacion facial</div>
+          <div class="card-note">Turno: hoy 15:30 hs. Recordatorio enviado por WhatsApp.</div>
+          <div class="card-footer">
+            <div class="card-time">Hoy 15:30</div>
+            <div class="card-status status-ok">Confirmado</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div class="card-name">Silvina Castro</div>
+            <div class="card-source source-ig">Instagram</div>
+          </div>
+          <div class="card-treatment">Rinoplastia — consulta</div>
+          <div class="card-note">Turno: manana 10:00 hs. Recordatorio programado.</div>
+          <div class="card-footer">
+            <div class="card-time">Manana 10:00</div>
+            <div class="card-status status-ok">Confirmado</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div class="card-name">Daniela Lopez</div>
+            <div class="card-source source-web">Web</div>
+          </div>
+          <div class="card-treatment">Lipolisis abdominal</div>
+          <div class="card-footer">
+            <div class="card-time">Jue 9 Abr · 11:00</div>
+            <div class="card-status status-ok">Confirmado</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="kanban-add">+ Agregar paciente</div>
+    </div>
+
+    <!-- POST-CONSULTA -->
+    <div class="kanban-col col-postconsulta">
+      <div class="kanban-header">
+        <div class="kanban-header-left">
+          <div class="kanban-dot"></div>
+          <div class="kanban-col-title">Post-consulta</div>
+        </div>
+        <div class="kanban-count">8</div>
+      </div>
+      <div class="kanban-cards">
+
+        <div class="card">
+          <div class="card-top">
+            <div class="card-name">Mariela Gomez</div>
+            <div class="card-source source-meta">Meta Ads</div>
+          </div>
+          <div class="card-treatment">Toxina botulinica — realizado</div>
+          <div class="card-note">Consulta realizada el 4/4. Seguimiento automatico enviado. Sin respuesta aun.</div>
+          <div class="card-footer">
+            <div class="card-time">4 Abr</div>
+            <div class="card-status status-follow">Seguimiento</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div class="card-name">Cecilia Herrera</div>
+            <div class="card-source source-wa">WhatsApp</div>
+          </div>
+          <div class="card-treatment">Rellenos — realizado</div>
+          <div class="card-note">Respondio el seguimiento. Interesada en armonizacion completa.</div>
+          <div class="card-footer">
+            <div class="card-time">3 Abr</div>
+            <div class="card-status status-hot">Lista para upsell</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="kanban-add">+ Agregar paciente</div>
+    </div>
+
+    <!-- UPSELL -->
+    <div class="kanban-col col-upsell">
+      <div class="kanban-header">
+        <div class="kanban-header-left">
+          <div class="kanban-dot"></div>
+          <div class="kanban-col-title">Upsell activo</div>
+        </div>
+        <div class="kanban-count">5</div>
+      </div>
+      <div class="kanban-cards">
+
+        <div class="card">
+          <div class="card-top">
+            <div class="card-name">Cecilia Herrera</div>
+            <div class="card-source source-wa">WhatsApp</div>
+          </div>
+          <div class="card-treatment">Armonizacion facial completa</div>
+          <div class="card-note">Paciente activa. Propuesta de combo enviada. Esperando confirmacion.</div>
+          <div class="card-footer">
+            <div class="card-time">Hoy</div>
+            <div class="card-status status-hot">En cierre</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div class="card-name">Patricia Vega</div>
+            <div class="card-source source-meta">Meta Ads</div>
+          </div>
+          <div class="card-treatment">Promo mantenimiento trimestral</div>
+          <div class="card-note">Recibio campana de promocion. Consulto por precio del paquete.</div>
+          <div class="card-footer">
+            <div class="card-time">Ayer</div>
+            <div class="card-status status-hot">En cierre</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div class="card-name">Jimena Acosta</div>
+            <div class="card-source source-ig">Instagram</div>
+          </div>
+          <div class="card-treatment">Tratamiento capilar + facial</div>
+          <div class="card-footer">
+            <div class="card-time">5 Abr</div>
+            <div class="card-status status-hot">En cierre</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="kanban-add">+ Agregar paciente</div>
+    </div>
+
+  </div>
+
+  <!-- BANNER DEMO -->
+  <div class="demo-banner">
+    <div class="demo-banner-text">
+      Este es un <strong>simulacro del panel real</strong> que tendrias en tu consultorio. Los datos y el diseño se adaptan a tu flujo de trabajo. Preparado por <strong>Elbufalo IA</strong> · <a href="https://elbufalo.site" target="_blank" style="color:#c9a227;text-decoration:none;">elbufalo.site</a>
+    </div>
+  </div>
+
+</body>
+</html>
