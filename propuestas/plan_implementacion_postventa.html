@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plan de Implementación — Sistema Postventa Automatizado · Elbufalo IA</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+      background: #f5f6f8;
+      color: #1a1d2e;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+    }
+
+    /* ─── PORTADA ─── */
+    .cover {
+      background: #0a0f2e;
+      padding: 72px 64px 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(201,162,39,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -40px;
+      width: 240px; height: 240px;
+      background: radial-gradient(circle, rgba(201,162,39,0.07) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .cover-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #c9a227;
+      margin-bottom: 20px;
+    }
+    .cover-title {
+      font-size: 38px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+    .cover-title span { color: #c9a227; }
+    .cover-subtitle {
+      font-size: 16px;
+      color: rgba(255,255,255,0.55);
+      font-weight: 300;
+      margin-bottom: 48px;
+    }
+    .cover-meta {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .cover-meta-item {
+      border-left: 2px solid #c9a227;
+      padding-left: 12px;
+    }
+    .cover-meta-item .label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 3px;
+    }
+    .cover-meta-item .value {
+      font-size: 13px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    /* ─── SECCIONES ─── */
+    .section {
+      padding: 56px 64px;
+      border-bottom: 1px solid #eef0f5;
+    }
+
+    .section-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #c9a227;
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #0a0f2e;
+      margin-bottom: 20px;
+      line-height: 1.3;
+    }
+    .section-text {
+      font-size: 14px;
+      color: #444a60;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    /* ─── CARDS DE DIAGNÓSTICO ─── */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .problem-card {
+      background: #f9f5e8;
+      border-top: 3px solid #c9a227;
+      border-radius: 4px;
+      padding: 24px 20px;
+    }
+    .problem-num {
+      font-size: 28px;
+      font-weight: 800;
+      color: #c9a227;
+      margin-bottom: 8px;
+      line-height: 1;
+    }
+    .problem-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0a0f2e;
+      margin-bottom: 8px;
+    }
+    .problem-desc {
+      font-size: 12px;
+      color: #666d84;
+      line-height: 1.65;
+    }
+
+    /* ─── OBJETIVO ─── */
+    .objetivo-box {
+      background: #0a0f2e;
+      border-radius: 4px;
+      padding: 36px 40px;
+      margin-top: 28px;
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+    }
+    .objetivo-icon {
+      font-size: 36px;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .objetivo-content {}
+    .objetivo-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #c9a227;
+      margin-bottom: 10px;
+    }
+    .objetivo-text {
+      font-size: 13px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.75;
+    }
+
+    /* ─── ACCIONES / TIMELINE ─── */
+    .timeline {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 0;
+      position: relative;
+    }
+    .timeline-item:not(:last-child)::before {
+      content: '';
+      position: absolute;
+      left: 27px;
+      top: 52px;
+      bottom: -8px;
+      width: 2px;
+      background: #eef0f5;
+      z-index: 0;
+    }
+    .timeline-badge {
+      width: 40px;
+      height: 40px;
+      background: #0a0f2e;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      color: #c9a227;
+      flex-shrink: 0;
+      margin-top: 4px;
+      position: relative;
+      z-index: 1;
+    }
+    .timeline-content {
+      padding: 0 0 32px 20px;
+    }
+    .timeline-phase {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #c9a227;
+      margin-bottom: 4px;
+    }
+    .timeline-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #0a0f2e;
+      margin-bottom: 8px;
+    }
+    .timeline-desc {
+      font-size: 13px;
+      color: #444a60;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .action-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .action-list li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 12px;
+      color: #555b72;
+      line-height: 1.6;
+    }
+    .action-list li::before {
+      content: '→';
+      color: #c9a227;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 0;
+    }
+
+    /* ─── BENEFICIOS ─── */
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .benefit-card {
+      background: #f5f6f8;
+      border-radius: 4px;
+      padding: 24px 22px;
+      border-left: 3px solid #c9a227;
+    }
+    .benefit-metric {
+      font-size: 32px;
+      font-weight: 800;
+      color: #c9a227;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .benefit-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0a0f2e;
+      margin-bottom: 6px;
+    }
+    .benefit-desc {
+      font-size: 12px;
+      color: #666d84;
+      line-height: 1.6;
+    }
+    .benefit-card.highlight {
+      background: #0a0f2e;
+      border-left: 3px solid #c9a227;
+    }
+    .benefit-card.highlight .benefit-title { color: #fff; }
+    .benefit-card.highlight .benefit-desc { color: rgba(255,255,255,0.55); }
+
+    /* ─── STACK ─── */
+    .stack-list {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .stack-item {
+      background: #f5f6f8;
+      border-radius: 4px;
+      padding: 16px 20px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .stack-dot {
+      color: #c9a227;
+      font-size: 18px;
+      line-height: 1.2;
+      flex-shrink: 0;
+    }
+    .stack-item-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0a0f2e;
+      margin-bottom: 4px;
+    }
+    .stack-item-desc {
+      font-size: 12px;
+      color: #555b72;
+      line-height: 1.6;
+    }
+
+    /* ─── CTA FINAL ─── */
+    .cta-box {
+      background: linear-gradient(135deg, #0a0f2e 0%, #1e2f70 100%);
+      border-radius: 4px;
+      padding: 40px 48px;
+      margin-top: 28px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-box::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(201,162,39,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .cta-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .cta-title span { color: #c9a227; }
+    .cta-sub {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 28px;
+      position: relative;
+    }
+    .cta-chips {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+    }
+    .cta-chip {
+      background: rgba(201,162,39,0.15);
+      border: 1px solid rgba(201,162,39,0.4);
+      color: #c9a227;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      background: #0a0f2e;
+      padding: 40px 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .footer-brand { font-size: 15px; font-weight: 800; color: #fff; }
+    .footer-brand span { color: #c9a227; }
+    .footer-role { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+    .footer-contact {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .footer-contact a {
+      font-size: 11px;
+      color: #c9a227;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 700px) {
+      .cover { padding: 48px 28px 40px; }
+      .section { padding: 40px 28px; }
+      .footer { padding: 32px 28px; }
+      .problem-grid { grid-template-columns: 1fr; }
+      .benefit-grid { grid-template-columns: 1fr; }
+      .cover-title { font-size: 28px; }
+      .objetivo-box { flex-direction: column; gap: 16px; padding: 28px 24px; }
+      .cta-box { padding: 32px 24px; }
+      .cover-meta { gap: 20px; }
+      .timeline-item { grid-template-columns: 44px 1fr; }
+    }
+
+    /* ─── PRINT ─── */
+    @media print {
+      body { background: white; }
+      .page { max-width: 100%; }
+      .cover { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .problem-card, .benefit-card, .stack-item { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- PORTADA -->
+  <div class="cover">
+    <div class="cover-label">Elbufalo IA · Plan de Acción</div>
+    <div class="cover-title">Sistema de Retención<br><span>Postventa Automatizado</span></div>
+    <div class="cover-subtitle">De perder 2 de cada 3 clientes a construir ingresos recurrentes reales</div>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <div class="label">Tipo</div>
+        <div class="value">Plan de Implementación</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="label">Duración estimada</div>
+        <div class="value">30–45 días</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="label">Modalidad</div>
+        <div class="value">Automatización + IA</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIAGNÓSTICO -->
+  <div class="section">
+    <div class="section-label">El Problema</div>
+    <div class="section-title">Crecían en clientes nuevos y se achicaban igual</div>
+    <div class="section-text">
+      El dueño sentía que algo no cerraba. Las ventas nuevas estaban bien, pero los números globales no avanzaban.
+      Cuando revisamos los datos, el diagnóstico fue contundente: la empresa tenía un agujero en el fondo del balde.
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-num">2/3</div>
+        <div class="problem-title">Churn silencioso</div>
+        <div class="problem-desc">Por cada 3 clientes nuevos que entraban, 2 clientes existentes se iban. Sin quejarse. Sin dar aviso. Simplemente dejaban de renovar.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">8×</div>
+        <div class="problem-title">Costo de adquisición</div>
+        <div class="problem-desc">Adquirir un cliente nuevo costaba 8 veces más que retener uno existente. El 100% del esfuerzo comercial iba a adquisición.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">0</div>
+        <div class="problem-title">Proceso postventa</div>
+        <div class="problem-desc">Cerrado el contrato, el cliente quedaba en silencio total. Nadie chequeaba, nadie preguntaba, nadie detectaba señales de alerta.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OBJETIVO -->
+  <div class="section">
+    <div class="section-label">Objetivo</div>
+    <div class="section-title">Tapar el agujero antes de seguir llenando el balde</div>
+    <div class="objetivo-box">
+      <div class="objetivo-icon">🎯</div>
+      <div class="objetivo-content">
+        <div class="objetivo-title">Objetivo principal del plan</div>
+        <div class="objetivo-text">
+          Implementar un sistema automático de retención y fidelización postventa que detecte señales de churn antes de que ocurran,
+          active secuencias de rescate cuando se necesite y genere oportunidades de upsell de forma natural — sin depender de que
+          el equipo comercial recuerde hacer seguimiento manual.
+        </div>
+      </div>
+    </div>
+    <div class="stack-list" style="margin-top:20px;">
+      <div class="stack-item">
+        <div class="stack-dot">●</div>
+        <div>
+          <div class="stack-item-title">Reducir el churn mensual en un 50% en los primeros 6 meses</div>
+          <div class="stack-item-desc">Identificar y retener a los clientes que hoy se van sin dar señales, antes de que lleguen al punto de no renovar.</div>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-dot">●</div>
+        <div>
+          <div class="stack-item-title">Aumentar el ticket promedio por cliente existente en un 40%</div>
+          <div class="stack-item-desc">Activar oportunidades de upsell de forma contextual cuando el cliente muestra señales de engagement, sin venta forzada.</div>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-dot">●</div>
+        <div>
+          <div class="stack-item-title">Liberar al equipo comercial para que se enfoque en adquisición</div>
+          <div class="stack-item-desc">Automatizar el 80% del seguimiento postventa para que el equipo no gaste energía corriendo detrás de clientes que ya compraron.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACCIONES -->
+  <div class="section">
+    <div class="section-label">Plan de Acción</div>
+    <div class="section-title">5 acciones clave para implementar el sistema</div>
+    <div class="section-text">Cada acción está pensada para ejecutarse en orden, construyendo el sistema capa por capa.</div>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-badge">01</div>
+        <div class="timeline-content">
+          <div class="timeline-phase">Semana 1 · Diagnóstico y Setup</div>
+          <div class="timeline-title">Mapeo del ciclo de vida del cliente actual</div>
+          <div class="timeline-desc">
+            Antes de automatizar, entender qué pasa desde que un cliente firma hasta que renueva (o no).
+            Se identifican los puntos de contacto existentes, los vacíos y las señales de alerta que hoy nadie está mirando.
+          </div>
+          <ul class="action-list">
+            <li>Relevamiento de la base de clientes activa y bajas de los últimos 12 meses</li>
+            <li>Identificación de patrones de churn: ¿en qué mes se va la mayoría?</li>
+            <li>Definición de los hitos del ciclo: onboarding, primer uso, primer resultado, renovación</li>
+            <li>Configuración inicial de la herramienta de automatización (CRM / email marketing)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-badge">02</div>
+        <div class="timeline-content">
+          <div class="timeline-phase">Semana 2 · Secuencia Postventa</div>
+          <div class="timeline-title">Check-ins automáticos a los 30, 60 y 90 días</div>
+          <div class="timeline-desc">
+            Se implementa la secuencia de seguimiento automático que el cliente recibe después de contratar.
+            Cada mensaje tiene un propósito específico: confirmar valor, detectar fricción, reforzar el vínculo.
+          </div>
+          <ul class="action-list">
+            <li>Día 30: check-in de primer mes — ¿cómo va la experiencia? ¿se cumplieron las expectativas?</li>
+            <li>Día 60: revisión de resultados parciales + contenido de valor relacionado al servicio</li>
+            <li>Día 90: anticipación de renovación + resumen de logros del trimestre</li>
+            <li>Personalización mínima por segmento de cliente o tipo de servicio contratado</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-badge">03</div>
+        <div class="timeline-content">
+          <div class="timeline-phase">Semana 2–3 · Sistema de Alertas</div>
+          <div class="timeline-title">Encuesta de satisfacción con seguimiento condicional</div>
+          <div class="timeline-desc">
+            Se activa una encuesta breve de satisfacción en momentos clave del ciclo. Si la respuesta cae por debajo de un
+            umbral definido, se activa automáticamente una alerta para el equipo y una secuencia de rescate para el cliente.
+          </div>
+          <ul class="action-list">
+            <li>Encuesta de 2–3 preguntas enviada al día 30 y antes de cada renovación</li>
+            <li>Umbral de alerta configurable (ej: nota menor a 7/10 activa protocolo de rescate)</li>
+            <li>Notificación automática al responsable comercial con contexto del cliente</li>
+            <li>Secuencia de rescate: 2–3 mensajes enfocados en resolver el problema detectado</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-badge">04</div>
+        <div class="timeline-content">
+          <div class="timeline-phase">Semana 3–4 · Nurturing de Valor</div>
+          <div class="timeline-title">Mensajes periódicos que mantienen el vínculo activo</div>
+          <div class="timeline-desc">
+            Entre los check-ins formales, el cliente recibe contenido útil y personalizado que refuerza el valor del servicio
+            y mantiene a la empresa presente. No es spam — es contexto relevante en el momento correcto.
+          </div>
+          <ul class="action-list">
+            <li>Contenido útil relacionado al problema que el cliente contrató resolver</li>
+            <li>Novedades del servicio: mejoras, nuevas funcionalidades, casos de uso</li>
+            <li>Novedades del sector relevantes para su negocio</li>
+            <li>Frecuencia: 1 mensaje cada 2–3 semanas (sin saturar)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-badge">05</div>
+        <div class="timeline-content">
+          <div class="timeline-phase">Semana 4–5 · Upsell Automático</div>
+          <div class="timeline-title">Trigger de upsell basado en señales de engagement</div>
+          <div class="timeline-desc">
+            Cuando el cliente muestra señales de que el servicio está funcionando bien (abre correos, responde encuestas con
+            nota alta, usa el servicio activamente), se activa automáticamente una propuesta de ampliación — en el momento
+            correcto, sin presión.
+          </div>
+          <ul class="action-list">
+            <li>Definición de señales de engagement positivo por canal (email, uso de plataforma, respuesta a encuestas)</li>
+            <li>Trigger automático cuando se acumulan N señales positivas en un período</li>
+            <li>Mensaje de upsell contextualizado: basado en lo que el cliente ya usa y los pasos naturales siguientes</li>
+            <li>Notificación al comercial para seguimiento personalizado si el cliente no responde al primer contacto</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BENEFICIOS -->
+  <div class="section">
+    <div class="section-label">Resultados Esperados</div>
+    <div class="section-title">Lo que cambia cuando el balde deja de tener agujeros</div>
+    <div class="section-text">
+      Basado en implementaciones reales del sistema en empresas de servicios con modelos de suscripción o contrato recurrente.
+    </div>
+    <div class="benefit-grid">
+      <div class="benefit-card highlight">
+        <div class="benefit-metric" style="color:#c9a227;">−50%</div>
+        <div class="benefit-title">Reducción del churn</div>
+        <div class="benefit-desc">En promedio, las bajas de clientes se reducen a la mitad en los primeros 6 meses de implementación.</div>
+      </div>
+      <div class="benefit-card highlight">
+        <div class="benefit-metric" style="color:#c9a227;">+40%</div>
+        <div class="benefit-title">Upsell sin venta forzada</div>
+        <div class="benefit-desc">Los clientes existentes amplían su contrato de forma natural cuando el sistema detecta el momento correcto.</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-metric">80%</div>
+        <div class="benefit-title">Seguimiento automatizado</div>
+        <div class="benefit-desc">El equipo comercial recupera tiempo para adquisición porque el sistema hace el seguimiento rutinario de forma autónoma.</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-metric">3–4×</div>
+        <div class="benefit-title">Retorno sobre inversión</div>
+        <div class="benefit-desc">Retener clientes existentes cuesta 8 veces menos que adquirir nuevos. Cada cliente retenido paga el sistema varias veces.</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-metric">360°</div>
+        <div class="benefit-title">Visibilidad del cliente</div>
+        <div class="benefit-desc">Por primera vez, el equipo puede ver el estado de satisfacción de cada cliente en tiempo real, antes de que sea demasiado tarde.</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-metric">∞</div>
+        <div class="benefit-title">Escalabilidad sin fricción</div>
+        <div class="benefit-desc">El sistema funciona igual con 50 clientes que con 500. No hay costo marginal de seguimiento cuando crece la base.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="section" style="border-bottom:none;">
+    <div class="section-label">Próximo Paso</div>
+    <div class="section-title">¿Listo para tapar el agujero?</div>
+    <div class="section-text">
+      El primer paso es una revisión de tu situación actual: cuántos clientes tenés, cuánto tiempo llevan, cuál es tu proceso
+      postventa hoy y dónde se están yendo. Con eso armamos el plan específico para tu negocio.
+    </div>
+    <div class="cta-box">
+      <div class="cta-title">Solicitá un <span>Diagnóstico</span> y agendamos una cita</div>
+      <div class="cta-sub">para entender tu situación y ver cómo implementamos esto en tu negocio</div>
+      <div class="cta-chips">
+        <div class="cta-chip">Sin costo inicial</div>
+        <div class="cta-chip">30 minutos de diagnóstico</div>
+        <div class="cta-chip">Plan personalizado</div>
+        <div class="cta-chip">Resultados en 6 meses</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div>
+      <div class="footer-brand">Elbufalo <span>IA</span></div>
+      <div class="footer-role">Automatización e Inteligencia Artificial para PyMEs</div>
+    </div>
+    <div class="footer-contact">
+      <a href="mailto:eosvill@gmail.com">elbufaloia@gmail.com</a>
+      <a href="#">11 57083080 · Andrea Arizcun</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
