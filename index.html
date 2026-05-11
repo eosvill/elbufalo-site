@@ -10,6 +10,32 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+
+  <!-- SEO: Canonical -->
+  <link rel="canonical" href="https://elbufalo.site/">
+
+  <!-- SEO: Open Graph (previsualizaciones al compartir en redes) -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://elbufalo.site/">
+  <meta property="og:title" content="Elbufalo IA — Sistemas de Ventas con Inteligencia Artificial">
+  <meta property="og:description" content="Diseñamos sistemas de ventas con IA para PyMEs, emprendedores y comercios que convierten sin depender de tu tiempo ni del azar.">
+  <meta property="og:image" content="https://elbufalo.site/assets/og-image.png">
+  <meta property="og:locale" content="es_AR">
+
+  <!-- SEO: Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Elbufalo IA — Sistemas de Ventas con IA">
+  <meta name="twitter:description" content="Diseñamos sistemas de ventas con IA para PyMEs que convierten sin depender de tu tiempo.">
+  <meta name="twitter:image" content="https://elbufalo.site/assets/og-image.png">
+
+  <!-- Google Analytics 4 — reemplazá G-XXXXXXXXXX con tu Measurement ID de analytics.google.com -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script> -->
 </head>
 <body>
 
@@ -294,6 +320,8 @@
               src="assets/andrea-arizcun.png"
               alt="Andrea Arizcun — Fundadora Elbufalo IA"
               class="perfil-card__img"
+              width="400" height="500"
+              loading="lazy"
               onerror="this.parentElement.classList.add('foto-placeholder')"
             >
           </div>
@@ -474,5 +502,30 @@
   </script>
 
   <script src="buffy-widget.js"></script>
+
+  <!-- SEO: Schema / Datos estructurados -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Elbufalo IA",
+    "url": "https://elbufalo.site",
+    "logo": "https://elbufalo.site/assets/logo-elbufalo.png",
+    "description": "Diseñamos sistemas de ventas con IA para PyMEs, emprendedores y comercios que convierten sin depender de tu tiempo ni del azar.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Buenos Aires",
+      "addressCountry": "AR"
+    },
+    "telephone": "+5491157083080",
+    "founder": {
+      "@type": "Person",
+      "name": "Andrea Arizcun"
+    },
+    "sameAs": [
+      "https://wa.me/5491157083080"
+    ]
+  }
+  </script>
 </body>
 </html>
