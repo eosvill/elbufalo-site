@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Propuesta — CIMA Clinic · Elbufalo IA</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+      background: #f5f6f8;
+      color: #1a1d2e;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+    }
+
+    /* ─── PORTADA ─── */
+    .cover {
+      background: #0a0f2e;
+      padding: 72px 64px 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(201,162,39,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .cover-logo {
+      margin-bottom: 40px;
+    }
+    .cover-logo img {
+      height: 75px;
+      width: auto;
+    }
+    .cover-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #c9a227;
+      margin-bottom: 20px;
+    }
+    .cover-title {
+      font-size: 38px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+    .cover-title span { color: #c9a227; }
+    .cover-subtitle {
+      font-size: 16px;
+      color: rgba(255,255,255,0.55);
+      font-weight: 300;
+      margin-bottom: 48px;
+    }
+    .cover-meta {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .cover-meta-item {
+      border-left: 2px solid #c9a227;
+      padding-left: 12px;
+    }
+    .cover-meta-item .label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 3px;
+    }
+    .cover-meta-item .value {
+      font-size: 13px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    /* ─── SECCIONES ─── */
+    .section {
+      padding: 56px 64px;
+      border-bottom: 1px solid #eef0f5;
+    }
+    .section:last-of-type { border-bottom: none; }
+
+    .section-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #c9a227;
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #0a0f2e;
+      margin-bottom: 20px;
+      line-height: 1.3;
+    }
+    .section-text {
+      font-size: 14px;
+      color: #444a60;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    /* ─── CARDS DE PROBLEMA ─── */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .problem-card {
+      background: #f9f5e8;
+      border-top: 3px solid #c9a227;
+      border-radius: 4px;
+      padding: 24px 20px;
+    }
+    .problem-num {
+      font-size: 28px;
+      font-weight: 800;
+      color: #c9a227;
+      margin-bottom: 8px;
+      line-height: 1;
+    }
+    .problem-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0a0f2e;
+      margin-bottom: 8px;
+    }
+    .problem-desc {
+      font-size: 12px;
+      color: #666d84;
+      line-height: 1.65;
+    }
+
+    /* ─── STACK / COMPONENTES ─── */
+    .stack-list {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .stack-item {
+      background: #f5f6f8;
+      border-radius: 4px;
+      padding: 16px 20px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .stack-dot {
+      color: #c9a227;
+      font-size: 18px;
+      line-height: 1.2;
+      flex-shrink: 0;
+    }
+    .stack-item-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0a0f2e;
+      margin-bottom: 4px;
+    }
+    .stack-item-desc {
+      font-size: 12px;
+      color: #555b72;
+      line-height: 1.6;
+    }
+
+    /* ─── FUNNEL ─── */
+    .funnel-wrapper { margin-top: 36px; }
+    .funnel-stages { display: flex; flex-direction: column; gap: 0; }
+    .funnel-stage {
+      display: grid;
+      grid-template-columns: 40px 1fr 220px;
+      gap: 0;
+      align-items: stretch;
+      margin-bottom: 4px;
+    }
+    .funnel-stage-num {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 800;
+      color: #c9a227;
+      padding-right: 12px;
+    }
+    .funnel-stage-bar {
+      border-radius: 3px;
+      padding: 20px 28px;
+      position: relative;
+    }
+    .funnel-stage-bar::after {
+      content: '';
+      position: absolute;
+      bottom: -10px; left: 50%;
+      transform: translateX(-50%);
+      width: 0; height: 0;
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-top: 10px solid currentColor;
+      z-index: 2;
+    }
+    .funnel-stage:last-child .funnel-stage-bar::after { display: none; }
+    .funnel-s1 .funnel-stage-bar { background: #0a0f2e; }
+    .funnel-s1 .funnel-stage-bar::after { border-top-color: #0a0f2e; }
+    .funnel-s2 .funnel-stage-bar { background: #172254; }
+    .funnel-s2 .funnel-stage-bar::after { border-top-color: #172254; }
+    .funnel-s3 .funnel-stage-bar { background: #1e2f70; }
+    .funnel-s3 .funnel-stage-bar::after { border-top-color: #1e2f70; }
+    .funnel-s4 .funnel-stage-bar { background: #c9a227; }
+    .funnel-s4 .funnel-stage-bar::after { border-top-color: #c9a227; }
+    .funnel-s5 .funnel-stage-bar { background: #a07d18; }
+    .funnel-s1 .stage-title, .funnel-s2 .stage-title, .funnel-s3 .stage-title { color: #fff; font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+    .funnel-s4 .stage-title, .funnel-s5 .stage-title { color: #0a0f2e; font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+    .funnel-s1 .stage-desc, .funnel-s2 .stage-desc, .funnel-s3 .stage-desc { font-size: 12px; line-height: 1.6; color: rgba(255,255,255,0.6); }
+    .funnel-s4 .stage-desc, .funnel-s5 .stage-desc { font-size: 12px; line-height: 1.6; color: rgba(0,0,0,0.55); }
+    .funnel-stage-meta { padding-left: 20px; display: flex; align-items: center; }
+    .funnel-meta-box { background: #f5f6f8; border-radius: 4px; padding: 12px 16px; width: 100%; }
+    .funnel-meta-box .meta-label { font-size: 9px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #c9a227; margin-bottom: 4px; }
+    .funnel-meta-box .meta-items { font-size: 11px; color: #555b72; line-height: 1.65; }
+
+    /* ─── TABLA DE INVERSIÓN ─── */
+    .inv-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 24px;
+      font-size: 13px;
+    }
+    .inv-table thead tr {
+      background: #0a0f2e;
+      color: white;
+    }
+    .inv-table thead th {
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .inv-table tbody tr:nth-child(even) { background: #f5f6f8; }
+    .inv-table tbody tr:nth-child(odd) { background: white; }
+    .inv-table tbody td {
+      padding: 12px 16px;
+      color: #444a60;
+      border-bottom: 1px solid #eef0f5;
+    }
+    .inv-table tbody td:first-child { font-weight: 600; color: #1a1d2e; }
+    .inv-price-highlight {
+      font-size: 42px;
+      font-weight: 800;
+      color: #c9a227;
+      line-height: 1;
+    }
+    .inv-total-box {
+      background: #0a0f2e;
+      border-radius: 4px;
+      padding: 32px 40px;
+      margin-top: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .inv-total-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .inv-total-sub {
+      font-size: 11px;
+      color: rgba(255,255,255,0.35);
+      margin-top: 4px;
+    }
+
+    /* ─── TIMELINE ─── */
+    .timeline {
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .timeline-item {
+      display: flex;
+      gap: 20px;
+      position: relative;
+    }
+    .timeline-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 16px;
+      top: 36px;
+      bottom: -8px;
+      width: 2px;
+      background: #eef0f5;
+    }
+    .timeline-badge {
+      width: 32px;
+      height: 32px;
+      background: #c9a227;
+      color: #0a0f2e;
+      font-size: 11px;
+      font-weight: 800;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 4px;
+      position: relative;
+      z-index: 1;
+    }
+    .timeline-content { padding-bottom: 28px; }
+    .timeline-week {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #c9a227;
+      margin-bottom: 4px;
+    }
+    .timeline-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0a0f2e;
+      margin-bottom: 6px;
+    }
+    .timeline-desc {
+      font-size: 12px;
+      color: #666d84;
+      line-height: 1.65;
+    }
+
+    /* ─── CONDICIONES ─── */
+    .conditions-list {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .condition-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .condition-arrow {
+      color: #c9a227;
+      font-size: 14px;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .condition-text {
+      font-size: 13px;
+      color: #444a60;
+      line-height: 1.65;
+    }
+    .condition-text strong { color: #1a1d2e; }
+
+    /* ─── CHIPS ─── */
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .chip {
+      background: #0a0f2e;
+      color: white;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 5px 12px;
+      border-radius: 4px;
+    }
+
+    /* ─── PASOS NUMERADOS ─── */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .step-item { text-align: center; }
+    .step-circle {
+      width: 44px; height: 44px;
+      background: #0a0f2e;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      font-size: 16px;
+      font-weight: 800;
+      color: #c9a227;
+    }
+    .step-title { font-size: 13px; font-weight: 700; color: #0a0f2e; margin-bottom: 6px; }
+    .step-desc { font-size: 12px; color: #666d84; line-height: 1.6; }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      background: #0a0f2e;
+      padding: 40px 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .footer-brand .name {
+      font-size: 15px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 2px;
+    }
+    .footer-brand .role {
+      font-size: 11px;
+      color: rgba(255,255,255,0.4);
+    }
+    .footer-contacts {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      text-align: right;
+    }
+    .footer-contacts a {
+      font-size: 11px;
+      color: #c9a227;
+      text-decoration: none;
+    }
+
+    /* ─── PRINT / A4 ─── */
+    @media print {
+      @page {
+        size: A4;
+        margin: 0;
+      }
+      body { background: white; }
+      .page { max-width: 100%; }
+      .cover { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .problem-card { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .funnel-stage-bar { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .inv-table thead tr { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .inv-total-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .timeline-badge { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .footer { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .chip { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .step-circle { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .section { page-break-inside: avoid; }
+    }
+
+    @media (max-width: 700px) {
+      .cover { padding: 48px 28px 40px; }
+      .section { padding: 40px 28px; }
+      .problem-grid { grid-template-columns: 1fr; }
+      .funnel-stage { grid-template-columns: 32px 1fr; }
+      .funnel-stage-meta { display: none; }
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+      .footer { flex-direction: column; text-align: center; }
+      .footer-contacts { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ═══ PORTADA ═══ -->
+  <div class="cover">
+    <div class="cover-logo">
+      <img src="C:\Users\Administrador\Documents\Claude copys y marketting\Elbufalo marca personal\Lineamientos_agencia\logo_elbufalo.png" alt="Elbufalo IA" onerror="this.style.display='none'" />
+    </div>
+    <div class="cover-label">Propuesta comercial · Sistema único de turnos + presencia digital</div>
+    <h1 class="cover-title">
+      Un solo lugar para tus turnos —<br>y una <span>identidad digital</span> a la altura de CIMA
+    </h1>
+    <p class="cover-subtitle">
+      Web propia, email con dominio propio y sistema de turnos online que unifica los 3 canales actuales en una sola agenda.
+    </p>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <div class="label">Preparado para</div>
+        <div class="value">CIMA Clinic</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="label">Empresa</div>
+        <div class="value">CIMA Clinic Isidro Casanova</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="label">Fecha</div>
+        <div class="value">Mayo 2026</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="label">Estado</div>
+        <div class="value">Propuesta inicial</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SECCIÓN 1 — DIAGNÓSTICO ═══ -->
+  <div class="section">
+    <div class="section-label">Diagnóstico</div>
+    <h2 class="section-title">Tres canales, una sola agenda —<br>y todo coordinado a mano</h2>
+    <p class="section-text">
+      Hoy CIMA recibe turnos por <strong>dos líneas telefónicas (4625-1430 y 2061-0714), WhatsApp (11-5837-8330) y un email Gmail (turneroclinicacima@gmail.com)</strong>. Cada canal entra por un lado distinto y alguien del equipo termina coordinando agenda a mano: anotando, llamando para confirmar, revisando si el horario está libre.
+    </p>
+    <p class="section-text">
+      Cuando hay volumen — y una clínica que opera 6 días por semana lo tiene — eso se traduce en errores, dobles turnos, llamadas para confirmar lo ya confirmado, y un equipo que pierde tiempo en logística en vez de atender pacientes. A eso se suma un detalle silencioso: el email <strong>"@gmail.com"</strong> baja el percibido. Para un paciente nuevo, una obra social o una prepaga, una clínica con email genérico se ve más chica de lo que realmente es.
+    </p>
+
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-num">01</div>
+        <div class="problem-title">Coordinación manual</div>
+        <div class="problem-desc">Tres canales sin sistema central. Riesgo de doble turno, demoras y tiempo del equipo invertido en logística en lugar de atención al paciente.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">02</div>
+        <div class="problem-title">Imagen "@gmail.com"</div>
+        <div class="problem-desc">El email genérico transmite "consultorio" cuando CIMA ya opera como clínica. Baja el percibido frente a pacientes, obras sociales y prepagas.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">03</div>
+        <div class="problem-title">Sin presencia web propia</div>
+        <div class="problem-desc">No hay un lugar online donde el paciente encuentre especialidades, horarios y reserve solo. La captación depende 100% de los canales 1 a 1.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SECCIÓN 2 — LA SOLUCIÓN ═══ -->
+  <div class="section">
+    <div class="section-label">Propuesta</div>
+    <h2 class="section-title">Una sola puerta de entrada —<br>el paciente reserva solo, ustedes solo confirman</h2>
+    <p class="section-text">
+      En vez de sumar otra herramienta, <strong>ordenamos lo que ya existe</strong>. Un sitio propio que es la cara online de CIMA, un email con dominio propio que profesionaliza cada comunicación, y un sistema de turnos donde el paciente reserva sin que nadie tenga que atender el teléfono. Los canales actuales siguen funcionando — solo que ahora todo termina en la misma agenda.
+    </p>
+
+    <div class="stack-list">
+      <div class="stack-item">
+        <div class="stack-dot">●</div>
+        <div>
+          <div class="stack-item-title">Sitio web propio en clinicacima.com.ar</div>
+          <div class="stack-item-desc">Institucional, mobile-first, con especialidades, horarios y profesionales. SEO local pensado para "clínica Isidro Casanova" y barrios cercanos. Pensado para que cualquier paciente que busque atención en la zona los encuentre.</div>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-dot">●</div>
+        <div>
+          <div class="stack-item-title">Email corporativo con dominio propio</div>
+          <div class="stack-item-desc">turnos@clinicacima.com.ar, contacto@clinicacima.com.ar y las cuentas que necesiten. Cada comunicación sale con la imagen de CIMA, no con un Gmail genérico.</div>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-dot">●</div>
+        <div>
+          <div class="stack-item-title">Sistema de turnos online en n8n self-hosted</div>
+          <div class="stack-item-desc">Motor de turnos corriendo en un VPS propio de CIMA. El paciente reserva en tiempo real, recibe confirmación automática por email + WhatsApp, y todo queda almacenado en infraestructura controlada por la clínica — sin dependencia de plataformas SaaS de terceros que puedan cambiar precios o cerrar.</div>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-dot">●</div>
+        <div>
+          <div class="stack-item-title">Centralización de los 3 canales actuales</div>
+          <div class="stack-item-desc">Los turnos que entren por teléfono o WhatsApp se cargan en el mismo sistema. Una sola agenda real, sin papeles ni planillas paralelas.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chips">
+      <span class="chip">dominio propio</span>
+      <span class="chip">Google Workspace</span>
+      <span class="chip">n8n</span>
+      <span class="chip">VPS Hostinger</span>
+      <span class="chip">sistema de turnos</span>
+      <span class="chip">SEO local</span>
+      <span class="chip">WhatsApp</span>
+      <span class="chip">Mobile-first</span>
+    </div>
+  </div>
+
+  <!-- ═══ SECCIÓN 3 — CÓMO FUNCIONA ═══ -->
+  <div class="section">
+    <div class="section-label">Arquitectura del sistema</div>
+    <h2 class="section-title">Cómo funciona el flujo</h2>
+    <p class="section-text">
+      Desde que el paciente busca un turno hasta que queda confirmado — sin que el equipo de CIMA tenga que atender el teléfono ni anotar nada a mano.
+    </p>
+
+    <div class="funnel-wrapper">
+      <div class="funnel-stages">
+
+        <div class="funnel-stage funnel-s1">
+          <div class="funnel-stage-num">1</div>
+          <div class="funnel-stage-bar">
+            <div class="stage-title">El paciente llega a la web</div>
+            <div class="stage-desc">Llega por búsqueda en Google ("clínica Isidro Casanova") o por referencia directa. La web propia es la primera imagen institucional de CIMA online.</div>
+          </div>
+          <div class="funnel-stage-meta">
+            <div class="funnel-meta-box">
+              <div class="meta-label">Canal</div>
+              <div class="meta-items">Google + referidos<br>SEO local optimizado<br>Disponible 24/7</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="funnel-stage funnel-s2">
+          <div class="funnel-stage-num">2</div>
+          <div class="funnel-stage-bar">
+            <div class="stage-title">Elige especialidad y profesional</div>
+            <div class="stage-desc">Desde el sistema online, el paciente selecciona qué tipo de consulta necesita y con qué profesional, sin intervención humana.</div>
+          </div>
+          <div class="funnel-stage-meta">
+            <div class="funnel-meta-box">
+              <div class="meta-label">Acceso</div>
+              <div class="meta-items">Web mobile-first<br>Sin llamados previos<br>Sin esperar respuesta</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="funnel-stage funnel-s3">
+          <div class="funnel-stage-num">3</div>
+          <div class="funnel-stage-bar">
+            <div class="stage-title">Selecciona horario en tiempo real</div>
+            <div class="stage-desc">El sistema muestra solo los horarios libres en ese momento. Imposible asignar dos turnos al mismo profesional en el mismo horario.</div>
+          </div>
+          <div class="funnel-stage-meta">
+            <div class="funnel-meta-box">
+              <div class="meta-label">Resultado</div>
+              <div class="meta-items">Agenda unificada<br>Sin doble turno<br>Sin errores manuales</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="funnel-stage funnel-s4">
+          <div class="funnel-stage-num">4</div>
+          <div class="funnel-stage-bar">
+            <div class="stage-title">Recibe confirmación automática</div>
+            <div class="stage-desc">El sistema envía confirmación por email y WhatsApp con todos los datos del turno. También dispara recordatorios automáticos antes de la cita.</div>
+          </div>
+          <div class="funnel-stage-meta">
+            <div class="funnel-meta-box">
+              <div class="meta-label">Comunicaciones</div>
+              <div class="meta-items">Email + WhatsApp<br>0 intervención manual<br>Recordatorios automáticos</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="funnel-stage funnel-s5">
+          <div class="funnel-stage-num">5</div>
+          <div class="funnel-stage-bar">
+            <div class="stage-title">El equipo solo administra casos especiales</div>
+            <div class="stage-desc">El flujo estándar corre solo. El equipo de CIMA solo interviene en lo que requiere criterio: cambios complejos, urgencias, casos puntuales.</div>
+          </div>
+          <div class="funnel-stage-meta">
+            <div class="funnel-meta-box">
+              <div class="meta-label">Foco recuperado</div>
+              <div class="meta-items">Atención al paciente<br>Tiempo del equipo<br>Calidad de servicio</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SECCIÓN 4 — FASES ═══ -->
+  <div class="section">
+    <div class="section-label">Hoja de ruta</div>
+    <h2 class="section-title">Fases del proyecto</h2>
+    <p class="section-text">
+      El proyecto se organiza en fases secuenciales. Cada fase entrega un componente funcional antes de avanzar a la siguiente, así CIMA puede ver resultados desde la primera semana.
+    </p>
+
+    <div class="steps-grid">
+      <div class="step-item">
+        <div class="step-circle">0</div>
+        <div class="step-title">Mini-diagnóstico</div>
+        <div class="step-desc">Relevamiento corto: especialidades, horarios reales, profesionales y flujo actual.</div>
+      </div>
+      <div class="step-item">
+        <div class="step-circle">1</div>
+        <div class="step-title">Dominio + emails</div>
+        <div class="step-desc">Registro de clinicacima.com.ar y configuración de los emails corporativos.</div>
+      </div>
+      <div class="step-item">
+        <div class="step-circle">2</div>
+        <div class="step-title">Web institucional</div>
+        <div class="step-desc">Diseño, contenidos, mobile y SEO local. Web publicada e indexada en Google.</div>
+      </div>
+      <div class="step-item">
+        <div class="step-circle">3</div>
+        <div class="step-title">Sistema de turnos</div>
+        <div class="step-desc">Instalación de n8n en VPS propio, configuración del sistema y capacitación al equipo.</div>
+      </div>
+    </div>
+
+    <div class="timeline" style="margin-top: 40px;">
+      <div class="timeline-item">
+        <div class="timeline-badge">S1</div>
+        <div class="timeline-content">
+          <div class="timeline-week">Semana 1</div>
+          <div class="timeline-title">Fase 0 — Mini-diagnóstico y relevamiento</div>
+          <div class="timeline-desc">Una reunión inicial para entender en detalle: qué especialidades atienden, qué horarios reales tiene cada profesional, cómo entran hoy los turnos por cada canal, y qué necesidades específicas tiene el equipo administrativo.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-badge">S2</div>
+        <div class="timeline-content">
+          <div class="timeline-week">Semana 2</div>
+          <div class="timeline-title">Fase 1 — Dominio y emails corporativos</div>
+          <div class="timeline-desc">Registro del dominio clinicacima.com.ar, configuración de Google Workspace y activación de las cuentas de email corporativo. Capacitación rápida al equipo para usarlas.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-badge">S3</div>
+        <div class="timeline-content">
+          <div class="timeline-week">Semanas 3–4</div>
+          <div class="timeline-title">Fase 2 — Sitio web institucional</div>
+          <div class="timeline-desc">Diseño y desarrollo del sitio: institucional, mobile-first, con especialidades, profesionales, horarios y contacto. SEO local configurado. Publicación e indexación en Google.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-badge">S4</div>
+        <div class="timeline-content">
+          <div class="timeline-week">Semanas 5–6</div>
+          <div class="timeline-title">Fase 3 — Sistema de turnos + capacitación</div>
+          <div class="timeline-desc">Instalación de n8n en el VPS de CIMA, configuración del sistema de turnos, prueba con casos reales, integración con email y WhatsApp, y sesión de capacitación al equipo administrativo (1 sesión).</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SECCIÓN 5 — INVERSIÓN ═══ -->
+  <div class="section">
+    <div class="section-label">Inversión</div>
+    <h2 class="section-title">Estructura de inversión</h2>
+    <p class="section-text">
+      La inversión es un <strong>pago único</strong> que deja todo armado: dominio del primer año, emails corporativos configurados, sitio web institucional, sistema de turnos funcionando y capacitación al equipo. La operación mensual se limita a la renovación de servicios externos (hosting, dominio, cuentas de email y VPS), que quedan contratados a nombre de CIMA Clinic.
+    </p>
+
+    <table class="inv-table">
+      <thead>
+        <tr>
+          <th>Concepto</th>
+          <th>Descripción</th>
+          <th style="text-align:right">Costo estimado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Dominio + hosting web</td>
+          <td>Renovación del dominio clinicacima.com.ar · hosting del sitio institucional</td>
+          <td style="text-align:right">USD 8–12 / mes</td>
+        </tr>
+        <tr>
+          <td>Email corporativo</td>
+          <td>Google Workspace · por cada cuenta activa (turnos@, contacto@, etc.)</td>
+          <td style="text-align:right">USD 6 / mes por cuenta</td>
+        </tr>
+        <tr>
+          <td>VPS Hostinger (KVM 1)</td>
+          <td>Servidor propio para correr n8n y el sistema de turnos · 1 vCPU · 4 GB RAM · 50 GB SSD</td>
+          <td style="text-align:right">USD 7 / mes</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="section-text" style="margin-top:12px; font-size:12px; color:#777d94;">
+      * Estos costos quedan contratados directamente a nombre de CIMA Clinic. Elbufalo IA realiza la instalación, configuración y entrega del sistema funcionando.
+    </p>
+
+    <div class="inv-total-box">
+      <div>
+        <div class="inv-total-label">Inversión total — pago único</div>
+        <div class="inv-total-sub">Incluye: dominio (primer año) · configuración de emails · sitio web · sistema de turnos en n8n · capacitación</div>
+      </div>
+      <div class="inv-price-highlight">USD 600</div>
+    </div>
+  </div>
+
+  <!-- ═══ SECCIÓN 6 — CONDICIONES ═══ -->
+  <div class="section">
+    <div class="section-label">Modalidad de trabajo</div>
+    <h2 class="section-title">Condiciones y próximos pasos</h2>
+
+    <div class="conditions-list">
+      <div class="condition-item">
+        <div class="condition-arrow">→</div>
+        <div class="condition-text"><strong>Pago:</strong> 50% al inicio del proyecto · 50% al publicar la web</div>
+      </div>
+      <div class="condition-item">
+        <div class="condition-arrow">→</div>
+        <div class="condition-text"><strong>Tiempo total de entrega:</strong> 5 a 6 semanas desde la confirmación del avance</div>
+      </div>
+      <div class="condition-item">
+        <div class="condition-arrow">→</div>
+        <div class="condition-text"><strong>Entregables incluidos:</strong> dominio activo · emails corporativos configurados · web pública e indexada · sistema de turnos funcionando · 1 sesión de capacitación al equipo administrativo</div>
+      </div>
+      <div class="condition-item">
+        <div class="condition-arrow">→</div>
+        <div class="condition-text"><strong>Infraestructura del cliente:</strong> el VPS de Hostinger, el dominio y las cuentas de email quedan contratados a nombre de CIMA Clinic. Elbufalo IA realiza la instalación, configuración y entrega del sistema funcionando.</div>
+      </div>
+      <div class="condition-item">
+        <div class="condition-arrow">→</div>
+        <div class="condition-text"><strong>Soporte post-entrega:</strong> 30 días de soporte incluidos · mantenimiento mensual disponible como servicio adicional (ajustes, contenido, monitoreo)</div>
+      </div>
+      <div class="condition-item">
+        <div class="condition-arrow">→</div>
+        <div class="condition-text"><strong>Escalabilidad:</strong> la base permite sumar más especialidades, profesionales, recordatorios automáticos o integraciones con obras sociales sin rehacer el sistema</div>
+      </div>
+      <div class="condition-item">
+        <div class="condition-arrow">→</div>
+        <div class="condition-text"><strong>Próximo paso:</strong> confirmar avance para reservar el dominio clinicacima.com.ar y agendar la reunión de mini-diagnóstico (15 a 20 minutos)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <div class="footer">
+    <div class="footer-brand">
+      <div class="name">Andrea Arizcun · Elbufalo IA</div>
+      <div class="role">Agencia de Automatización Inteligente con IA</div>
+    </div>
+    <div class="footer-contacts">
+      <a href="https://elbufalo.site">elbufalo.site</a>
+      <a href="mailto:elbufaloia@gmail.com">elbufaloia@gmail.com</a>
+      <a href="https://wa.me/5491157083080">WhatsApp: +54 11 5708-3080</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
