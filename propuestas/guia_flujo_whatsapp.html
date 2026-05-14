@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asistente WhatsApp con IA · Guía de Implementación · El Bufalo IA</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #444a60;
+    background: #f5f6f8;
+  }
+  .page { max-width: 900px; margin: 0 auto; }
+
+  /* COVER — mobile first */
+  .cover {
+    background: #0a0f2e;
+    padding: 36px 20px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(201,162,39,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cover-label {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: #c9a227; margin-bottom: 14px;
+  }
+  .cover-title {
+    font-size: 26px; font-weight: 800; color: #fff;
+    line-height: 1.15; margin-bottom: 10px;
+  }
+  .cover-title span { color: #c9a227; }
+  .cover-subtitle {
+    font-size: 13px; color: rgba(255,255,255,0.65);
+    margin-bottom: 28px; font-weight: 400;
+  }
+  .cover-meta {
+    display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px;
+  }
+  .cover-meta-item { border-left: 3px solid #c9a227; padding-left: 12px; }
+  .cover-meta-item .meta-label {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: rgba(255,255,255,0.45); display: block;
+  }
+  .cover-meta-item .meta-value { font-size: 13px; font-weight: 600; color: #fff; }
+  .btn-download {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: #c9a227;
+    border: 2px solid #c9a227; font-weight: 700;
+    font-size: 13px; padding: 11px 20px;
+    border-radius: 4px; text-decoration: none;
+    letter-spacing: 0.03em;
+  }
+  .btn-download:active { opacity: 0.75; }
+
+  /* SECTIONS — mobile first */
+  section { padding: 32px 20px; background: #fff; border-bottom: 1px solid #eef0f5; }
+  section:last-of-type { border-bottom: none; }
+  .section-label {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: #c9a227; margin-bottom: 8px;
+  }
+  .section-title { font-size: 20px; font-weight: 700; color: #0a0f2e; margin-bottom: 20px; }
+
+  /* CAPABILITY CARDS — mobile first: 1 col */
+  .cap-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 24px; }
+  .cap-card {
+    background: #f5f6f8; border-radius: 4px; padding: 18px;
+    border-left: 3px solid #c9a227;
+  }
+  .cap-number { font-size: 26px; font-weight: 800; color: #c9a227; line-height: 1; margin-bottom: 5px; }
+  .cap-title { font-size: 13px; font-weight: 700; color: #0a0f2e; margin-bottom: 4px; }
+  .cap-desc { font-size: 12px; color: #666d84; line-height: 1.5; }
+
+  /* STAGE FLOW — scrollable on mobile */
+  .stage-flow-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 8px; }
+  .stage-flow { display: flex; align-items: flex-start; gap: 0; min-width: 360px; }
+  .stage-wrap { text-align: center; flex-shrink: 0; }
+  .stage-item {
+    background: #0a0f2e; color: #fff; padding: 8px 13px;
+    border-radius: 4px; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap;
+  }
+  .stage-item.s2 { background: #172254; }
+  .stage-item.s3 { background: #1e2f70; }
+  .stage-item.s4 { background: #c9a227; color: #0a0f2e; }
+  .stage-arrow { color: #c9a227; font-weight: 700; font-size: 14px; padding: 8px 6px 0; flex-shrink: 0; }
+  .stage-label { font-size: 10px; color: #777d94; margin-top: 5px; }
+
+  /* CHAT */
+  .chat-outer { background: #ddd; border-radius: 4px; overflow: hidden; width: 100%; margin: 0 auto; }
+  .chat-header {
+    background: #075e54; padding: 10px 14px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .chat-avatar {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: #c9a227; display: flex; align-items: center;
+    justify-content: center; font-size: 13px; font-weight: 800; color: #0a0f2e; flex-shrink: 0;
+  }
+  .chat-info .chat-name { font-size: 13px; font-weight: 600; color: #fff; }
+  .chat-info .chat-status { font-size: 10px; color: rgba(255,255,255,0.65); }
+  .chat-body { background: #e5ddd5; padding: 14px; display: flex; flex-direction: column; gap: 8px; }
+  .msg { display: flex; flex-direction: column; }
+  .msg.client { align-items: flex-start; }
+  .msg.bot { align-items: flex-end; }
+  .bubble {
+    max-width: 88%; padding: 8px 12px; font-size: 12px; line-height: 1.5;
+  }
+  .msg.client .bubble { background: #fff; color: #1a1d2e; border-radius: 0 8px 8px 8px; }
+  .msg.bot .bubble { background: #dcf8c6; color: #1a1d2e; border-radius: 8px 0 8px 8px; }
+  .msg-meta { font-size: 10px; color: #999; padding: 2px 4px; }
+  .action-tag {
+    font-size: 9px; background: #0a0f2e; color: #c9a227;
+    border-radius: 4px; padding: 2px 7px; font-weight: 700;
+    letter-spacing: 0.05em; margin-top: 3px; display: inline-block;
+    word-break: break-word;
+  }
+
+  /* TABLES — wrapped for mobile scroll */
+  .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .req-table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 480px; }
+  .req-table thead tr { background: #0a0f2e; }
+  .req-table thead th {
+    padding: 10px 12px; text-align: left; color: #fff;
+    font-weight: 600; font-size: 11px; white-space: nowrap;
+  }
+  .req-table tbody tr:nth-child(even) { background: #f5f6f8; }
+  .req-table tbody td {
+    padding: 10px 12px; border-bottom: 1px solid #eef0f5;
+    color: #444a60; vertical-align: top;
+  }
+  .req-table tbody td:first-child { font-weight: 600; color: #0a0f2e; white-space: nowrap; }
+  .cost-tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; }
+  .cost-free { background: #e8f5e9; color: #2e7d32; }
+  .cost-low  { background: #fff3e0; color: #bf360c; }
+
+  /* AIRTABLE TABLES */
+  .at-block { margin-bottom: 28px; }
+  .at-block:last-child { margin-bottom: 0; }
+  .at-header {
+    background: #0a0f2e; color: #c9a227;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 9px 14px;
+    border-radius: 4px 4px 0 0;
+  }
+  .at-table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 420px; }
+  .at-table thead tr { background: #f5f6f8; }
+  .at-table thead th {
+    padding: 8px 12px; text-align: left; font-weight: 600;
+    font-size: 11px; color: #0a0f2e; border-bottom: 1px solid #eef0f5;
+  }
+  .at-table tbody td { padding: 8px 12px; border-bottom: 1px solid #eef0f5; color: #444a60; }
+  .at-table tbody td:first-child { font-weight: 600; color: #0a0f2e; white-space: nowrap; }
+  .field-type {
+    display: inline-block; padding: 1px 7px; border-radius: 4px;
+    font-size: 10px; font-weight: 600; background: #f5f6f8;
+    color: #666d84; border: 1px solid #eef0f5; white-space: nowrap;
+  }
+  .req-mark { color: #c9a227; font-weight: 700; }
+
+  /* CONFIG BOX */
+  .config-box {
+    background: #f9f5e8; border-top: 3px solid #c9a227;
+    border-radius: 4px; padding: 16px; margin-top: 14px;
+  }
+  .config-box-label {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: #c9a227; margin-bottom: 6px;
+  }
+  .config-box-title { font-size: 13px; font-weight: 700; color: #0a0f2e; margin-bottom: 12px; }
+  .config-row { display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; }
+  .config-row:last-child { margin-bottom: 0; }
+  .ckey {
+    font-family: 'Courier New', monospace; font-size: 11px; font-weight: 700;
+    color: #0a0f2e; background: #fff; padding: 3px 9px; border-radius: 4px;
+    border: 1px solid #eef0f5; display: inline-block;
+  }
+  .cval { font-size: 12px; color: #444a60; }
+
+  /* STEPS */
+  .step-list { display: flex; flex-direction: column; gap: 20px; }
+  .step-item { display: flex; gap: 14px; align-items: flex-start; }
+  .step-circle {
+    width: 36px; height: 36px; border-radius: 50%; background: #0a0f2e;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .step-circle span { font-size: 13px; font-weight: 700; color: #c9a227; }
+  .step-body h4 { font-size: 13px; font-weight: 700; color: #0a0f2e; margin-bottom: 6px; }
+  .step-body p { font-size: 12px; color: #444a60; line-height: 1.6; }
+  .step-note { font-size: 11px; color: #777d94; margin-top: 5px; font-style: italic; }
+
+  /* CODE */
+  .code-block {
+    background: #1a1d2e; border-radius: 4px; padding: 14px 14px;
+    margin: 10px 0; font-family: 'Courier New', monospace;
+    font-size: 11px; color: #c9a227; overflow-x: auto;
+    -webkit-overflow-scrolling: touch; line-height: 1.8;
+  }
+  .code-comment { color: #555d7a; }
+  .code-highlight { color: #fff; }
+
+  /* WARNING */
+  .warn-box {
+    background: #fff8f0; border-left: 3px solid #c9a227;
+    border-radius: 4px; padding: 14px 14px; margin-top: 16px;
+  }
+  .warn-label {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: #a07d18; margin-bottom: 4px;
+  }
+  .warn-box p { font-size: 12px; color: #444a60; }
+
+  /* CTA */
+  .cta-dark {
+    background: #0a0f2e; border-radius: 4px;
+    padding: 28px 20px; text-align: center; margin-top: 0;
+  }
+  .cta-dark .cta-label {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: #c9a227; margin-bottom: 12px;
+  }
+  .cta-dark h3 { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 10px; }
+  .cta-dark p {
+    font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 22px;
+  }
+  .cta-btn {
+    display: inline-block; background: #c9a227; color: #0a0f2e;
+    font-weight: 700; font-size: 13px; padding: 13px 28px;
+    border-radius: 4px; text-decoration: none; letter-spacing: 0.03em;
+  }
+
+  /* FOOTER */
+  .footer {
+    background: #0a0f2e; padding: 28px 20px;
+    display: flex; flex-direction: column;
+    align-items: flex-start; gap: 16px;
+  }
+  .footer-name { font-size: 14px; font-weight: 700; color: #fff; }
+  .footer-role { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+  .footer-links { display: flex; flex-wrap: wrap; gap: 16px; }
+  .footer-links a { font-size: 11px; color: #c9a227; text-decoration: none; font-weight: 500; }
+
+  /* UTILS */
+  .arrow { color: #c9a227; font-weight: 700; margin-right: 4px; }
+  .mb-8  { margin-bottom: 8px; }
+  .mb-12 { margin-bottom: 12px; }
+  .mb-16 { margin-bottom: 16px; }
+  .mb-24 { margin-bottom: 24px; }
+  .mt-16 { margin-top: 16px; }
+  .mt-24 { margin-top: 24px; }
+  hr.div { border: none; border-top: 1px solid #eef0f5; margin: 24px 0; }
+
+  /* TABLET 600px+ */
+  @media (min-width: 600px) {
+    .cover { padding: 48px 40px 44px; }
+    .cover-title { font-size: 32px; }
+    .cover-subtitle { font-size: 14px; }
+    .cover-meta { flex-direction: row; flex-wrap: wrap; gap: 24px; }
+    section { padding: 40px 40px; }
+    .section-title { font-size: 22px; }
+    .cap-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .chat-outer { max-width: 420px; }
+    .config-row { flex-direction: row; gap: 12px; align-items: baseline; }
+    .footer { padding: 32px 40px; flex-direction: row; justify-content: space-between; align-items: center; }
+    .cta-dark { padding: 36px; }
+    .cta-dark h3 { font-size: 20px; }
+  }
+
+  /* DESKTOP 900px+ */
+  @media (min-width: 900px) {
+    .cover { padding: 64px 64px 56px; }
+    .cover-title { font-size: 38px; }
+    .cover-meta { flex-wrap: nowrap; gap: 32px; }
+    section { padding: 48px 64px; }
+    .chat-outer { max-width: 460px; }
+    .footer { padding: 36px 64px; }
+  }
+
+  @media print {
+    body { background: #fff; }
+    section { break-inside: avoid; }
+    .at-block { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-label">El Bufalo IA · Lead Magnet · WHATSAPP</div>
+  <h1 class="cover-title">Tu negocio responde<br><span>WhatsApp mientras dormís</span></h1>
+  <p class="cover-subtitle">Guía de implementación · Asistente IA para WhatsApp Business construido con n8n + Claude + Airtable</p>
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <span class="meta-label">Herramientas</span>
+      <span class="meta-value">n8n · Claude Haiku · Airtable</span>
+    </div>
+    <div class="cover-meta-item">
+      <span class="meta-label">Para quién</span>
+      <span class="meta-value">Negocios de servicios y comercios</span>
+    </div>
+    <div class="cover-meta-item">
+      <span class="meta-label">Tiempo de setup</span>
+      <span class="meta-value">2 a 4 horas</span>
+    </div>
+    <div class="cover-meta-item">
+      <span class="meta-label">Costo mensual aprox.</span>
+      <span class="meta-value">~$30–50 USD</span>
+    </div>
+  </div>
+  <a href="https://drive.google.com/file/d/1ZGmf0BnkTiNqA1Wi6-S06pgKxNvrRdEw/view?usp=sharing" target="_blank" class="btn-download">
+    ↓ &nbsp;Descargar flujo JSON para n8n
+  </a>
+</div>
+
+<!-- QUÉ HACE -->
+<section>
+  <div class="section-label">El sistema</div>
+  <h2 class="section-title">Qué hace este asistente por tu negocio</h2>
+
+  <p style="font-size:13px;color:#444a60;margin-bottom:22px;">Cuando un cliente te escribe por WhatsApp, el asistente responde automáticamente — en segundos, a cualquier hora. Lee el mensaje, entiende qué necesita la persona, responde con la información correcta y registra todo en tu base de datos. Sin que nadie esté del otro lado.</p>
+
+  <div class="cap-grid">
+    <div class="cap-card">
+      <div class="cap-number">01</div>
+      <div class="cap-title">Responde en segundos · 24/7</div>
+      <p class="cap-desc">Sin importar la hora. Feriados, madrugadas, fines de semana. Tu negocio nunca más pierde un lead por no responder a tiempo.</p>
+    </div>
+    <div class="cap-card">
+      <div class="cap-number">02</div>
+      <div class="cap-title">Informa y califica</div>
+      <p class="cap-desc">El asistente conoce tus servicios, precios y horarios. Responde consultas, identifica el interés del cliente y avanza la conversación hacia el turno.</p>
+    </div>
+    <div class="cap-card">
+      <div class="cap-number">03</div>
+      <div class="cap-title">Agenda turnos automáticamente</div>
+      <p class="cap-desc">Calcula los horarios disponibles en tiempo real y confirma el turno sin intervención humana. El cliente elige — el sistema registra.</p>
+    </div>
+    <div class="cap-card">
+      <div class="cap-number">04</div>
+      <div class="cap-title">Registra cada lead en Airtable</div>
+      <p class="cap-desc">Cada conversación queda guardada con nombre, teléfono, interés y estado del lead. Vos ves todo en un panel ordenado.</p>
+    </div>
+  </div>
+
+  <p style="font-size:12px;font-weight:700;color:#0a0f2e;margin-bottom:10px;">Ciclo de vida de cada contacto:</p>
+  <div class="stage-flow-wrap">
+    <div class="stage-flow">
+      <div class="stage-wrap">
+        <div class="stage-item">Nuevo</div>
+        <div class="stage-label">Primer mensaje</div>
+      </div>
+      <span class="stage-arrow">→</span>
+      <div class="stage-wrap">
+        <div class="stage-item s2">Contactado</div>
+        <div class="stage-label">Respondido</div>
+      </div>
+      <span class="stage-arrow">→</span>
+      <div class="stage-wrap">
+        <div class="stage-item s3">Calificado</div>
+        <div class="stage-label">Interés confirmado</div>
+      </div>
+      <span class="stage-arrow">→</span>
+      <div class="stage-wrap">
+        <div class="stage-item s4">Con turno</div>
+        <div class="stage-label">Turno agendado</div>
+      </div>
+    </div>
+  </div>
+  <p style="font-size:11px;color:#777d94;margin-top:14px;"><span class="arrow">→</span>Si alguien hace una pregunta que requiere atención humana, el sistema lo detecta, lo marca en tu panel como "Necesita humano" y vos retomás la conversación cuando podés.</p>
+</section>
+
+<!-- CONVERSACIÓN REAL -->
+<section>
+  <div class="section-label">En la práctica</div>
+  <h2 class="section-title">Así se ve una conversación real</h2>
+
+  <p style="font-size:12px;color:#666d84;margin-bottom:18px;">El cliente escribe como siempre. El asistente responde usando el nombre real de tu negocio, tus servicios y tus horarios disponibles del día. Estas son las acciones internas que ejecuta en cada respuesta:</p>
+
+  <div class="chat-outer">
+    <div class="chat-header">
+      <div class="chat-avatar">IA</div>
+      <div class="chat-info">
+        <div class="chat-name">Tu Negocio · Asistente</div>
+        <div class="chat-status">en línea</div>
+      </div>
+    </div>
+    <div class="chat-body">
+
+      <div class="msg client">
+        <div class="bubble">Hola! quería pedir info sobre precios</div>
+        <div class="msg-meta">22:47</div>
+      </div>
+
+      <div class="msg bot">
+        <div class="bubble">¡Hola María! Gracias por escribirnos 😊 Somos [Tu Negocio]. Contamos con:<br><br>• Servicio A (60 min): desde $XXXX<br>• Servicio B (45 min): desde $XXXX<br>• Servicio C (30 min): desde $XXXX<br><br>¿Cuál te interesa más?</div>
+        <div class="msg-meta">22:47 ✓✓</div>
+        <div class="action-tag">ACCIÓN INTERNA: NONE · informando servicios</div>
+      </div>
+
+      <div class="msg client">
+        <div class="bubble">El B, ¿tienen turno el miércoles?</div>
+        <div class="msg-meta">22:49</div>
+      </div>
+
+      <div class="msg bot">
+        <div class="bubble">¡Perfecto! Para Servicio B tengo disponibilidad el miércoles:<br><br>• 10:00 hs<br>• 14:00 hs<br>• 16:30 hs<br><br>¿Cuál te viene mejor?</div>
+        <div class="msg-meta">22:49 ✓✓</div>
+        <div class="action-tag">ACCIÓN INTERNA: QUALIFY · interés confirmado → Airtable</div>
+      </div>
+
+      <div class="msg client">
+        <div class="bubble">El de las 10</div>
+        <div class="msg-meta">22:50</div>
+      </div>
+
+      <div class="msg bot">
+        <div class="bubble">¡Listo! Te confirmamos turno para Servicio B el miércoles 7 de mayo a las 10:00. Te recordamos el día anterior 🗓️<br><br>¿Alguna duda más?</div>
+        <div class="msg-meta">22:50 ✓✓</div>
+        <div class="action-tag">ACCIÓN INTERNA: BOOK · turno guardado → Airtable</div>
+      </div>
+
+    </div>
+  </div>
+
+  <p style="font-size:11px;color:#777d94;margin-top:12px;text-align:center;">Esto pasó a las 10:47 PM. Sin que nadie estuviera trabajando.</p>
+</section>
+
+<!-- REQUISITOS -->
+<section>
+  <div class="section-label">Antes de empezar</div>
+  <h2 class="section-title">Cuentas y herramientas que necesitás</h2>
+
+  <p style="font-size:12px;color:#666d84;margin-bottom:18px;">El sistema conecta cuatro plataformas. Cada una tiene su propia cuenta y credenciales. Para un negocio que recibe unas 200 consultas por mes, el costo total suele estar entre $30 y $50 USD mensuales.</p>
+
+  <div class="table-scroll mb-16">
+    <table class="req-table">
+      <thead>
+        <tr>
+          <th>Herramienta</th>
+          <th>Para qué se usa</th>
+          <th>Costo</th>
+          <th>Dificultad</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Meta Business + WhatsApp API</td>
+          <td>Conectar tu número de WhatsApp Business al sistema. Recibe y envía mensajes.</td>
+          <td><span class="cost-tag cost-free">Gratis</span><br><small style="color:#777d94;font-size:10px;">1.000 conv/mes incluidas</small></td>
+          <td>★★★☆☆<br><small style="color:#777d94;">Requiere verificar empresa</small></td>
+        </tr>
+        <tr>
+          <td>n8n</td>
+          <td>El motor que conecta todo y ejecuta el flujo cuando llega un mensaje.</td>
+          <td><span class="cost-tag cost-low">~$20 USD/mes</span><br><small style="color:#777d94;font-size:10px;">Plan Cloud Starter</small></td>
+          <td>★★☆☆☆<br><small style="color:#777d94;">Importar archivo y configurar</small></td>
+        </tr>
+        <tr>
+          <td>Anthropic · Claude Haiku</td>
+          <td>La IA que lee los mensajes, entiende el contexto y genera respuestas naturales.</td>
+          <td><span class="cost-tag cost-free">~$1–5 USD/mes</span><br><small style="color:#777d94;font-size:10px;">Haiku es el modelo más económico</small></td>
+          <td>★☆☆☆☆<br><small style="color:#777d94;">Solo crear cuenta y obtener API key</small></td>
+        </tr>
+        <tr>
+          <td>Airtable</td>
+          <td>Base de datos donde viven tus leads, servicios, horarios y configuración.</td>
+          <td><span class="cost-tag cost-free">Gratis</span><br><small style="color:#777d94;font-size:10px;">Plan free alcanza para empezar</small></td>
+          <td>★★☆☆☆<br><small style="color:#777d94;">Crear las 4 tablas a mano</small></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="warn-box">
+    <div class="warn-label">Sobre el número de WhatsApp</div>
+    <p>Necesitás un número <strong>exclusivo</strong> para el sistema — no puede ser el número personal que ya usás con WhatsApp. Puede ser una línea nueva o una SIM que todavía no esté vinculada a ninguna cuenta de WhatsApp.</p>
+  </div>
+</section>
+
+<!-- AIRTABLE -->
+<section>
+  <div class="section-label">Configuración de Airtable</div>
+  <h2 class="section-title">Las 4 tablas que tenés que crear</h2>
+
+  <p style="font-size:12px;color:#666d84;margin-bottom:22px;">Toda la información de tu negocio vive en Airtable. El asistente la consulta en tiempo real en cada mensaje. Creá una base nueva en Airtable y agregá estas 4 tablas con los campos indicados. Los marcados con <span class="req-mark">*</span> son obligatorios.</p>
+
+  <!-- LEADS -->
+  <div class="at-block">
+    <div class="at-header">Tabla 1 · Leads — contactos y su estado</div>
+    <div class="table-scroll">
+      <table class="at-table">
+        <thead>
+          <tr><th>Nombre del campo</th><th>Tipo en Airtable</th><th>Para qué sirve</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Name <span class="req-mark">*</span></td><td><span class="field-type">Single line text</span></td><td>Nombre del contacto. El sistema lo completa solo.</td></tr>
+          <tr><td>Phone <span class="req-mark">*</span></td><td><span class="field-type">Single line text</span></td><td>Número con código de país: ej. 5491112345678. Es el identificador único de cada lead.</td></tr>
+          <tr><td>Stage</td><td><span class="field-type">Single select</span></td><td>Estado del lead: New / Contacted / Qualified / Booked. El sistema lo actualiza automáticamente.</td></tr>
+          <tr><td>Last Contact</td><td><span class="field-type">Date</span></td><td>Última vez que el contacto escribió.</td></tr>
+          <tr><td>Treatment Interest</td><td><span class="field-type">Single line text</span></td><td>Servicio que le interesa. Lo detecta la IA y lo guarda.</td></tr>
+          <tr><td>Appointment Date</td><td><span class="field-type">Date</span></td><td>Fecha y hora del turno confirmado.</td></tr>
+          <tr><td>Is Returning Patient</td><td><span class="field-type">Checkbox</span></td><td>Marcado si la IA detecta que es un cliente que ya vino antes.</td></tr>
+          <tr><td>Needs Human</td><td><span class="field-type">Checkbox</span></td><td>Se marca cuando la consulta requiere atención manual de tu parte.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TREATMENTS -->
+  <div class="at-block">
+    <div class="at-header">Tabla 2 · Treatments — tus servicios</div>
+    <div class="table-scroll">
+      <table class="at-table">
+        <thead>
+          <tr><th>Nombre del campo</th><th>Tipo en Airtable</th><th>Para qué sirve</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Name <span class="req-mark">*</span></td><td><span class="field-type">Single line text</span></td><td>Nombre del servicio, ej: "Limpieza facial profunda"</td></tr>
+          <tr><td>Duration Min <span class="req-mark">*</span></td><td><span class="field-type">Number</span></td><td>Duración en minutos, ej: 60. Se usa para calcular los turnos disponibles.</td></tr>
+          <tr><td>Description</td><td><span class="field-type">Long text</span></td><td>Descripción breve que el asistente usa para responder consultas. Cuanto más clara, mejor responde la IA.</td></tr>
+          <tr><td>Active</td><td><span class="field-type">Checkbox</span></td><td>Solo los servicios con este campo marcado se ofrecen en la conversación.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SCHEDULE -->
+  <div class="at-block">
+    <div class="at-header">Tabla 3 · Schedule — tus horarios</div>
+    <div class="table-scroll">
+      <table class="at-table">
+        <thead>
+          <tr><th>Nombre del campo</th><th>Tipo en Airtable</th><th>Para qué sirve</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Day <span class="req-mark">*</span></td><td><span class="field-type">Single line text</span></td><td>Día de la semana en español, minúsculas y sin tilde: lunes, martes, miercoles, jueves, viernes, sabado, domingo</td></tr>
+          <tr><td>Open Time <span class="req-mark">*</span></td><td><span class="field-type">Single line text</span></td><td>Hora de apertura en formato HH:MM, ej: 09:00</td></tr>
+          <tr><td>Close Time <span class="req-mark">*</span></td><td><span class="field-type">Single line text</span></td><td>Hora de cierre en formato HH:MM, ej: 18:00</td></tr>
+          <tr><td>Open</td><td><span class="field-type">Checkbox</span></td><td>Marcado = ese día está habilitado para agendar turnos. Sin marcar = día no laborable.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="warn-box">
+      <div class="warn-label">Formato exacto de los días</div>
+      <p>El sistema compara el nombre del día sin tildes. Escribí exactamente: <strong>lunes, martes, miercoles, jueves, viernes, sabado, domingo</strong> — sin mayúsculas ni acentos, o la detección de horarios va a fallar.</p>
+    </div>
+  </div>
+
+  <!-- CONFIG -->
+  <div class="at-block">
+    <div class="at-header">Tabla 4 · Config — datos de tu negocio</div>
+    <div class="table-scroll">
+      <table class="at-table">
+        <thead>
+          <tr><th>Nombre del campo</th><th>Tipo en Airtable</th><th>Para qué sirve</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Key <span class="req-mark">*</span></td><td><span class="field-type">Single line text</span></td><td>Nombre exacto de la variable. No cambies estos nombres.</td></tr>
+          <tr><td>Value <span class="req-mark">*</span></td><td><span class="field-type">Single line text</span></td><td>El valor correspondiente a tu negocio.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="config-box">
+      <div class="config-box-label">Registros a crear en Config</div>
+      <div class="config-box-title">Creá un registro por cada Key. Completá el Value con los datos de tu negocio:</div>
+      <div class="config-row">
+        <span class="ckey">doctor_name</span>
+        <span class="cval">Nombre del responsable o tu negocio, ej: "María García" o "Centro Estética Belle"</span>
+      </div>
+      <div class="config-row">
+        <span class="ckey">clinic_name</span>
+        <span class="cval">Nombre del negocio tal como querés que aparezca en los mensajes</span>
+      </div>
+      <div class="config-row">
+        <span class="ckey">slot_duration_min</span>
+        <span class="cval">Duración en minutos de cada turno, ej: 30 o 60</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="warn-box mt-16">
+    <div class="warn-label">IDs que vas a necesitar en el paso siguiente</div>
+    <p>Cuando entrás a cada tabla en Airtable, la URL tiene el formato <strong>airtable.com/appXXXXX/tblXXXXX</strong>. El <strong>appXXXXX</strong> es el ID de tu base (BASE_ID) y el <strong>tblXXXXX</strong> es el ID de esa tabla. Anotá los 5 valores: el BASE_ID + los 4 IDs de tabla (Leads, Treatments, Schedule, Config).</p>
+  </div>
+</section>
+
+<!-- N8N IMPORT -->
+<section>
+  <div class="section-label">Activar el flujo</div>
+  <h2 class="section-title">Importar y configurar en n8n</h2>
+
+  <div class="step-list mb-24">
+
+    <div class="step-item">
+      <div class="step-circle"><span>1</span></div>
+      <div class="step-body">
+        <h4>Descargar e importar el archivo JSON</h4>
+        <p>Descargá el flujo desde el botón de arriba o desde este link. En tu cuenta de n8n, hacé click en <strong>+ New Workflow</strong>. Después abrí el menú de tres puntos (arriba a la derecha) y elegí <strong>Import from file</strong>. Seleccioná el archivo <em>.json</em> descargado. El flujo va a aparecer completo con todos sus nodos ya conectados.</p>
+        <p style="margin-top:10px;">
+          <a href="https://drive.google.com/file/d/1ZGmf0BnkTiNqA1Wi6-S06pgKxNvrRdEw/view?usp=sharing" target="_blank" style="color:#c9a227;font-size:12px;font-weight:700;text-decoration:none;">↓ Descargar flujo JSON →</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <div class="step-circle"><span>2</span></div>
+      <div class="step-body">
+        <h4>Conectar tus credenciales de Meta y Anthropic</h4>
+        <p>Tres nodos necesitan tus propias claves. Hacé doble click en cada uno y conectá tu cuenta:</p>
+        <div style="margin-top:10px;display:flex;flex-direction:column;gap:6px;">
+          <div><span class="arrow">→</span><strong style="color:#0a0f2e;">WhatsApp Trigger</strong> — conectar cuenta de Meta Business (WhatsApp OAuth)</div>
+          <div><span class="arrow">→</span><strong style="color:#0a0f2e;">Enviar WhatsApp</strong> — la misma cuenta de Meta</div>
+          <div><span class="arrow">→</span><strong style="color:#0a0f2e;">Claude Haiku</strong> — ingresar tu API key de Anthropic (console.anthropic.com → API keys)</div>
+        </div>
+        <p class="step-note">En n8n cada credencial se guarda una sola vez y se puede reutilizar en todos los flujos.</p>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <div class="step-circle"><span>3</span></div>
+      <div class="step-body">
+        <h4>Poner los IDs de Airtable en el nodo "Cargar Contexto"</h4>
+        <p>Hacé doble click en el nodo <strong>Cargar Contexto</strong>. Vas a ver un bloque de código JavaScript. Buscá las primeras líneas y reemplazá los seis valores con los tuyos:</p>
+        <div class="code-block">
+<span class="code-comment">// Reemplazá estos 6 valores con los de tu cuenta:</span>
+
+const AT_TOKEN = '<span class="code-highlight">TU_TOKEN_DE_AIRTABLE</span>';
+const BASE_ID  = '<span class="code-highlight">appTU_BASE_ID</span>';
+const T_L = '<span class="code-highlight">tblID_TABLA_LEADS</span>';
+const T_T = '<span class="code-highlight">tblID_TABLA_TREATMENTS</span>';
+const T_S = '<span class="code-highlight">tblID_TABLA_SCHEDULE</span>';
+const T_C = '<span class="code-highlight">tblID_TABLA_CONFIG</span>';
+        </div>
+        <p class="step-note">El token de Airtable lo generás en: airtable.com → ícono de perfil → Developer Hub → Personal access tokens. Creá uno con permisos de lectura y escritura sobre tu base.</p>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <div class="step-circle"><span>4</span></div>
+      <div class="step-body">
+        <h4>Adaptar la descripción del negocio</h4>
+        <p>En el mismo nodo <strong>Cargar Contexto</strong>, buscá la línea donde está el <em>systemPrompt</em>. Vas a ver una mención a "especialista en medicina estética" — si tu negocio es otro rubro, reemplazá esa frase con la tuya:</p>
+        <div class="code-block">
+<span class="code-comment">// ANTES (ejemplo del template):</span>
+`Sos la asistente virtual de ${doctorName},
+especialista en <span class="code-highlight">medicina estetica</span> de ${clinicName}.`
+
+<span class="code-comment">// DESPUÉS (ejemplo para otro rubro):</span>
+`Sos la asistente virtual de ${doctorName},
+especialista en <span class="code-highlight">corte y coloración</span> de ${clinicName}.`
+        </div>
+        <p class="step-note">El nombre del negocio y del responsable los toma automáticamente de la tabla Config — no hace falta cambiarlos acá.</p>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <div class="step-circle"><span>5</span></div>
+      <div class="step-body">
+        <h4>Activar y probar</h4>
+        <p>Hacé click en el toggle <strong>Active</strong> en la parte superior del flujo. Después mandá un mensaje de prueba a tu número de WhatsApp Business. En menos de 10 segundos deberías recibir la respuesta del asistente con los datos de tu negocio.</p>
+        <p class="step-note">Si algo no responde, abrí la sección "Executions" en n8n — ahí vas a ver exactamente en qué nodo falló y el mensaje de error.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="warn-box">
+    <div class="warn-label">Detalle técnico — mensajes de voz e imágenes</div>
+    <p>El flujo solo procesa mensajes de texto. Si un cliente manda un audio o una foto, el sistema simplemente no responde (no genera error). Si querés incluir esos casos, es una extensión posible del flujo base.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section>
+  <div class="section-label">Próximo paso</div>
+  <h2 class="section-title">¿Querés que lo configuremos para tu negocio?</h2>
+
+  <p style="font-size:13px;color:#444a60;margin-bottom:22px;">Si tenés el flujo pero querés evitar el proceso técnico, o si querés que el asistente hable exactamente como habla tu negocio — con tus servicios, tus horarios y tu tono — podemos hacerlo juntos en una llamada.</p>
+
+  <div class="cta-dark">
+    <div class="cta-label">Sin compromiso · 30 minutos</div>
+    <h3>Diagnóstico gratuito</h3>
+    <p>Analizamos tu negocio, te decimos qué automatización aplica primero y configuramos el sistema con tus datos reales.</p>
+    <a href="https://elbufalo.site/#cta-final" target="_blank" class="cta-btn">Reservar llamada gratuita →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div>
+    <div class="footer-name">Andrea Arizcun</div>
+    <div class="footer-role">Automatización con IA para negocios · El Bufalo IA</div>
+  </div>
+  <div class="footer-links">
+    <a href="https://elbufalo.site" target="_blank">elbufalo.site</a>
+    <a href="https://elbufalo.site/#cta-final" target="_blank">Diagnóstico gratuito</a>
+    <a href="https://instagram.com/elbufaloia" target="_blank">@elbufaloia</a>
+  </div>
+</div>
+
+</div>
+</body>
+</html>
