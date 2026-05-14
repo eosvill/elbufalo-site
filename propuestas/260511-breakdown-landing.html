@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La landing que convierte · Elbufalo IA</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+      background: #f5f6f8;
+      color: #1a1d2e;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+    }
+
+    /* ─── PORTADA ─── */
+    .cover {
+      background: #0a0f2e;
+      padding: 72px 64px 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(201,162,39,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -40px;
+      width: 260px; height: 260px;
+      background: radial-gradient(circle, rgba(201,162,39,0.07) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .cover-logo { margin-bottom: 40px; }
+    .cover-logo img { height: 60px; width: auto; }
+    .cover-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #c9a227;
+      margin-bottom: 20px;
+    }
+    .cover-title {
+      font-size: 38px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+    .cover-title span { color: #c9a227; }
+    .cover-subtitle {
+      font-size: 16px;
+      color: rgba(255,255,255,0.55);
+      font-weight: 300;
+      margin-bottom: 48px;
+      max-width: 540px;
+    }
+    .cover-meta {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .cover-meta-item {
+      border-left: 2px solid #c9a227;
+      padding-left: 12px;
+    }
+    .cover-meta-item .label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 3px;
+    }
+    .cover-meta-item .value {
+      font-size: 13px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    /* ─── INTRO DESTACADA ─── */
+    .intro-banner {
+      background: #f9f5e8;
+      border-left: 4px solid #c9a227;
+      padding: 24px 32px;
+      margin: 0;
+    }
+    .intro-banner p {
+      font-size: 14px;
+      color: #444a60;
+      line-height: 1.8;
+    }
+    .intro-banner p strong { color: #0a0f2e; }
+
+    /* ─── SECCIONES ─── */
+    .section {
+      padding: 56px 64px;
+      border-bottom: 1px solid #eef0f5;
+    }
+    .section:last-of-type { border-bottom: none; }
+
+    .section-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #c9a227;
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #0a0f2e;
+      margin-bottom: 20px;
+      line-height: 1.3;
+    }
+    .section-text {
+      font-size: 14px;
+      color: #444a60;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    /* ─── CARDS DE PROBLEMA ─── */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .problem-card {
+      background: #f9f5e8;
+      border-top: 3px solid #c9a227;
+      border-radius: 4px;
+      padding: 24px 20px;
+    }
+    .problem-num {
+      font-size: 28px;
+      font-weight: 800;
+      color: #c9a227;
+      margin-bottom: 8px;
+      line-height: 1;
+    }
+    .problem-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0a0f2e;
+      margin-bottom: 8px;
+    }
+    .problem-desc {
+      font-size: 12px;
+      color: #666d84;
+      line-height: 1.65;
+    }
+
+    /* ─── COMPARATIVO WEB VIEJA vs LANDING ─── */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .compare-card {
+      border-radius: 4px;
+      padding: 24px 20px;
+    }
+    .compare-card.old {
+      background: #f5f6f8;
+      border-top: 3px solid #d0d4e0;
+    }
+    .compare-card.new {
+      background: #0a0f2e;
+      border-top: 3px solid #c9a227;
+    }
+    .compare-card-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .compare-card.old .compare-card-label { color: #999db0; }
+    .compare-card.new .compare-card-label { color: #c9a227; }
+    .compare-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .compare-item {
+      font-size: 12px;
+      line-height: 1.5;
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+    .compare-card.old .compare-item { color: #888d9e; }
+    .compare-card.new .compare-item { color: rgba(255,255,255,0.8); }
+    .compare-item .icon {
+      font-size: 11px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .compare-card.old .icon { color: #c0c4d0; }
+    .compare-card.new .icon { color: #c9a227; }
+
+    /* ─── STACK / COMPONENTES ─── */
+    .stack-list {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .stack-item {
+      background: #f5f6f8;
+      border-radius: 4px;
+      padding: 18px 20px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .stack-item.highlight {
+      background: #0a0f2e;
+    }
+    .stack-num {
+      width: 28px;
+      height: 28px;
+      background: #0a0f2e;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 800;
+      color: #c9a227;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .stack-item.highlight .stack-num {
+      background: #c9a227;
+      color: #0a0f2e;
+    }
+    .stack-item-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0a0f2e;
+      margin-bottom: 4px;
+    }
+    .stack-item.highlight .stack-item-title { color: #ffffff; }
+    .stack-item-desc {
+      font-size: 12px;
+      color: #555b72;
+      line-height: 1.65;
+    }
+    .stack-item.highlight .stack-item-desc { color: rgba(255,255,255,0.6); }
+    .stack-item-tag {
+      display: inline-block;
+      background: rgba(201,162,39,0.15);
+      color: #c9a227;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-top: 6px;
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── FUNNEL ─── */
+    .funnel-wrapper { margin-top: 36px; }
+    .funnel-stages { display: flex; flex-direction: column; gap: 0; }
+    .funnel-stage {
+      display: grid;
+      grid-template-columns: 40px 1fr 220px;
+      gap: 0;
+      align-items: stretch;
+      margin-bottom: 4px;
+    }
+    .funnel-stage-num {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 800;
+      color: #c9a227;
+      padding-right: 12px;
+    }
+    .funnel-stage-bar {
+      border-radius: 3px;
+      padding: 20px 28px;
+      position: relative;
+    }
+    .funnel-stage-bar::after {
+      content: '';
+      position: absolute;
+      bottom: -10px; left: 50%;
+      transform: translateX(-50%);
+      width: 0; height: 0;
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-top: 10px solid currentColor;
+      z-index: 2;
+    }
+    .funnel-stage:last-child .funnel-stage-bar::after { display: none; }
+    .funnel-s1 .funnel-stage-bar { background: #0a0f2e; }
+    .funnel-s1 .funnel-stage-bar::after { border-top-color: #0a0f2e; }
+    .funnel-s2 .funnel-stage-bar { background: #172254; }
+    .funnel-s2 .funnel-stage-bar::after { border-top-color: #172254; }
+    .funnel-s3 .funnel-stage-bar { background: #1e2f70; }
+    .funnel-s3 .funnel-stage-bar::after { border-top-color: #1e2f70; }
+    .funnel-s4 .funnel-stage-bar { background: #c9a227; }
+    .funnel-s4 .funnel-stage-bar::after { border-top-color: #c9a227; }
+    .funnel-s5 .funnel-stage-bar { background: #a07d18; }
+    .funnel-s1 .stage-title,
+    .funnel-s2 .stage-title,
+    .funnel-s3 .stage-title { color: #fff; font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+    .funnel-s4 .stage-title,
+    .funnel-s5 .stage-title { color: #0a0f2e; font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+    .funnel-s1 .stage-desc,
+    .funnel-s2 .stage-desc,
+    .funnel-s3 .stage-desc { font-size: 12px; line-height: 1.6; color: rgba(255,255,255,0.6); }
+    .funnel-s4 .stage-desc,
+    .funnel-s5 .stage-desc { font-size: 12px; line-height: 1.6; color: rgba(0,0,0,0.55); }
+    .funnel-stage-meta { padding-left: 20px; display: flex; align-items: center; }
+    .funnel-meta-box { background: #f5f6f8; border-radius: 4px; padding: 12px 16px; width: 100%; }
+    .funnel-meta-box .meta-label { font-size: 9px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #c9a227; margin-bottom: 4px; }
+    .funnel-meta-box .meta-items { font-size: 11px; color: #555b72; line-height: 1.65; }
+
+    /* ─── CHIPS ─── */
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .chip {
+      background: #0a0f2e;
+      color: white;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 5px 12px;
+      border-radius: 4px;
+    }
+    .chip.gold {
+      background: #c9a227;
+      color: #0a0f2e;
+      font-weight: 700;
+    }
+
+    /* ─── TIMELINE ─── */
+    .timeline {
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .timeline-item {
+      display: flex;
+      gap: 20px;
+      position: relative;
+    }
+    .timeline-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 16px;
+      top: 36px;
+      bottom: -8px;
+      width: 2px;
+      background: #eef0f5;
+    }
+    .timeline-badge {
+      width: 32px;
+      height: 32px;
+      background: #c9a227;
+      color: #0a0f2e;
+      font-size: 11px;
+      font-weight: 800;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 4px;
+      position: relative;
+      z-index: 1;
+    }
+    .timeline-content { padding-bottom: 28px; }
+    .timeline-week {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #c9a227;
+      margin-bottom: 4px;
+    }
+    .timeline-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0a0f2e;
+      margin-bottom: 6px;
+    }
+    .timeline-desc {
+      font-size: 12px;
+      color: #666d84;
+      line-height: 1.65;
+    }
+
+    /* ─── CTA FINAL ─── */
+    .cta-box {
+      background: #0a0f2e;
+      border-radius: 4px;
+      padding: 40px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-box::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(201,162,39,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .cta-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #c9a227;
+      margin-bottom: 12px;
+    }
+    .cta-title {
+      font-size: 26px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .cta-title span { color: #c9a227; }
+    .cta-text {
+      font-size: 14px;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 28px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+    .cta-button {
+      display: inline-block;
+      background: #c9a227;
+      color: #0a0f2e;
+      font-size: 13px;
+      font-weight: 800;
+      padding: 14px 32px;
+      border-radius: 4px;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .cta-sub {
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      margin-top: 14px;
+    }
+
+    /* ─── CONDICIONES ─── */
+    .conditions-list {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .condition-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .condition-arrow {
+      color: #c9a227;
+      font-size: 14px;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .condition-text {
+      font-size: 13px;
+      color: #444a60;
+      line-height: 1.65;
+    }
+    .condition-text strong { color: #1a1d2e; }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      background: #0a0f2e;
+      padding: 40px 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .footer-brand .name {
+      font-size: 15px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 2px;
+    }
+    .footer-brand .role {
+      font-size: 11px;
+      color: rgba(255,255,255,0.4);
+    }
+    .footer-contacts {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      text-align: right;
+    }
+    .footer-contacts a {
+      font-size: 11px;
+      color: #c9a227;
+      text-decoration: none;
+    }
+
+    /* ─── PRINT ─── */
+    @media print {
+      @page { size: A4; margin: 0; }
+      body { background: white; }
+      .page { max-width: 100%; }
+      .cover, .problem-card, .funnel-stage-bar,
+      .inv-table thead tr, .inv-total-box,
+      .timeline-badge, .footer, .chip,
+      .stack-item.highlight, .cta-box {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .section { page-break-inside: avoid; }
+    }
+
+    @media (max-width: 700px) {
+      .cover { padding: 48px 28px 40px; }
+      .section { padding: 40px 28px; }
+      .problem-grid { grid-template-columns: 1fr; }
+      .compare-grid { grid-template-columns: 1fr; }
+      .funnel-stage { grid-template-columns: 32px 1fr; }
+      .funnel-stage-meta { display: none; }
+      .footer { flex-direction: column; text-align: center; }
+      .footer-contacts { text-align: center; }
+      .cta-box { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- PORTADA -->
+  <div class="cover">
+    <div class="cover-logo">
+      <img src="C:\Users\Administrador\Documents\Claude copys y marketting\Elbufalo marca personal\Lineamientos_agencia\logo_elbufalo.png" alt="Elbufalo IA" onerror="this.style.display='none'" />
+    </div>
+    <div class="cover-label">Lead Magnet · Elbufalo IA</div>
+    <h1 class="cover-title">
+      La landing que<br><span>sí convierte</span>
+    </h1>
+    <p class="cover-subtitle">
+      El breakdown completo que te prometí en el reel. Todo lo que tiene que tener una web hoy para generar leads reales.
+    </p>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <div class="label">Preparado por</div>
+        <div class="value">Andrea Arizcun</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="label">Marca</div>
+        <div class="value">Elbufalo IA</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="label">Fecha</div>
+        <div class="value">Mayo 2026</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="label">Web</div>
+        <div class="value">elbufalo.site</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTRO BANNER -->
+  <div class="intro-banner">
+    <p>
+      Si llegaste hasta acá es porque comentaste <strong>LANDING</strong> en el reel y querés entender qué hace que una landing realmente funcione.
+      No voy a hablar de diseño ni de "que se vea lindo". Voy a hablar de <strong>las piezas que convierten visitas en clientes</strong> — y cómo se conectan entre sí.
+    </p>
+  </div>
+
+  <!-- SECCIÓN 1 — EL PROBLEMA -->
+  <div class="section">
+    <div class="section-label">El diagnóstico</div>
+    <h2 class="section-title">Por qué la web que tenés<br>no te trae clientes</h2>
+    <p class="section-text">
+      El 90% de las webs de PyMEs y emprendedores son catálogos digitales. Se ven bien, están "actualizadas",
+      y no generan absolutamente nada. El problema no es el diseño — es que fueron construidas sin ningún propósito de conversión.
+    </p>
+    <p class="section-text">
+      Una web sin sistema es como abrir un local sin cajero, sin vendedor y sin cartel en la puerta.
+      La gente entra, mira, y se va. Nadie le preguntó qué necesitaba. Nadie le ofreció nada. Nadie capturó su dato.
+    </p>
+
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-num">01</div>
+        <div class="problem-title">Sin objetivo de conversión</div>
+        <div class="problem-desc">No tiene un llamado a la acción claro. El visitante no sabe qué se supone que tiene que hacer ni por qué debería hacerlo ahora.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">02</div>
+        <div class="problem-title">Sin captación de leads</div>
+        <div class="problem-desc">No hay formulario, no hay chat, no hay nada que capture el contacto del visitante. Si no compra en ese momento, se pierde para siempre.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">03</div>
+        <div class="problem-title">Sin automatización</div>
+        <div class="problem-desc">Depende de que alguien "vea la web" y mande un mail. Si el dueño no está, el lead se enfría. No hay seguimiento. No hay sistema.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 2 — WEB VIEJA vs LANDING NUEVA -->
+  <div class="section">
+    <div class="section-label">El cambio de paradigma</div>
+    <h2 class="section-title">No es lo mismo "tener una web"<br>que tener un sistema de captación</h2>
+    <p class="section-text">
+      La web de antes era una tarjeta de presentación digital — estática, pasiva, sin propósito.
+      La landing de hoy es un sistema que trabaja solo: capta, califica, responde y registra. Sin que vos tengas que estar.
+    </p>
+
+    <div class="compare-grid">
+      <div class="compare-card old">
+        <div class="compare-card-label">Web vieja — catálogo</div>
+        <div class="compare-list">
+          <div class="compare-item">
+            <span class="icon">✕</span>
+            <span>Página estática con logo, servicios y contacto</span>
+          </div>
+          <div class="compare-item">
+            <span class="icon">✕</span>
+            <span>Sin objetivo de conversión definido</span>
+          </div>
+          <div class="compare-item">
+            <span class="icon">✕</span>
+            <span>El lead escribe un mail y espera</span>
+          </div>
+          <div class="compare-item">
+            <span class="icon">✕</span>
+            <span>Sin seguimiento automático</span>
+          </div>
+          <div class="compare-item">
+            <span class="icon">✕</span>
+            <span>Si no estás, se pierde la oportunidad</span>
+          </div>
+          <div class="compare-item">
+            <span class="icon">✕</span>
+            <span>No sabe de dónde viene el tráfico</span>
+          </div>
+          <div class="compare-item">
+            <span class="icon">✕</span>
+            <span>Cero leads por mes</span>
+          </div>
+        </div>
+      </div>
+      <div class="compare-card new">
+        <div class="compare-card-label">Landing con propósito</div>
+        <div class="compare-list">
+          <div class="compare-item">
+            <span class="icon">✓</span>
+            <span>Diseñada para un único objetivo: convertir</span>
+          </div>
+          <div class="compare-item">
+            <span class="icon">✓</span>
+            <span>Formulario que captura el lead en el momento</span>
+          </div>
+          <div class="compare-item">
+            <span class="icon">✓</span>
+            <span>Chat con agente IA que responde al instante</span>
+          </div>
+          <div class="compare-item">
+            <span class="icon">✓</span>
+            <span>Lead entra automático al CRM</span>
+          </div>
+          <div class="compare-item">
+            <span class="icon">✓</span>
+            <span>Funciona 24/7 sin que estés presente</span>
+          </div>
+          <div class="compare-item">
+            <span class="icon">✓</span>
+            <span>SEO + pixel de remarketing activos</span>
+          </div>
+          <div class="compare-item">
+            <span class="icon">✓</span>
+            <span>Leads calificados todos los meses</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 3 — LOS 7 COMPONENTES -->
+  <div class="section">
+    <div class="section-label">La anatomía completa</div>
+    <h2 class="section-title">Los 7 componentes de una landing<br>que trabaja sola</h2>
+    <p class="section-text">
+      No alcanza con tener uno o dos de estos. El sistema funciona cuando todas las piezas están conectadas.
+      Cada componente tiene un rol específico en el proceso de captación.
+    </p>
+
+    <div class="stack-list">
+
+      <div class="stack-item">
+        <div class="stack-num">1</div>
+        <div>
+          <div class="stack-item-title">Formulario de captación de leads</div>
+          <div class="stack-item-desc">
+            El elemento central. Cada visita que llega a tu landing puede convertirse en un contacto real.
+            Nombre, mail, WhatsApp, qué necesita, de dónde te conoció.
+            Un formulario bien diseñado captura al menos el 5–15% de las visitas. Sin él, ese porcentaje es cero.
+          </div>
+          <span class="stack-item-tag">Captación</span>
+        </div>
+      </div>
+
+      <div class="stack-item highlight">
+        <div class="stack-num">2</div>
+        <div>
+          <div class="stack-item-title">Chat conectado a un agente IA autónomo</div>
+          <div class="stack-item-desc">
+            El visitante llega a las 11pm, tiene una pregunta y no hay nadie. Con un agente IA conectado al chat,
+            la pregunta se responde, el interés se mantiene caliente y el lead queda capturado —
+            todo sin que vos tengas que estar. El agente califica, responde objeciones y puede agendar una llamada.
+          </div>
+          <span class="stack-item-tag">Atención 24/7</span>
+        </div>
+      </div>
+
+      <div class="stack-item">
+        <div class="stack-num">3</div>
+        <div>
+          <div class="stack-item-title">SEO técnico y de contenido</div>
+          <div class="stack-item-desc">
+            Si tu landing está bien optimizada, cuando alguien googlea lo que vos hacés, aparecés.
+            Sin pagar un peso de pauta. El SEO no da resultados en 24 horas — tarda 2 a 4 meses —
+            pero una vez que funciona, es tráfico gratis y constante que ningún presupuesto publicitario puede comprar.
+          </div>
+          <span class="stack-item-tag">Tráfico orgánico</span>
+        </div>
+      </div>
+
+      <div class="stack-item">
+        <div class="stack-num">4</div>
+        <div>
+          <div class="stack-item-title">Pixel de remarketing (Meta / Google)</div>
+          <div class="stack-item-desc">
+            El visitante que no convirtió no está perdido. Con el pixel instalado, podés "perseguirlo"
+            con publicidad en Instagram, Facebook o Google.
+            Las personas que ya visitaron tu web convierten hasta 5 veces más que el tráfico frío.
+            Este componente convierte el "casi" en "sí".
+          </div>
+          <span class="stack-item-tag">Re-impacto</span>
+        </div>
+      </div>
+
+      <div class="stack-item highlight">
+        <div class="stack-num">5</div>
+        <div>
+          <div class="stack-item-title">Entrada automática al CRM</div>
+          <div class="stack-item-desc">
+            Cada lead que completa el formulario o habla con el chat entra automáticamente a tu CRM —
+            sin que nadie copie datos a mano, sin que se pierda ninguno.
+            El flujo dispara una secuencia de seguimiento: mail de bienvenida, recordatorio,
+            notificación al equipo. El lead nunca queda en el limbo.
+          </div>
+          <span class="stack-item-tag">Automatización</span>
+        </div>
+      </div>
+
+      <div class="stack-item">
+        <div class="stack-num">6</div>
+        <div>
+          <div class="stack-item-title">Prueba social y credibilidad</div>
+          <div class="stack-item-desc">
+            Tu cliente potencial te googlea antes de llamarte. Si no encuentra nada,
+            la duda lo paraliza. Testimonios reales, casos de éxito con números,
+            logos de empresas con las que trabajaste — todo esto convierte la visita en confianza.
+            Sin confianza no hay venta, sin importar qué tan bueno sea tu servicio.
+          </div>
+          <span class="stack-item-tag">Conversión</span>
+        </div>
+      </div>
+
+      <div class="stack-item">
+        <div class="stack-num">7</div>
+        <div>
+          <div class="stack-item-title">Velocidad de carga y disponibilidad 24/7</div>
+          <div class="stack-item-desc">
+            Una landing que tarda más de 3 segundos en cargar pierde el 53% de las visitas antes de que aparezca algo.
+            Y si está caída cuando alguien llega, esa oportunidad se perdió para siempre.
+            El hosting, la optimización de imágenes y el CDN no son detalles técnicos — son parte del sistema de conversión.
+          </div>
+          <span class="stack-item-tag">Infraestructura</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECCIÓN 4 — EL FLUJO COMPLETO -->
+  <div class="section">
+    <div class="section-label">Cómo se conecta todo</div>
+    <h2 class="section-title">De la visita al cliente:<br>el flujo completo automatizado</h2>
+    <p class="section-text">
+      Cada componente tiene un rol en el flujo. No son piezas independientes — son un sistema.
+      Así es como un desconocido se convierte en cliente sin que vos intervengas en cada paso.
+    </p>
+
+    <div class="funnel-wrapper">
+      <div class="funnel-stages">
+
+        <div class="funnel-stage funnel-s1">
+          <div class="funnel-stage-num">1</div>
+          <div class="funnel-stage-bar">
+            <div class="stage-title">VISITA — El desconocido llega</div>
+            <div class="stage-desc">Entra por SEO orgánico, por un reel de Instagram, por una pauta o por boca en boca. El tráfico llega a la landing.</div>
+          </div>
+          <div class="funnel-stage-meta">
+            <div class="funnel-meta-box">
+              <div class="meta-label">Fuentes de tráfico</div>
+              <div class="meta-items">SEO · Instagram<br>Pauta Meta / Google<br>WhatsApp / referidos</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="funnel-stage funnel-s2">
+          <div class="funnel-stage-num">2</div>
+          <div class="funnel-stage-bar">
+            <div class="stage-title">CAPTACIÓN — Deja su contacto</div>
+            <div class="stage-desc">Completa el formulario o inicia una conversación con el chat IA. El dato queda registrado en ese momento, sin intervención humana.</div>
+          </div>
+          <div class="funnel-stage-meta">
+            <div class="funnel-meta-box">
+              <div class="meta-label">Herramientas</div>
+              <div class="meta-items">Formulario integrado<br>Chat con agente IA<br>Pixel activado</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="funnel-stage funnel-s3">
+          <div class="funnel-stage-num">3</div>
+          <div class="funnel-stage-bar">
+            <div class="stage-title">AUTOMATIZACIÓN — El sistema actúa solo</div>
+            <div class="stage-desc">El lead entra automático al CRM. Se dispara un mail de bienvenida y una notificación interna. El agente IA puede continuar la conversación y pre-calificar.</div>
+          </div>
+          <div class="funnel-stage-meta">
+            <div class="funnel-meta-box">
+              <div class="meta-label">Stack activo</div>
+              <div class="meta-items">n8n · CRM (Airtable)<br>Mail automático<br>WhatsApp bot</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="funnel-stage funnel-s4">
+          <div class="funnel-stage-num">4</div>
+          <div class="funnel-stage-bar">
+            <div class="stage-title">CALIFICACIÓN — ¿Es un lead real?</div>
+            <div class="stage-desc">El agente IA hace las preguntas necesarias para calificar: presupuesto, urgencia, qué necesita. Los leads calificados llegan a vos listos para cerrar.</div>
+          </div>
+          <div class="funnel-stage-meta">
+            <div class="funnel-meta-box">
+              <div class="meta-label">Resultado</div>
+              <div class="meta-items">Lead calificado → vos<br>Lead frío → nurturing<br>Lead dudoso → seguimiento</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="funnel-stage funnel-s5">
+          <div class="funnel-stage-num">5</div>
+          <div class="funnel-stage-bar">
+            <div class="stage-title">CONVERSIÓN — Llamada o venta directa</div>
+            <div class="stage-desc">Vos entrás en el momento justo: cuando el lead ya está informado, calificado y tiene intención real de comprar. Tu tiempo vale más acá que respondiendo consultas genéricas.</div>
+          </div>
+          <div class="funnel-stage-meta">
+            <div class="funnel-meta-box">
+              <div class="meta-label">Cierre</div>
+              <div class="meta-items">Llamada de diagnóstico<br>Propuesta / servicio<br>Venta de producto</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 5 — EL STACK -->
+  <div class="section">
+    <div class="section-label">Las herramientas</div>
+    <h2 class="section-title">Qué necesitás para armar<br>este sistema hoy</h2>
+    <p class="section-text">
+      La buena noticia: ninguna de estas herramientas requiere saber programar.
+      La mayoría tienen plan gratuito o cuestan menos que una hora de trabajo de un empleado.
+      Lo que sí requiere es configurarlas bien y conectarlas entre sí — ahí es donde está el valor real.
+    </p>
+
+    <div class="conditions-list">
+      <div class="condition-item">
+        <div class="condition-arrow">→</div>
+        <div class="condition-text"><strong>Landing / web:</strong> WordPress con Elementor · Webflow · o cualquier constructor con formulario nativo</div>
+      </div>
+      <div class="condition-item">
+        <div class="condition-arrow">→</div>
+        <div class="condition-text"><strong>Chat IA:</strong> Agente conectado vía API de Claude o GPT · integrado por widget en la web</div>
+      </div>
+      <div class="condition-item">
+        <div class="condition-arrow">→</div>
+        <div class="condition-text"><strong>Automatización:</strong> n8n (self-hosted) o Make · conecta formulario → CRM → mail → notificaciones</div>
+      </div>
+      <div class="condition-item">
+        <div class="condition-arrow">→</div>
+        <div class="condition-text"><strong>CRM:</strong> Airtable · Notion · HubSpot (gratuito) · lo que ya uses — lo importante es que reciba el dato automáticamente</div>
+      </div>
+      <div class="condition-item">
+        <div class="condition-arrow">→</div>
+        <div class="condition-text"><strong>SEO:</strong> Google Search Console (gratuito) · plugin Yoast o Rank Math si usás WordPress</div>
+      </div>
+      <div class="condition-item">
+        <div class="condition-arrow">→</div>
+        <div class="condition-text"><strong>Pixel:</strong> Meta Pixel · Google Tag Manager · instalación de 20 minutos, impacto permanente</div>
+      </div>
+      <div class="condition-item">
+        <div class="condition-arrow">→</div>
+        <div class="condition-text"><strong>Hosting:</strong> Hostinger · Cloudflare Pages · cualquier proveedor con SSL y buena velocidad de carga</div>
+      </div>
+    </div>
+
+    <div class="chips" style="margin-top: 28px;">
+      <span class="chip gold">n8n</span>
+      <span class="chip">WordPress / Webflow</span>
+      <span class="chip">Claude API</span>
+      <span class="chip">Airtable CRM</span>
+      <span class="chip">Meta Pixel</span>
+      <span class="chip">Google Search Console</span>
+      <span class="chip">Hostinger</span>
+      <span class="chip">Cloudflare</span>
+      <span class="chip">Make / Zapier</span>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 6 — PRÓXIMOS PASOS -->
+  <div class="section">
+    <div class="section-label">Cómo empezar</div>
+    <h2 class="section-title">Los 3 pasos para tener<br>tu sistema funcionando</h2>
+    <p class="section-text">
+      No hace falta armar todo de una vez. Hay un orden que funciona: empezás con lo que genera resultados más rápido
+      y construís el resto encima.
+    </p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-badge">1</div>
+        <div class="timeline-content">
+          <div class="timeline-week">Primer mes</div>
+          <div class="timeline-title">Landing con formulario + pixel instalado</div>
+          <div class="timeline-desc">
+            El formulario captura leads desde el día 1. El pixel empieza a acumular audiencia para remarketing.
+            Con esto ya tenés el 80% del impacto. Todo lo demás viene encima de esta base.
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-badge">2</div>
+        <div class="timeline-content">
+          <div class="timeline-week">Semanas 3 a 6</div>
+          <div class="timeline-title">Chat IA + automatización al CRM</div>
+          <div class="timeline-desc">
+            Se conecta el agente al chat de la web y se arma el flujo en n8n:
+            formulario → CRM → mail automático. A partir de acá el sistema trabaja solo mientras dormís.
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-badge">3</div>
+        <div class="timeline-content">
+          <div class="timeline-week">Mes 2 en adelante</div>
+          <div class="timeline-title">SEO + optimización continua</div>
+          <div class="timeline-desc">
+            Con el sistema funcionando se trabaja el posicionamiento orgánico.
+            En 2 a 4 meses empieza a aparecer tráfico desde Google sin pagar pauta.
+            Se ajustan los flujos según los datos reales de conversión.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 7 — CTA -->
+  <div class="section" style="border-bottom:none;">
+    <div class="cta-box">
+      <div class="cta-label">Siguiente paso</div>
+      <h2 class="cta-title">¿Querés que lo armemos<br>para tu <span>negocio</span>?</h2>
+      <p class="cta-text">
+        En 30 minutos te hago un diagnóstico gratuito: analizamos tu situación actual,
+        qué piezas te faltan y cuál es el camino más corto para tener este sistema funcionando.
+        Sin venta, sin presión — solo contexto real.
+      </p>
+      <a href="https://elbufalo.site/" class="cta-button">Quiero mi diagnóstico gratuito</a>
+      <p class="cta-sub">elbufalo.site · Sin costo · Sin compromiso</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-brand">
+      <div class="name">Andrea Arizcun · Elbufalo IA</div>
+      <div class="role">Automatización con IA para PyMEs y emprendedores</div>
+    </div>
+    <div class="footer-contacts">
+      <a href="https://elbufalo.site/">elbufalo.site</a>
+      <a href="mailto:elbufaloia@gmail.com">elbufaloia@gmail.com</a>
+      <a href="https://wa.me/5491157083080">WhatsApp: +54 11 5708-3080</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
