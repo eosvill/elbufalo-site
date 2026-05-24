@@ -1,0 +1,6 @@
+azul #1C3467
+gris oscuro #222326
+Prussian Blue #14213d
+Black #000000
+Orange #fca311
+Alabaster Grey #e5e5e5 
