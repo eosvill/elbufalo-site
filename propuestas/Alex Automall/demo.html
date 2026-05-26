@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alex Auto Mall — Propuesta de Landing Page</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#1B2025;
+    --bg-2:#293138;
+    --surface:#0E1114;
+    --line:#2A241D;
+    --line-soft:#1F1B16;
+    --gold:#DEB327;
+    --gold-light:#F0CC52;
+    --gold-dark:#A88019;
+    --cream:#F4F0E8;
+    --cream-dim:#D6CFC1;
+    --muted:#8F857B;
+    --muted-2:#6B6359;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:var(--bg);color:var(--cream);font-family:'Inter',sans-serif;overflow:hidden}
+  .deck{position:relative;width:100vw;height:100vh;overflow:hidden}
+  .slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:64px 96px;opacity:0;transform:translateX(40px);transition:opacity .5s ease, transform .5s ease;pointer-events:none;overflow-y:auto}
+  .slide.active{opacity:1;transform:translateX(0);pointer-events:auto}
+  .slide.prev{transform:translateX(-40px)}
+
+  .label{font-family:'Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+  h1.title{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:64px;line-height:1.05;color:var(--cream);margin-bottom:18px;letter-spacing:-.01em}
+  h1.title em{font-style:italic;color:var(--gold)}
+  h2.title{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:48px;line-height:1.1;color:var(--cream);margin-bottom:18px;letter-spacing:-.005em}
+  h2.title em{font-style:italic;color:var(--gold)}
+  .lead{font-size:17px;color:var(--cream-dim);max-width:780px;line-height:1.6;font-weight:300}
+  .lead strong{color:var(--cream);font-weight:500}
+
+  /* Cover */
+  .cover{background:
+    radial-gradient(1200px 600px at 80% 20%, rgba(222,179,39,.10), transparent 60%),
+    radial-gradient(800px 500px at 20% 80%, rgba(222,179,39,.06), transparent 60%),
+    linear-gradient(135deg,#1A1612 0%,#0F0D0B 100%);
+  }
+  .cover .label{margin-bottom:24px}
+  .cover h1{font-size:84px;line-height:1;margin-bottom:24px}
+  .cover .sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:26px;color:var(--cream-dim);margin-bottom:48px;max-width:680px}
+  .cover .meta{display:flex;gap:48px;margin-top:40px;border-top:1px solid var(--line);padding-top:24px;max-width:680px}
+  .cover .meta div{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .cover .meta div strong{display:block;color:var(--cream);font-weight:500;font-size:14px;letter-spacing:0;text-transform:none;margin-top:6px;font-family:'Cormorant Garamond',serif;font-style:italic}
+
+  /* Two-column */
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-top:32px}
+  .cols-3{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:36px}
+  .cols-4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:36px}
+
+  .card{background:var(--bg-2);border:1px solid var(--line);border-radius:6px;padding:28px;transition:border-color .3s}
+  .card:hover{border-color:var(--gold-dark)}
+  .card .num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:36px;color:var(--gold);line-height:1;margin-bottom:12px}
+  .card h3{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--cream);font-weight:600;margin-bottom:10px;letter-spacing:-.005em}
+  .card p{font-size:14px;color:var(--cream-dim);line-height:1.55;font-weight:300}
+
+  .pill{display:inline-block;background:transparent;border:1px solid var(--gold-dark);color:var(--gold);padding:6px 14px;border-radius:100px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;margin-right:8px;margin-bottom:8px}
+
+  /* Palette swatches */
+  .swatches{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:32px}
+  .swatch{border-radius:6px;overflow:hidden;border:1px solid var(--line)}
+  .swatch .chip{height:90px}
+  .swatch .meta{background:var(--bg-2);padding:12px 14px}
+  .swatch .name{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--cream);font-weight:600}
+  .swatch .hex{font-family:'Inter',monospace;font-size:11px;color:var(--muted);margin-top:4px}
+
+  /* Frame for embedded preview */
+  .preview{margin-top:28px;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surface);box-shadow:0 24px 60px rgba(0,0,0,.5)}
+  .preview-bar{display:flex;align-items:center;gap:8px;padding:10px 14px;background:#0a0d10;border-bottom:1px solid var(--line)}
+  .preview-bar .dot{width:10px;height:10px;border-radius:50%;background:#2A241D}
+  .preview-bar .url{margin-left:14px;font-size:11px;color:var(--muted);font-family:'Inter',monospace}
+  .preview iframe{width:100%;height:520px;border:0;display:block;background:#fff}
+
+  /* Funnel */
+  .funnel{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:40px}
+  .funnel-step{padding:24px 18px;border-radius:6px;text-align:left;position:relative}
+  .funnel-step .step-num{font-size:10px;letter-spacing:.2em;color:rgba(244,240,232,.6);text-transform:uppercase;margin-bottom:10px}
+  .funnel-step h4{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--cream);font-weight:600;line-height:1.2;margin-bottom:8px}
+  .funnel-step p{font-size:12px;color:var(--cream-dim);line-height:1.45;font-weight:300}
+  .funnel-step.s1{background:#293138}
+  .funnel-step.s2{background:#3a3528}
+  .funnel-step.s3{background:#5a4920}
+  .funnel-step.s4{background:#8a6c1a;color:#fff}
+  .funnel-step.s4 h4,.funnel-step.s4 p{color:#fff}
+  .funnel-step.s4 .step-num{color:rgba(255,255,255,.7)}
+  .funnel-step.s5{background:var(--gold);color:#1A1612}
+  .funnel-step.s5 h4,.funnel-step.s5 p{color:#1A1612}
+  .funnel-step.s5 .step-num{color:rgba(26,22,18,.7)}
+
+  /* Sections list */
+  .sections{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:32px}
+  .sec-item{display:flex;align-items:flex-start;gap:16px;padding:18px 22px;background:var(--bg-2);border-left:3px solid var(--gold);border-radius:4px}
+  .sec-item .sec-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:var(--gold);min-width:32px}
+  .sec-item .sec-body h4{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--cream);font-weight:600;margin-bottom:4px}
+  .sec-item .sec-body p{font-size:13px;color:var(--cream-dim);line-height:1.5;font-weight:300}
+
+  /* Voice/tone tags */
+  .tone-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px}
+  .tone{padding:22px;background:var(--bg-2);border:1px solid var(--line);border-radius:6px}
+  .tone .key{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:24px;color:var(--gold);margin-bottom:10px}
+  .tone p{font-size:13px;color:var(--cream-dim);line-height:1.5;font-weight:300}
+
+  /* Quote */
+  .pull{margin-top:36px;padding:36px 44px;border-left:2px solid var(--gold);background:rgba(222,179,39,.04)}
+  .pull q{font-family:'Cormorant Garamond',serif;font-size:32px;line-height:1.25;color:var(--cream);font-style:italic;font-weight:500;quotes:none}
+  .pull .src{margin-top:14px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+
+  /* CTA slide */
+  .cta-slide{text-align:center;align-items:center;justify-content:center}
+  .cta-slide .label,.cta-slide h2,.cta-slide .lead{margin-left:auto;margin-right:auto}
+  .cta-slide .lead{margin-top:8px}
+  .cta-actions{margin-top:48px;display:flex;gap:16px;justify-content:center}
+  .btn{display:inline-block;padding:16px 36px;border-radius:4px;font-size:13px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;font-family:'Inter',sans-serif;text-decoration:none;transition:all .25s}
+  .btn-primary{background:var(--gold);color:#1A1612}
+  .btn-primary:hover{background:var(--gold-light)}
+  .btn-ghost{background:transparent;color:var(--cream);border:1px solid var(--cream-dim)}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+
+  /* Nav */
+  .nav{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:14px;background:rgba(14,17,20,.85);backdrop-filter:blur(12px);padding:10px 18px;border-radius:100px;border:1px solid var(--line);z-index:50}
+  .nav button{background:none;border:0;color:var(--cream-dim);cursor:pointer;font-family:'Inter',sans-serif;font-size:12px;font-weight:500;padding:6px 10px;letter-spacing:.05em}
+  .nav button:hover{color:var(--gold)}
+  .nav .counter{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:var(--gold);min-width:42px;text-align:center}
+  .dots{position:fixed;right:32px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:50}
+  .dots button{width:8px;height:8px;border-radius:50%;background:rgba(244,240,232,.18);border:0;cursor:pointer;padding:0;transition:all .3s}
+  .dots button.active{background:var(--gold);transform:scale(1.4)}
+
+  .slide-num{position:absolute;top:32px;right:48px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:var(--muted)}
+  .corner-mark{position:absolute;top:32px;left:48px;display:flex;align-items:center;gap:10px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:700}
+  .corner-mark::before{content:"";width:24px;height:1px;background:var(--gold)}
+
+  @media (max-width:900px){
+    .slide{padding:48px 32px}
+    h1.title,.cover h1{font-size:42px !important}
+    h2.title{font-size:32px}
+    .cols,.cols-3,.cols-4,.sections,.swatches,.funnel,.tone-grid{grid-template-columns:1fr;gap:14px}
+    .preview iframe{height:360px}
+    .dots{display:none}
+  }
+  @media print{
+    html,body{height:auto;overflow:visible}
+    .deck{height:auto}
+    .slide{position:relative;opacity:1;transform:none;page-break-after:always;min-height:100vh}
+    .nav,.dots{display:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+  <!-- 1. COVER -->
+  <section class="slide cover active" data-title="Portada">
+    <div class="corner-mark">Propuesta Confidencial</div>
+    <div class="slide-num">01</div>
+    <div class="label">Landing Page · Estrategia Digital</div>
+    <h1><em>Alex</em> Auto Mall</h1>
+    <div class="sub">Una página web pensada para que cada visita se convierta en una conversación, y cada conversación en unas llaves entregadas.</div>
+    <div class="meta">
+      <div>Cliente<strong>Alex Auto Mall — NJ</strong></div>
+      <div>Pieza<strong>Landing Page de captación</strong></div>
+      <div>Demo<strong>elbufalo.site/propuestas/alex&nbsp;automall</strong></div>
+    </div>
+  </section>
+
+  <!-- 2. CONTEXTO -->
+  <section class="slide" data-title="Contexto">
+    <div class="slide-num">02</div>
+    <div class="label">El punto de partida</div>
+    <h2 class="title">Tu marca ya tiene <em>algo único</em>: vos.</h2>
+    <p class="lead">
+      Alex Auto Mall no es un dealer más en New Jersey. Es un lugar donde la gente entra con miedo a no calificar y sale con las llaves de su primer auto en el país. Esa historia ya está pasando todos los días en Paterson — el problema es que <strong>vive solo en Instagram</strong>, dispersa, sin un lugar donde la próxima clienta pueda llegar, entender la propuesta y dejar sus datos en menos de un minuto.
+    </p>
+    <div class="pull">
+      <q>Sin crédito, con ITIN, con pasaporte. Si trabajás, te ayudamos.</q>
+      <div class="src">La promesa que esta web traduce en un sistema</div>
+    </div>
+  </section>
+
+  <!-- 3. PROBLEMA -->
+  <section class="slide" data-title="Problema">
+    <div class="slide-num">03</div>
+    <div class="label">Lo que hoy se pierde</div>
+    <h2 class="title">El tráfico de Instagram <em>no tiene a dónde aterrizar</em>.</h2>
+    <div class="cols-3">
+      <div class="card">
+        <div class="num">01</div>
+        <h3>Sin filtro previo</h3>
+        <p>Cada lead llega frío a WhatsApp. Alex repite las mismas respuestas (documentos, inicial, proceso) decenas de veces por día.</p>
+      </div>
+      <div class="card">
+        <div class="num">02</div>
+        <h3>Sin prueba social ordenada</h3>
+        <p>Las entregas felices están enterradas en el feed. La nueva visitante no las ve en el momento exacto en que duda.</p>
+      </div>
+      <div class="card">
+        <div class="num">03</div>
+        <h3>Sin captura</h3>
+        <p>Si la persona no se anima a escribir, se va. No queda nombre, ni teléfono, ni rastro para volver a contactarla.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. LA PROPUESTA -->
+  <section class="slide" data-title="Propuesta">
+    <div class="slide-num">04</div>
+    <div class="label">La solución</div>
+    <h2 class="title">Una landing que <em>vende confianza</em>, no autos.</h2>
+    <p class="lead">
+      Construimos una página de una sola pantalla, premium, pensada en español, que toma la calidez de tus videos y la convierte en una experiencia ordenada. La visitante entiende la propuesta en 15 segundos, ve casos reales, conoce los pasos y <strong>deja sus datos sin sentir que está pidiendo un favor</strong>.</p>
+    <div style="margin-top:36px;display:flex;flex-wrap:wrap">
+      <span class="pill">Mobile-first</span>
+      <span class="pill">100% Español</span>
+      <span class="pill">WhatsApp directo</span>
+      <span class="pill">Carga rápida</span>
+      <span class="pill">SEO local NJ</span>
+      <span class="pill">Formulario VIP</span>
+    </div>
+  </section>
+
+  <!-- 5. DEMO EN VIVO -->
+  <section class="slide" data-title="Demo">
+    <div class="slide-num">05</div>
+    <div class="label">Demo navegable</div>
+    <h2 class="title">Así se ve, <em>así se siente</em>.</h2>
+    <p class="lead">La versión funcional está publicada. Se puede recorrer en cualquier dispositivo, probar el formulario y los enlaces directos a WhatsApp.</p>
+    <div class="preview">
+      <div class="preview-bar">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="url">elbufalo.site/propuestas/alex&nbsp;automall/</span>
+      </div>
+      <iframe src="https://elbufalo.site/propuestas/alex%20automall/" loading="lazy" title="Demo Alex Auto Mall"></iframe>
+    </div>
+  </section>
+
+  <!-- 6. ESTÉTICA -->
+  <section class="slide" data-title="Estética">
+    <div class="slide-num">06</div>
+    <div class="label">Sistema visual</div>
+    <h2 class="title">Cálido. Premium. <em>Tuyo.</em></h2>
+    <p class="lead">No copiamos la estética genérica de dealer americano. Construimos un lenguaje propio: fondo profundo, dorado como acento de éxito, crema como base humana. La tipografía editorial (Cormorant) da peso de marca; Inter aporta claridad funcional.</p>
+    <div class="swatches">
+      <div class="swatch"><div class="chip" style="background:#1B2025"></div><div class="meta"><div class="name">Fondo</div><div class="hex">#1B2025</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#293138"></div><div class="meta"><div class="name">Superficie</div><div class="hex">#293138</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#DEB327"></div><div class="meta"><div class="name">Dorado</div><div class="hex">#DEB327</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#A88019"></div><div class="meta"><div class="name">Dorado oscuro</div><div class="hex">#A88019</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#F4F0E8"></div><div class="meta"><div class="name">Crema</div><div class="hex">#F4F0E8</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#8F857B"></div><div class="meta"><div class="name">Neutro</div><div class="hex">#8F857B</div></div></div>
+    </div>
+  </section>
+
+  <!-- 7. ESTRUCTURA -->
+  <section class="slide" data-title="Estructura">
+    <div class="slide-num">07</div>
+    <div class="label">Anatomía de la página</div>
+    <h2 class="title">11 secciones, <em>una sola decisión</em>.</h2>
+    <p class="lead">Cada sección está pensada para responder una objeción concreta en el orden en que aparece en la cabeza de quien visita.</p>
+    <div class="sections">
+      <div class="sec-item"><div class="sec-num">i.</div><div class="sec-body"><h4>Hero · La promesa</h4><p>El auto que mereces, hoy a tu alcance. Foto real, no stock.</p></div></div>
+      <div class="sec-item"><div class="sec-num">ii.</div><div class="sec-body"><h4>El Método Alex</h4><p>4 pilares: idioma, aprobación, transparencia, acompañamiento.</p></div></div>
+      <div class="sec-item"><div class="sec-num">iii.</div><div class="sec-body"><h4>Documentos aceptados</h4><p>ITIN, pasaporte, licencia de otro país. Disuelve la objeción #1.</p></div></div>
+      <div class="sec-item"><div class="sec-num">iv.</div><div class="sec-body"><h4>Tu inicial · $1,500</h4><p>Punto de entrada claro. Sin sorpresas.</p></div></div>
+      <div class="sec-item"><div class="sec-num">v.</div><div class="sec-body"><h4>Vehículos destacados</h4><p>3 modelos visibles, con reserva 1-clic.</p></div></div>
+      <div class="sec-item"><div class="sec-num">vi.</div><div class="sec-body"><h4>Cómo funciona</h4><p>3 pasos: aplicás, elegimos juntos, manejás.</p></div></div>
+      <div class="sec-item"><div class="sec-num">vii.</div><div class="sec-body"><h4>Alex en persona</h4><p>Tu cara, tu historia. Diferenciador imposible de copiar.</p></div></div>
+      <div class="sec-item"><div class="sec-num">viii.</div><div class="sec-body"><h4>Muro de la felicidad</h4><p>Testimonios reales con foto. Prueba social.</p></div></div>
+      <div class="sec-item"><div class="sec-num">ix.</div><div class="sec-body"><h4>Asesoría VIP</h4><p>Formulario corto. 3 campos. Cero fricción.</p></div></div>
+      <div class="sec-item"><div class="sec-num">x.</div><div class="sec-body"><h4>FAQ</h4><p>8 preguntas que cerran ventas sin que tengas que repetirlas.</p></div></div>
+    </div>
+  </section>
+
+  <!-- 8. FUNNEL -->
+  <section class="slide" data-title="Funnel">
+    <div class="slide-num">08</div>
+    <div class="label">El recorrido</div>
+    <h2 class="title">De Instagram a las llaves, <em>en 5 movimientos</em>.</h2>
+    <p class="lead">La landing no reemplaza tu trabajo personal: lo amplifica. Filtra, ordena y entrega leads tibios listos para que cierres.</p>
+    <div class="funnel">
+      <div class="funnel-step s1"><div class="step-num">Paso 01</div><h4>Atención</h4><p>Reel, anuncio o búsqueda local trae a la persona a la landing.</p></div>
+      <div class="funnel-step s2"><div class="step-num">Paso 02</div><h4>Comprensión</h4><p>En 15 segundos entiende qué documentos sirven y cuánto necesita.</p></div>
+      <div class="funnel-step s3"><div class="step-num">Paso 03</div><h4>Confianza</h4><p>Ve tu cara, los testimonios reales y la transparencia del proceso.</p></div>
+      <div class="funnel-step s4"><div class="step-num">Paso 04</div><h4>Conversión</h4><p>Deja sus datos en el formulario VIP o abre WhatsApp.</p></div>
+      <div class="funnel-step s5"><div class="step-num">Paso 05</div><h4>Entrega</h4><p>Llegás vos. Cierre humano con un lead pre-calificado.</p></div>
+    </div>
+  </section>
+
+  <!-- 9. TONO -->
+  <section class="slide" data-title="Tono">
+    <div class="slide-num">09</div>
+    <div class="label">Voz de marca</div>
+    <h2 class="title">Cinco palabras <em>que sostienen todo el copy</em>.</h2>
+    <div class="tone-grid">
+      <div class="tone"><div class="key">Bendiciones</div><p>Reconocemos el esfuerzo de quien llega. No hablamos como banco; hablamos como familia.</p></div>
+      <div class="tone"><div class="key">Progreso</div><p>El auto no es un capricho, es una herramienta. Trabajo, escuela, hijos, dignidad.</p></div>
+      <div class="tone"><div class="key">Familia</div><p>"Te ayudamos" siempre, nunca "te aprobamos". Sentido de pertenencia desde la primera línea.</p></div>
+      <div class="tone"><div class="key">Facilidad</div><p>Cero tecnicismos. Si una abuela no lo entiende, lo reescribimos.</p></div>
+      <div class="tone"><div class="key">Confianza</div><p>Decimos los números. Mostramos los autos. Ponemos cara. Sin letra chica.</p></div>
+    </div>
+  </section>
+
+  <!-- 10. DIFERENCIADORES -->
+  <section class="slide" data-title="Diferenciales">
+    <div class="slide-num">10</div>
+    <div class="label">Lo que esta web hace mejor</div>
+    <h2 class="title">No es una web. <em>Es una vendedora bilingüe que no duerme.</em></h2>
+    <div class="cols-4">
+      <div class="card">
+        <div class="num">24/7</div>
+        <h3>Siempre abierta</h3>
+        <p>Captura leads a las 2 AM, los domingos, mientras Alex está entregando otro auto.</p>
+      </div>
+      <div class="card">
+        <div class="num">15"</div>
+        <h3>Decisión rápida</h3>
+        <p>La promesa, los documentos y la inicial se entienden antes del primer scroll.</p>
+      </div>
+      <div class="card">
+        <div class="num">3</div>
+        <h3>Campos al formulario</h3>
+        <p>Nombre, WhatsApp, vehículo. Mínima fricción, máxima conversión.</p>
+      </div>
+      <div class="card">
+        <div class="num">1</div>
+        <h3>Clic a WhatsApp</h3>
+        <p>Botón flotante con mensaje pre-cargado en cada sección clave.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. PRÓXIMOS PASOS -->
+  <section class="slide cta-slide" data-title="Próximos pasos">
+    <div class="slide-num">11</div>
+    <div class="label">Para avanzar</div>
+    <h2 class="title">¿Te gusta lo que ves? <em>El siguiente paso es tuyo.</em></h2>
+    <p class="lead">La demo está viva. Recorrela, mostrásela a tu equipo, anotá lo que cambiarías. En la próxima reunión la ajustamos a tu inventario real, conectamos el formulario a donde recibís leads y la publicamos en tu dominio.</p>
+    <div class="cta-actions">
+      <a class="btn btn-primary" href="https://elbufalo.site/propuestas/alex%20automall/" target="_blank" rel="noopener">Abrir la demo</a>
+      <a class="btn btn-ghost" href="#" onclick="document.getElementById('deck').scrollIntoView();return false;">Volver al inicio</a>
+    </div>
+  </section>
+
+</div>
+
+<div class="dots" id="dots"></div>
+<div class="nav">
+  <button id="prev" aria-label="Anterior">← Anterior</button>
+  <span class="counter" id="counter">01 / 11</span>
+  <button id="next" aria-label="Siguiente">Siguiente →</button>
+</div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  const dotsWrap=document.getElementById('dots');
+  const counter=document.getElementById('counter');
+  let idx=0;
+  slides.forEach((s,i)=>{
+    const b=document.createElement('button');
+    b.title=s.dataset.title||('Slide '+(i+1));
+    b.addEventListener('click',()=>go(i));
+    dotsWrap.appendChild(b);
+  });
+  const dots=[...dotsWrap.children];
+  function go(n){
+    if(n<0||n>=slides.length)return;
+    slides[idx].classList.remove('active');
+    if(n<idx)slides[idx].classList.add('prev');else slides[idx].classList.remove('prev');
+    idx=n;
+    slides[idx].classList.add('active');
+    slides[idx].classList.remove('prev');
+    dots.forEach((d,i)=>d.classList.toggle('active',i===idx));
+    counter.textContent=String(idx+1).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0');
+    slides[idx].scrollTop=0;
+  }
+  document.getElementById('prev').onclick=()=>go(idx-1);
+  document.getElementById('next').onclick=()=>go(idx+1);
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' ')go(idx+1);
+    if(e.key==='ArrowLeft'||e.key==='PageUp')go(idx-1);
+    if(e.key==='Home')go(0);
+    if(e.key==='End')go(slides.length-1);
+  });
+  dots[0].classList.add('active');
+</script>
+
+</body>
+</html>
