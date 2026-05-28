@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Propuesta — Natalia Castro · Elbufalo IA</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+      background: #f5f6f8;
+      color: #1a1d2e;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+    }
+
+    /* ─── PORTADA ─── */
+    .cover {
+      background: #0a0f2e;
+      padding: 72px 64px 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(201,162,39,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .cover-logo { margin-bottom: 40px; }
+    .cover-logo img { height: 75px; width: auto; }
+    .cover-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #c9a227;
+      margin-bottom: 20px;
+    }
+    .cover-title {
+      font-size: 38px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+    .cover-title span { color: #c9a227; }
+    .cover-subtitle {
+      font-size: 16px;
+      color: rgba(255,255,255,0.55);
+      font-weight: 300;
+      margin-bottom: 48px;
+    }
+    .cover-meta {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .cover-meta-item {
+      border-left: 2px solid #c9a227;
+      padding-left: 12px;
+    }
+    .cover-meta-item .label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 3px;
+    }
+    .cover-meta-item .value {
+      font-size: 13px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    /* ─── SECCIONES ─── */
+    .section {
+      padding: 56px 64px;
+      border-bottom: 1px solid #eef0f5;
+    }
+    .section:last-of-type { border-bottom: none; }
+    .section-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #c9a227;
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #0a0f2e;
+      margin-bottom: 20px;
+      line-height: 1.3;
+    }
+    .section-text {
+      font-size: 14px;
+      color: #444a60;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    /* ─── CARDS DE PROBLEMA ─── */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .problem-card {
+      background: #f9f5e8;
+      border-top: 3px solid #c9a227;
+      border-radius: 4px;
+      padding: 24px 20px;
+    }
+    .problem-num {
+      font-size: 28px;
+      font-weight: 800;
+      color: #c9a227;
+      margin-bottom: 8px;
+      line-height: 1;
+    }
+    .problem-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0a0f2e;
+      margin-bottom: 8px;
+    }
+    .problem-desc {
+      font-size: 12px;
+      color: #666d84;
+      line-height: 1.65;
+    }
+
+    /* ─── NIVELES (TARJETAS PROPUESTA) ─── */
+    .levels-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .level-card {
+      border-radius: 4px;
+      padding: 28px 22px;
+      display: flex;
+      flex-direction: column;
+      min-height: 280px;
+    }
+    .level-card.lvl-1 {
+      background: #0a0f2e;
+      color: #fff;
+      box-shadow: 0 8px 32px rgba(201,162,39,0.2);
+    }
+    .level-card.lvl-2 {
+      background: #172254;
+      color: #fff;
+    }
+    .level-card.lvl-3 {
+      background: #f5f6f8;
+      color: #1a1d2e;
+      border: 1px solid #eef0f5;
+    }
+    .level-tag {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #c9a227;
+      margin-bottom: 10px;
+    }
+    .level-card.lvl-1 .level-num,
+    .level-card.lvl-2 .level-num {
+      font-size: 38px;
+      font-weight: 800;
+      color: #c9a227;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    .level-card.lvl-3 .level-num {
+      font-size: 38px;
+      font-weight: 800;
+      color: #0a0f2e;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    .level-name {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .level-card.lvl-1 .level-name,
+    .level-card.lvl-2 .level-name { color: #fff; }
+    .level-card.lvl-3 .level-name { color: #0a0f2e; }
+    .level-desc {
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .level-card.lvl-1 .level-desc,
+    .level-card.lvl-2 .level-desc { color: rgba(255,255,255,0.65); }
+    .level-card.lvl-3 .level-desc { color: #555b72; }
+
+    /* ─── STACK / COMPONENTES ─── */
+    .stack-list {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .stack-item {
+      background: #f5f6f8;
+      border-radius: 4px;
+      padding: 16px 20px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .stack-dot {
+      color: #c9a227;
+      font-size: 18px;
+      line-height: 1.2;
+      flex-shrink: 0;
+    }
+    .stack-item-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0a0f2e;
+      margin-bottom: 4px;
+    }
+    .stack-item-desc {
+      font-size: 12px;
+      color: #555b72;
+      line-height: 1.6;
+    }
+
+    /* ─── TABLA DE INVERSIÓN ─── */
+    .inv-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 24px;
+      font-size: 13px;
+    }
+    .inv-table thead tr {
+      background: #0a0f2e;
+      color: white;
+    }
+    .inv-table thead th {
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .inv-table tbody tr:nth-child(even) { background: #f5f6f8; }
+    .inv-table tbody tr:nth-child(odd) { background: white; }
+    .inv-table tbody td {
+      padding: 12px 16px;
+      color: #444a60;
+      border-bottom: 1px solid #eef0f5;
+    }
+    .inv-table tbody td:first-child { font-weight: 600; color: #1a1d2e; }
+    .inv-total-box {
+      background: #0a0f2e;
+      border-radius: 4px;
+      padding: 28px 36px;
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .inv-total-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .inv-total-sub {
+      font-size: 11px;
+      color: rgba(255,255,255,0.35);
+      margin-top: 4px;
+    }
+    .inv-price-highlight {
+      font-size: 42px;
+      font-weight: 800;
+      color: #c9a227;
+      line-height: 1;
+    }
+
+    /* ─── CHIPS ─── */
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .chip {
+      background: #0a0f2e;
+      color: white;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 5px 12px;
+      border-radius: 4px;
+    }
+
+    /* ─── CONDICIONES ─── */
+    .conditions-list {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .condition-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .condition-arrow {
+      color: #c9a227;
+      font-size: 14px;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .condition-text {
+      font-size: 13px;
+      color: #444a60;
+      line-height: 1.65;
+    }
+    .condition-text strong { color: #1a1d2e; }
+
+    /* ─── BADGE NIVEL EN HEADER DE SECCIÓN ─── */
+    .level-header-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+    .level-badge {
+      background: #c9a227;
+      color: #0a0f2e;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      padding: 5px 10px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+    .level-badge.muted {
+      background: transparent;
+      color: #c9a227;
+      border: 1px solid #c9a227;
+    }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      background: #0a0f2e;
+      padding: 40px 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .footer-brand .name {
+      font-size: 15px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 2px;
+    }
+    .footer-brand .role {
+      font-size: 11px;
+      color: rgba(255,255,255,0.4);
+    }
+    .footer-contacts {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      text-align: right;
+    }
+    .footer-contacts a {
+      font-size: 11px;
+      color: #c9a227;
+      text-decoration: none;
+    }
+
+    /* ─── PRINT / A4 ─── */
+    @media print {
+      @page { size: A4; margin: 0; }
+      body { background: white; }
+      .page { max-width: 100%; }
+      .cover { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .problem-card { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .level-card { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .inv-table thead tr { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .inv-total-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .footer { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .chip { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .level-badge { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .section { page-break-inside: avoid; }
+    }
+
+    @media (max-width: 700px) {
+      .cover { padding: 48px 28px 40px; }
+      .section { padding: 40px 28px; }
+      .problem-grid { grid-template-columns: 1fr; }
+      .levels-grid { grid-template-columns: 1fr; }
+      .footer { flex-direction: column; text-align: center; }
+      .footer-contacts { text-align: center; }
+      .inv-total-box { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══════════════════════════════════════ PORTADA ══════════════════════════════════════ -->
+  <div class="cover">
+    <div class="cover-logo">
+      <img src="../Elbufalo%20marca%20personal/Lineamientos_agencia/logo_elbufalo.png" alt="Elbufalo IA" onerror="this.style.display='none'" />
+    </div>
+    <div class="cover-label">Propuesta comercial · Marketing y crecimiento digital</div>
+    <h1 class="cover-title">
+      Tres niveles para activar<br><span>tu marca deportiva</span>
+    </h1>
+    <p class="cover-subtitle">
+      Tráfico, interacción y ventas online — paso a paso, con objetivos breves y resultados visibles en cada etapa.
+    </p>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <div class="label">Preparado para</div>
+        <div class="value">Natalia Castro</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="label">Rubro</div>
+        <div class="value">Indumentaria deportiva, suplementos y accesorios</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="label">Fecha</div>
+        <div class="value">Mayo 2026</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="label">Estado</div>
+        <div class="value">Propuesta inicial</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════ SECCIÓN 1 — DIAGNÓSTICO ══════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">Diagnóstico</div>
+    <h2 class="section-title">El producto está listo pero aún no vende<br>porque nadie está mirando todavía</h2>
+    <p class="section-text">
+      Tu marca ya tiene producto y propuesta clara: indumentaria, suplementos y accesorios para gente que entrena. El problema no es lo que vendés — es que el tráfico es bajo, las redes no están traccionando y los pocos que entran al sitio se van sin tomar acción.
+    </p>
+    <p class="section-text">
+      En este escenario, saltar directo a un e-commerce con pasarela de pagos sería invertir en algo que todavía no tiene público. El orden correcto es: primero llenar el embudo (redes + contenido), después armar la vidriera digital, y recién después automatizar la compra.
+    </p>
+
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-num">01</div>
+        <div class="problem-title">Poco tráfico cualificado</div>
+        <div class="problem-desc">Las redes no están funcionando como motor de captación — no hay sistema de contenido recurrente que atraiga al cliente ideal.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">02</div>
+        <div class="problem-title">Baja interacción</div>
+        <div class="problem-desc">Sin guion ni planificación, los posts compiten por atención sin lograr conversación, guardado ni mensajes entrantes.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">03</div>
+        <div class="problem-title">Ventas dispersas</div>
+        <div class="problem-desc">Las consultas se manejan a mano por WhatsApp sin una vidriera digital ordenada que muestre stock, talles y precios.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════ SECCIÓN 2 — PROPUESTA EN 3 NIVELES ══════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">La propuesta</div>
+    <h2 class="section-title">Tres niveles escalables —<br>arrancás por donde tiene más sentido hoy</h2>
+    <p class="section-text">
+      El trabajo se divide en módulos breves y autónomos. Cada nivel funciona por sí solo y se factura por objetivo, no por hora. Avanzás al siguiente solo cuando el anterior está consolidado.
+    </p>
+
+    <div class="levels-grid">
+      <div class="level-card lvl-1">
+        <div class="level-tag">Nivel 1 · Recomendado para empezar</div>
+        <div class="level-num">01</div>
+        <div class="level-name">Activación de redes y contenido</div>
+        <div class="level-desc">Configuración de RRSS, guiones semanales y diseño/posproducción de contenido. Es lo que genera el tráfico que después absorbe el sitio.</div>
+      </div>
+      <div class="level-card lvl-2">
+        <div class="level-tag">Nivel 2 · Siguiente paso</div>
+        <div class="level-num">02</div>
+        <div class="level-name">Sitio vidriera + SEO</div>
+        <div class="level-desc">Página web con catálogo de productos, formulario de pedido, envío por WhatsApp, chatbot de consultas y SEO para que te encuentren en Google.</div>
+      </div>
+      <div class="level-card lvl-3">
+        <div class="level-tag">Nivel 3 · Cuando hay volumen</div>
+        <div class="level-num">03</div>
+        <div class="level-name">E-commerce completo</div>
+        <div class="level-desc">Carrito de compras y pasarela de pagos integrada. Solo tiene sentido cuando los niveles 1 y 2 estén traccionando y el volumen lo justifique.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════ NIVEL 1 — DETALLE + PRECIOS ══════════════════════════════════════ -->
+  <div class="section">
+    <div class="level-header-row">
+      <span class="level-badge">Nivel 1</span>
+      <span class="section-label" style="margin-bottom:0">Detalle e inversión</span>
+    </div>
+    <h2 class="section-title">Activación de redes y contenido</h2>
+    <p class="section-text">
+      El objetivo de este nivel es construir presencia y atención. Sin esto, cualquier sitio web es una vidriera en una calle sin gente. Trabajamos con un calendario simple de 2 posts semanales (8 al mes) y diseño profesional pieza por pieza.
+    </p>
+
+    <div class="stack-list">
+      <div class="stack-item">
+        <div class="stack-dot">●</div>
+        <div>
+          <div class="stack-item-title">Configuración de redes sociales (Instagram, TikTok y Facebook)</div>
+          <div class="stack-item-desc">Setup inicial de las tres cuentas: bio, enlaces, categorías, foto de perfil, paleta visual coherente con la marca y configuración técnica para medir resultados.</div>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-dot">●</div>
+        <div>
+          <div class="stack-item-title">Desarrollo de marca personal</div>
+          <div class="stack-item-desc">Construcción de la figura detrás de la marca: historia, valores, tono propio y rostro visible. Hoy la gente no le compra a un logo — le compra a una persona en la que confía. Sin marca personal, el contenido es uno más entre miles; con marca personal, se transforma en autoridad y comunidad.</div>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-dot">●</div>
+        <div>
+          <div class="stack-item-title">Armado de guiones (8 piezas/mes · 2 por semana)</div>
+          <div class="stack-item-desc">Guiones escritos con estructura probada (hook · problema · insight · solución · CTA) y orientados al estilo de marca personal: historias reales, posicionamiento del referente, contexto del rubro fitness/deportivo. Pensados para generar guardado, comentarios y DMs — no solo likes.</div>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-dot">●</div>
+        <div>
+          <div class="stack-item-title">Diseño y posproducción de contenido</div>
+          <div class="stack-item-desc">Producción visual de cada pieza: edición de video, diseño de carruseles, retoques de imagen, subtítulos, música y formato adaptado a cada red. Se cobra por pieza ejecutada (ver tabla).</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chips">
+      <span class="chip">Instagram</span>
+      <span class="chip">TikTok</span>
+      <span class="chip">Reels</span>
+      <span class="chip">Carruseles</span>
+      <span class="chip">Guiones semanales</span>
+    </div>
+
+    <h3 style="font-size:13px; font-weight:700; color:#0a0f2e; margin-top:32px; letter-spacing:0.02em;">Inversión Nivel 1</h3>
+    <table class="inv-table">
+      <thead>
+        <tr>
+          <th>Concepto</th>
+          <th>Modalidad</th>
+          <th style="text-align:right">Valor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Configuración de redes sociales</td>
+          <td>Pago único · setup inicial</td>
+          <td style="text-align:right">USD 100</td>
+        </tr>
+        <tr>
+          <td>Armado de guiones (8 piezas/mes)</td>
+          <td>Fee mensual · 2 posts por semana</td>
+          <td style="text-align:right">USD 250 / mes</td>
+        </tr>
+        <tr>
+          <td>Edición de video (por pieza)</td>
+          <td>Reel, story o video corto editado</td>
+          <td style="text-align:right">USD 35 c/u</td>
+        </tr>
+        <tr>
+          <td>Edición de imagen o carrusel (por pieza)</td>
+          <td>Diseño gráfico individual o multi-slide</td>
+          <td style="text-align:right">USD 20 c/u</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="inv-total-box">
+      <div>
+        <div class="inv-total-label">Arranque base — Nivel 1</div>
+        <div class="inv-total-sub">Configuración inicial + primer mes de guiones (sin posproducción)</div>
+      </div>
+      <div class="inv-price-highlight">USD 350</div>
+    </div>
+
+    <p class="section-text" style="margin-top:16px; font-size:12px; color:#777d94;">
+      * El costo de posproducción mensual depende del mix de piezas elegido. Ejemplo: 4 reels + 4 carruseles = USD 140 (videos) + USD 80 (imágenes) = USD 220 adicionales al fee de guiones.
+    </p>
+  </div>
+
+  <!-- ══════════════════════════════════════ NIVEL 2 — DETALLE SIN PRECIOS ══════════════════════════════════════ -->
+  <div class="section">
+    <div class="level-header-row">
+      <span class="level-badge muted">Nivel 2</span>
+      <span class="section-label" style="margin-bottom:0">Próxima etapa</span>
+    </div>
+    <h2 class="section-title">Sitio vidriera con catálogo + SEO</h2>
+    <p class="section-text">
+      Cuando las redes empiezan a traccionar, necesitás un lugar donde el visitante pueda ver todo el producto ordenado: indumentaria, suplementos, accesorios — con talles, colores y modelos. No es un e-commerce todavía; es una vidriera digital optimizada para convertir consulta en pedido.
+    </p>
+
+    <div class="stack-list">
+      <div class="stack-item">
+        <div class="stack-dot">●</div>
+        <div>
+          <div class="stack-item-title">Sitio web con vidriera de productos</div>
+          <div class="stack-item-desc">Catálogo navegable de indumentaria, suplementos y accesorios con fichas por producto: imágenes, descripción, talles disponibles, modelos y colores.</div>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-dot">●</div>
+        <div>
+          <div class="stack-item-title">Formulario de pedido con envío por WhatsApp</div>
+          <div class="stack-item-desc">El cliente arma su pedido en el sitio y se envía directo al WhatsApp del negocio con todos los datos cargados. Cero fricción, cero pérdidas de información.</div>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-dot">●</div>
+        <div>
+          <div class="stack-item-title">Chatbot de consultas</div>
+          <div class="stack-item-desc">Asistente automatizado integrado al sitio para responder preguntas frecuentes: stock, talles, formas de pago, envíos, devoluciones. Disponible 24/7 sin sumar carga al equipo.</div>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-dot">●</div>
+        <div>
+          <div class="stack-item-title">SEO y posicionamiento</div>
+          <div class="stack-item-desc">Optimización on-page del sitio, configuración de Google Business, fichas de producto con palabras clave del rubro y estrategia para que la marca empiece a aparecer en búsquedas locales y de nicho.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chips">
+      <span class="chip">Web vidriera</span>
+      <span class="chip">Catálogo</span>
+      <span class="chip">Pedido por WhatsApp</span>
+      <span class="chip">Chatbot</span>
+      <span class="chip">SEO</span>
+    </div>
+
+    <p class="section-text" style="margin-top:24px; font-size:12px; color:#777d94;">
+      * La inversión del Nivel 2 se presupuesta a medida una vez consolidado el Nivel 1, ajustada al volumen de productos del catálogo y al alcance del SEO buscado.
+    </p>
+  </div>
+
+  <!-- ══════════════════════════════════════ NIVEL 3 — DETALLE SIN PRECIOS ══════════════════════════════════════ -->
+  <div class="section">
+    <div class="level-header-row">
+      <span class="level-badge muted">Nivel 3</span>
+      <span class="section-label" style="margin-bottom:0">Etapa de escalada</span>
+    </div>
+    <h2 class="section-title">E-commerce completo —<br>carrito y pasarela de pagos</h2>
+    <p class="section-text">
+      Cuando el sitio vidriera ya genera consultas constantes y el volumen justifica automatizar el checkout, el último paso es transformar el catálogo en e-commerce: carrito de compras integrado y pasarela de pagos para que el cliente compre sin pasar por WhatsApp.
+    </p>
+
+    <div class="stack-list">
+      <div class="stack-item">
+        <div class="stack-dot">●</div>
+        <div>
+          <div class="stack-item-title">Carrito de compras</div>
+          <div class="stack-item-desc">Sistema completo de gestión de carrito: agregar/quitar productos, calcular subtotales, aplicar cupones, estimar envíos y proceder al checkout sin salir del sitio.</div>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-dot">●</div>
+        <div>
+          <div class="stack-item-title">Pasarela de pagos integrada</div>
+          <div class="stack-item-desc">Integración con Mercado Pago u otra pasarela según conveniencia: tarjetas de crédito, débito, transferencia y medios alternativos. Confirmación automática y notificación al cliente.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chips">
+      <span class="chip">Carrito</span>
+      <span class="chip">Pasarela de pagos</span>
+      <span class="chip">Checkout automatizado</span>
+      <span class="chip">Mercado Pago</span>
+    </div>
+
+    <p class="section-text" style="margin-top:24px; font-size:12px; color:#777d94;">
+      * La inversión del Nivel 3 se presupuesta cuando el Nivel 2 esté operativo y se confirme el volumen mínimo que justifica la automatización del cobro online.
+    </p>
+  </div>
+
+  <!-- ══════════════════════════════════════ CONDICIONES Y PRÓXIMOS PASOS ══════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">Modalidad de trabajo</div>
+    <h2 class="section-title">Condiciones y próximos pasos</h2>
+
+    <div class="conditions-list">
+      <div class="condition-item">
+        <div class="condition-arrow">→</div>
+        <div class="condition-text"><strong>Trabajo por objetivos breves:</strong> cada nivel se acuerda y se factura por entregable concreto, no por horas. Avanzamos al siguiente nivel solo cuando el anterior cumple su objetivo.</div>
+      </div>
+      <div class="condition-item">
+        <div class="condition-arrow">→</div>
+        <div class="condition-text"><strong>Pago Nivel 1:</strong> setup (USD 100) al inicio · fee mensual de guiones (USD 250) por adelantado el primer día del mes · posproducción por pieza, facturada al cierre de cada mes según volumen ejecutado.</div>
+      </div>
+      <div class="condition-item">
+        <div class="condition-arrow">→</div>
+        <div class="condition-text"><strong>Plazos de entrega:</strong> setup de redes en 2 días hábiles · guiones entregados con una semana de anticipación al cronograma · posproducción dentro de las 48 hs siguientes a la aprobación del guion.</div>
+      </div>
+      <div class="condition-item">
+        <div class="condition-arrow">→</div>
+        <div class="condition-text"><strong>Niveles 2 y 3:</strong> se presupuestan a medida una vez consolidada la etapa previa. No hay compromiso de avance — la decisión de escalar depende de los resultados visibles del nivel anterior.</div>
+      </div>
+      <div class="condition-item">
+        <div class="condition-arrow">→</div>
+        <div class="condition-text"><strong>Reportes:</strong> reunión mensual breve con métricas de las piezas publicadas, performance por formato y recomendaciones para el mes siguiente.</div>
+      </div>
+      <div class="condition-item">
+        <div class="condition-arrow">→</div>
+        <div class="condition-text"><strong>Próximo paso:</strong> confirmar avance del Nivel 1 y agendar una reunión de 30 minutos para definir línea estética, pilares de contenido y calendario del primer mes.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════ FOOTER ══════════════════════════════════════ -->
+  <div class="footer">
+    <div class="footer-brand">
+      <div class="name">Andrea Arizcun · Elbufalo IA</div>
+      <div class="role">Agencia de Automatización Inteligente con IA</div>
+    </div>
+    <div class="footer-contacts">
+      <a href="https://elbufalo.site">elbufalo.site</a>
+      <a href="mailto:elbufaloia@gmail.com">elbufaloia@gmail.com</a>
+      <a href="https://wa.me/5491157083080">WhatsApp: +54 11 5708-3080</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
