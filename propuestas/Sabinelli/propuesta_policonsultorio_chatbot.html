@@ -1,0 +1,2203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Propuesta — Asistente WhatsApp para Policonsultorio · Elbufalo IA</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+      background: #f5f6f8;
+      color: #1a1d2e;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    img { max-width: 100%; height: auto; }
+
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+    }
+
+    /* ─── PORTADA ─── */
+    .cover {
+      background: #0a0f2e;
+      padding: 72px 64px 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(201,162,39,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .cover-logo { margin-bottom: 40px; }
+    .cover-logo img { height: 75px; width: auto; }
+    .cover-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #c9a227;
+      margin-bottom: 20px;
+    }
+    .cover-title {
+      font-size: 38px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+    .cover-title span { color: #c9a227; }
+    .cover-subtitle {
+      font-size: 16px;
+      color: rgba(255,255,255,0.55);
+      font-weight: 300;
+      margin-bottom: 48px;
+      max-width: 640px;
+    }
+    .cover-meta { display: flex; gap: 32px; flex-wrap: wrap; }
+    .cover-meta-item {
+      border-left: 2px solid #c9a227;
+      padding-left: 12px;
+    }
+    .cover-meta-item .label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 3px;
+    }
+    .cover-meta-item .value {
+      font-size: 13px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    /* ─── SECCIONES ─── */
+    .section {
+      padding: 56px 64px;
+      border-bottom: 1px solid #eef0f5;
+    }
+    .section:last-of-type { border-bottom: none; }
+
+    .section-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #c9a227;
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #0a0f2e;
+      margin-bottom: 20px;
+      line-height: 1.3;
+    }
+    .section-text {
+      font-size: 14px;
+      color: #444a60;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    /* ─── CARDS DE PROBLEMA ─── */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .problem-card {
+      background: #f9f5e8;
+      border-top: 3px solid #c9a227;
+      border-radius: 4px;
+      padding: 24px 20px;
+    }
+    .problem-num {
+      font-size: 28px;
+      font-weight: 800;
+      color: #c9a227;
+      margin-bottom: 8px;
+      line-height: 1;
+    }
+    .problem-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0a0f2e;
+      margin-bottom: 8px;
+    }
+    .problem-desc {
+      font-size: 12px;
+      color: #666d84;
+      line-height: 1.65;
+    }
+
+    /* ─── TIERS / NIVELES ─── */
+    /* Nivel 1 — featured full width con imagen */
+    .tier-featured-full {
+      margin-top: 36px;
+      background: #0a0f2e;
+      border-radius: 4px;
+      padding: 40px 44px;
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      grid-template-areas: "content image";
+      gap: 40px;
+      box-shadow: 0 10px 40px rgba(201,162,39,0.25);
+      position: relative;
+      overflow: hidden;
+    }
+    .tier-ff-content { grid-area: content; }
+    .tier-ff-image { grid-area: image; }
+    .tier-featured-full::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(201,162,39,0.18) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .tier-ff-image {
+      position: relative;
+      z-index: 1;
+      border-radius: 4px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      align-self: start;
+    }
+    .tier-ff-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .tier-ff-content { position: relative; z-index: 1; }
+    .tier-ff-badge {
+      display: inline-block;
+      background: #c9a227;
+      color: #0a0f2e;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+    }
+    .tier-ff-num {
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #c9a227;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .tier-ff-name {
+      font-size: 26px;
+      font-weight: 800;
+      color: white;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .tier-ff-desc {
+      font-size: 14px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.65;
+      margin-bottom: 18px;
+      font-weight: 300;
+    }
+    .tier-ff-price-row {
+      display: flex;
+      gap: 28px;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      padding: 18px 0;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      margin-bottom: 18px;
+    }
+    .tier-ff-price {
+      font-size: 38px;
+      font-weight: 800;
+      color: #c9a227;
+      line-height: 1;
+    }
+    .tier-ff-price-sub {
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 4px;
+    }
+    .tier-ff-monthly {
+      font-size: 13px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.4;
+    }
+    .tier-ff-monthly strong { color: #c9a227; }
+    .tier-ff-features {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 18px;
+    }
+    .tier-ff-feature {
+      font-size: 12px;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.5;
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+    .tier-ff-feature .tier-check { color: #c9a227; font-weight: 700; flex-shrink: 0; }
+
+    /* Niveles 2 y 3 — grid 2 columnas debajo del Nivel 1 */
+    .tiers-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 16px;
+      align-items: stretch;
+    }
+    /* Imágenes al FONDO de tier-card (Niveles 2 y 3) — altura simétrica entre ambas columnas */
+    .tier-feature-list { flex-grow: 0; }
+    .tier-image-bottom {
+      margin-top: auto;
+      padding-top: 22px;
+    }
+    .tier-image-single {
+      border-radius: 4px;
+      overflow: hidden;
+      background: #f5f6f8;
+      height: 220px;
+    }
+    .tier-image-single img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+    .tier-image-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 6px;
+      height: 220px;
+    }
+    .tier-image-gallery .gallery-item {
+      border-radius: 4px;
+      overflow: hidden;
+      background: #f5f6f8;
+      height: 100%;
+    }
+    .tier-image-gallery .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+    .tier-card {
+      background: white;
+      border: 1px solid #eef0f5;
+      border-top: 5px solid #0a0f2e;
+      border-radius: 4px;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+    .tier-card.featured {
+      background: #0a0f2e;
+      box-shadow: 0 8px 32px rgba(201,162,39,0.2);
+      border-color: #0a0f2e;
+    }
+    /* ─ Header navy (jerarquía como alternativa a Nivel 1) ─ */
+    .tier-header {
+      background: #0a0f2e;
+      padding: 22px 24px 20px;
+      color: white;
+      position: relative;
+    }
+    .tier-header::after {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 160px; height: 160px;
+      background: radial-gradient(circle, rgba(201,162,39,0.18) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .tier-num {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #c9a227;
+      font-weight: 800;
+      margin-bottom: 10px;
+      padding: 4px 10px;
+      background: rgba(201,162,39,0.15);
+      border: 1px solid rgba(201,162,39,0.35);
+      border-radius: 4px;
+      position: relative;
+      z-index: 1;
+    }
+    .tier-name {
+      font-size: 21px;
+      font-weight: 800;
+      color: white;
+      line-height: 1.2;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+      position: relative;
+      z-index: 1;
+      min-height: 50px;
+    }
+    .tier-card.featured .tier-name { color: white; }
+    .tier-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.55;
+      margin-bottom: 0;
+      min-height: 60px;
+      font-weight: 300;
+      position: relative;
+      z-index: 1;
+    }
+    .tier-card.featured .tier-desc { color: rgba(255,255,255,0.6); }
+    /* ─ Cuerpo blanco con features + precio dorado ─ */
+    .tier-body {
+      padding: 22px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .tier-price-block {
+      padding: 16px 18px;
+      background: #f9f5e8;
+      border-left: 3px solid #c9a227;
+      border-radius: 0 4px 4px 0;
+      margin-bottom: 20px;
+    }
+    .tier-card.featured .tier-price-block {
+      background: rgba(201,162,39,0.08);
+      border-color: #c9a227;
+    }
+    .tier-price {
+      font-size: 36px;
+      font-weight: 800;
+      color: #0a0f2e;
+      line-height: 1;
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+    .tier-card.featured .tier-price { color: #c9a227; }
+    .tier-price-sub {
+      font-size: 10px;
+      color: #777d94;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+    }
+    .tier-card.featured .tier-price-sub { color: rgba(255,255,255,0.45); }
+    .tier-price-rec {
+      font-size: 13px;
+      color: #c9a227;
+      font-weight: 700;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(201,162,39,0.3);
+    }
+    .tier-card.featured .tier-price-rec { color: rgba(255,255,255,0.7); }
+    .tier-feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex-grow: 1;
+    }
+    .tier-feature {
+      font-size: 12px;
+      color: #444a60;
+      line-height: 1.55;
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+    .tier-card.featured .tier-feature { color: rgba(255,255,255,0.78); }
+    .tier-check {
+      color: #c9a227;
+      font-weight: 700;
+      flex-shrink: 0;
+      font-size: 13px;
+    }
+    .tier-badge {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #c9a227;
+      color: #0a0f2e;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+    .tier-fit {
+      font-size: 11px;
+      font-weight: 700;
+      color: #c9a227;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+      padding: 8px 0;
+      border-bottom: 1px solid #eef0f5;
+      text-align: center;
+      min-height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1.4;
+    }
+    .tier-card.featured .tier-fit {
+      border-color: rgba(255,255,255,0.12);
+    }
+
+    /* ─── STACK / DETALLE DE NIVELES ─── */
+    .level-detail {
+      margin-top: 28px;
+      padding: 28px 28px 24px;
+      background: #f5f6f8;
+      border-left: 3px solid #c9a227;
+      border-radius: 0 4px 4px 0;
+    }
+    .level-detail-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+    .level-detail-num {
+      font-size: 11px;
+      font-weight: 800;
+      color: #c9a227;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .level-detail-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0a0f2e;
+      line-height: 1.3;
+    }
+    .level-detail-tag {
+      margin-left: auto;
+      background: #0a0f2e;
+      color: white;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+    }
+    .level-detail-intro {
+      font-size: 13px;
+      color: #444a60;
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+    .level-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .level-stack-item {
+      background: white;
+      border-radius: 4px;
+      padding: 14px 16px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .level-stack-dot {
+      color: #c9a227;
+      font-size: 16px;
+      line-height: 1.3;
+      flex-shrink: 0;
+    }
+    .level-stack-item-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0a0f2e;
+      margin-bottom: 3px;
+    }
+    .level-stack-item-desc {
+      font-size: 12px;
+      color: #555b72;
+      line-height: 1.6;
+    }
+    .level-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 16px;
+    }
+    .level-chip {
+      background: #0a0f2e;
+      color: white;
+      font-size: 10px;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
+    /* ─── FUNNEL ─── */
+    .funnel-wrapper { margin-top: 36px; }
+    .funnel-stages { display: flex; flex-direction: column; gap: 0; }
+    .funnel-stage {
+      display: grid;
+      grid-template-columns: 40px 1fr 220px;
+      gap: 0;
+      align-items: stretch;
+      margin-bottom: 4px;
+    }
+    .funnel-stage-num {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 800;
+      color: #c9a227;
+      padding-right: 12px;
+    }
+    .funnel-stage-bar {
+      border-radius: 3px;
+      padding: 20px 28px;
+      position: relative;
+    }
+    .funnel-stage-bar::after {
+      content: '';
+      position: absolute;
+      bottom: -10px; left: 50%;
+      transform: translateX(-50%);
+      width: 0; height: 0;
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-top: 10px solid currentColor;
+      z-index: 2;
+    }
+    .funnel-stage:last-child .funnel-stage-bar::after { display: none; }
+    .funnel-s1 .funnel-stage-bar { background: #0a0f2e; }
+    .funnel-s1 .funnel-stage-bar::after { border-top-color: #0a0f2e; }
+    .funnel-s2 .funnel-stage-bar { background: #172254; }
+    .funnel-s2 .funnel-stage-bar::after { border-top-color: #172254; }
+    .funnel-s3 .funnel-stage-bar { background: #1e2f70; }
+    .funnel-s3 .funnel-stage-bar::after { border-top-color: #1e2f70; }
+    .funnel-s4 .funnel-stage-bar { background: #c9a227; }
+    .funnel-s4 .funnel-stage-bar::after { border-top-color: #c9a227; }
+    .funnel-s5 .funnel-stage-bar { background: #a07d18; }
+    .funnel-s1 .stage-title, .funnel-s2 .stage-title, .funnel-s3 .stage-title { color: #fff; font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+    .funnel-s4 .stage-title, .funnel-s5 .stage-title { color: #0a0f2e; font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+    .funnel-s1 .stage-desc, .funnel-s2 .stage-desc, .funnel-s3 .stage-desc { font-size: 12px; line-height: 1.6; color: rgba(255,255,255,0.7); }
+    .funnel-s4 .stage-desc, .funnel-s5 .stage-desc { font-size: 12px; line-height: 1.6; color: rgba(0,0,0,0.6); }
+    .funnel-stage-meta { padding-left: 20px; display: flex; align-items: center; }
+    .funnel-meta-box { background: #f5f6f8; border-radius: 4px; padding: 12px 16px; width: 100%; }
+    .funnel-meta-box .meta-label { font-size: 9px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #c9a227; margin-bottom: 4px; }
+    .funnel-meta-box .meta-items { font-size: 11px; color: #555b72; line-height: 1.65; }
+
+    /* ─── TABLA DE INVERSIÓN ─── */
+    .inv-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 24px;
+      font-size: 13px;
+    }
+    .inv-table thead tr { background: #0a0f2e; color: white; }
+    .inv-table thead th {
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .inv-table tbody tr:nth-child(even) { background: #f5f6f8; }
+    .inv-table tbody tr:nth-child(odd) { background: white; }
+    .inv-table tbody td {
+      padding: 14px 16px;
+      color: #444a60;
+      border-bottom: 1px solid #eef0f5;
+      vertical-align: top;
+    }
+    .inv-table tbody td:first-child {
+      font-weight: 700;
+      color: #1a1d2e;
+      width: 28%;
+    }
+    .inv-table td .price-strong {
+      font-weight: 700;
+      color: #0a0f2e;
+      font-size: 14px;
+    }
+    .inv-total-box {
+      background: #0a0f2e;
+      border-radius: 4px;
+      padding: 28px 32px;
+      margin-top: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+    .inv-total-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .inv-total-sub {
+      font-size: 11px;
+      color: rgba(255,255,255,0.4);
+      margin-top: 4px;
+      max-width: 380px;
+    }
+    .inv-price-highlight {
+      font-size: 30px;
+      font-weight: 800;
+      color: #c9a227;
+      line-height: 1;
+    }
+    .inv-note {
+      margin-top: 18px;
+      font-size: 11px;
+      color: #777d94;
+      line-height: 1.65;
+      padding: 12px 16px;
+      background: #f9f5e8;
+      border-left: 3px solid #c9a227;
+      border-radius: 0 4px 4px 0;
+    }
+
+    /* ─── TIMELINE ─── */
+    .timeline {
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .timeline-item {
+      display: flex;
+      gap: 20px;
+      position: relative;
+    }
+    .timeline-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 16px;
+      top: 36px;
+      bottom: -8px;
+      width: 2px;
+      background: #eef0f5;
+    }
+    .timeline-badge {
+      width: 32px;
+      height: 32px;
+      background: #c9a227;
+      color: #0a0f2e;
+      font-size: 11px;
+      font-weight: 800;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 4px;
+      position: relative;
+      z-index: 1;
+    }
+    .timeline-content { padding-bottom: 28px; }
+    .timeline-week {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #c9a227;
+      margin-bottom: 4px;
+    }
+    .timeline-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0a0f2e;
+      margin-bottom: 6px;
+    }
+    .timeline-desc {
+      font-size: 12px;
+      color: #666d84;
+      line-height: 1.65;
+    }
+
+    /* ─── CONDICIONES ─── */
+    .conditions-list {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .condition-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .condition-arrow {
+      color: #c9a227;
+      font-size: 14px;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .condition-text {
+      font-size: 13px;
+      color: #444a60;
+      line-height: 1.65;
+    }
+    .condition-text strong { color: #1a1d2e; }
+
+    /* ─── PASOS NUMERADOS ─── */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .step-item { text-align: center; }
+    .step-circle {
+      width: 44px; height: 44px;
+      background: #0a0f2e;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      font-size: 16px;
+      font-weight: 800;
+      color: #c9a227;
+    }
+    .step-title { font-size: 13px; font-weight: 700; color: #0a0f2e; margin-bottom: 6px; }
+    .step-desc { font-size: 12px; color: #666d84; line-height: 1.6; }
+
+    /* ─── IMÁGENES DEBAJO DEL FUNNEL (CRM + confirma) ─── */
+    .flow-extra-images {
+      margin-top: 32px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .flow-extra-images .img-box {
+      border-radius: 4px;
+      overflow: hidden;
+      background: #f5f6f8;
+      border: 1px solid #eef0f5;
+    }
+    .flow-extra-images .img-box img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .flow-extra-images .img-caption {
+      background: #0a0f2e;
+      color: white;
+      padding: 8px 14px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+    .flow-extra-images .img-caption .label {
+      color: #c9a227;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-right: 8px;
+    }
+
+    /* ─── PREVIEWS NIVEL 1 Y 2 (antes del funnel) ─── */
+    .flow-previews {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 28px;
+      margin-bottom: 36px;
+    }
+    .flow-preview {
+      background: #f5f6f8;
+      border-radius: 4px;
+      padding: 20px;
+      border-top: 3px solid #c9a227;
+    }
+    .flow-preview-label {
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #c9a227;
+      margin-bottom: 6px;
+    }
+    .flow-preview-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0a0f2e;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+    .flow-preview-image {
+      border-radius: 4px;
+      overflow: hidden;
+      background: white;
+      margin-bottom: 12px;
+    }
+    .flow-preview-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .flow-preview-desc {
+      font-size: 12px;
+      color: #555b72;
+      line-height: 1.6;
+    }
+    .flow-divider {
+      margin: 36px 0 20px;
+      text-align: center;
+      position: relative;
+    }
+    .flow-divider::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0; right: 0;
+      height: 1px;
+      background: #eef0f5;
+    }
+    .flow-divider span {
+      position: relative;
+      background: white;
+      padding: 0 18px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #c9a227;
+    }
+
+    /* ─── ADDON CARD (extra opcional) ─── */
+    .addon-superlabel {
+      display: inline-block;
+      background: #c9a227;
+      color: #0a0f2e;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 10px 22px;
+      border-radius: 4px;
+      margin-bottom: 22px;
+      box-shadow: 0 6px 20px rgba(201,162,39,0.35);
+    }
+    .addon-superlabel .star {
+      color: #0a0f2e;
+      margin-right: 4px;
+    }
+    .addon-card {
+      margin-top: 8px;
+      background: linear-gradient(135deg, #0a0f2e 0%, #1e2f70 100%);
+      border-radius: 4px;
+      padding: 36px 40px;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    .addon-card-body {
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      grid-template-areas:
+        "content price"
+        "image image";
+      gap: 28px 32px;
+      align-items: start;
+      position: relative;
+      z-index: 1;
+    }
+    .addon-content { grid-area: content; }
+    .addon-price-box-wrap { grid-area: price; }
+    .addon-image {
+      grid-area: image;
+      border-radius: 4px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      margin-top: 8px;
+    }
+    .addon-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .addon-card::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 220px; height: 220px;
+      background: radial-gradient(circle, rgba(201,162,39,0.18) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .addon-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #c9a227;
+      margin-bottom: 10px;
+    }
+    .addon-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: white;
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+    .addon-title span { color: #c9a227; }
+    .addon-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.7;
+      margin-bottom: 18px;
+      font-weight: 300;
+    }
+    .addon-features {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 18px;
+    }
+    .addon-feature {
+      font-size: 12px;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.5;
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+    .addon-feature .tier-check { color: #c9a227; font-weight: 700; flex-shrink: 0; }
+    .addon-price-box {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 4px;
+      padding: 22px;
+      position: relative;
+      z-index: 1;
+    }
+    .addon-price-box .label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 6px;
+    }
+    .addon-price {
+      font-size: 30px;
+      font-weight: 800;
+      color: #c9a227;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .addon-price-sub {
+      font-size: 11px;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 14px;
+    }
+    .addon-price-note {
+      font-size: 11px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.55;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+
+    /* ─── TABLA SERVICIOS EXTERNOS ─── */
+    .services-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      font-size: 12px;
+    }
+    .services-table thead tr {
+      background: #f9f5e8;
+    }
+    .services-table thead th {
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 700;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #a07d18;
+      border-bottom: 2px solid #c9a227;
+    }
+    .services-table tbody td {
+      padding: 11px 14px;
+      color: #444a60;
+      border-bottom: 1px solid #eef0f5;
+      vertical-align: top;
+    }
+    .services-table tbody td:first-child {
+      font-weight: 700;
+      color: #1a1d2e;
+    }
+    .services-table tbody td.cost-cell {
+      font-weight: 600;
+      color: #0a0f2e;
+      white-space: nowrap;
+    }
+    .services-table tbody tr:nth-child(even) { background: #f5f6f8; }
+    .services-note {
+      font-size: 11px;
+      color: #777d94;
+      margin-top: 12px;
+      font-style: italic;
+    }
+
+    /* ─── CALLOUT (bloque de cita destacada) ─── */
+    .callout {
+      background: #0a0f2e;
+      color: white;
+      padding: 28px 32px;
+      border-radius: 4px;
+      margin-top: 28px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .callout-quote {
+      font-size: 32px;
+      color: #c9a227;
+      font-weight: 800;
+      line-height: 1;
+    }
+    .callout-text {
+      font-size: 14px;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+    .callout-text strong { color: white; font-weight: 600; }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      background: #0a0f2e;
+      padding: 40px 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .footer-brand .name {
+      font-size: 15px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 2px;
+    }
+    .footer-brand .role {
+      font-size: 11px;
+      color: rgba(255,255,255,0.4);
+    }
+    .footer-contacts {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      text-align: right;
+    }
+    .footer-contacts a {
+      font-size: 11px;
+      color: #c9a227;
+      text-decoration: none;
+    }
+
+    /* ─── PRINT / A4 ─── */
+    @media print {
+      @page { size: A4; margin: 0; }
+      body { background: white; }
+      .page { max-width: 100%; }
+      .cover { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .problem-card { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .tier-card { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .funnel-stage-bar { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .inv-table thead tr { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .inv-total-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .timeline-badge { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .footer { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .level-chip, .tier-badge, .level-detail-tag { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .step-circle, .callout { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .addon-card, .addon-superlabel { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .services-table thead tr { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .tier-featured-full, .tier-ff-badge { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .flow-preview { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .flow-extra-images .img-caption { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .section { page-break-inside: avoid; }
+      .tier-card { page-break-inside: avoid; }
+      .tier-featured-full { page-break-inside: avoid; }
+      .level-detail { page-break-inside: avoid; }
+      .addon-card { page-break-inside: avoid; }
+    }
+
+    /* Tablet / contenedor angosto — colapso anticipado de grids anchos */
+    @media (max-width: 980px) {
+      .tier-featured-full {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "content"
+          "image";
+        padding: 32px;
+        gap: 24px;
+      }
+      .tier-ff-image { max-width: 380px; margin: 0 auto; }
+      .addon-card-body {
+        grid-template-columns: 1fr 240px;
+        grid-template-areas:
+          "content price"
+          "image image";
+        gap: 24px;
+      }
+      .addon-price-box-wrap { max-width: 100%; }
+    }
+
+    @media (max-width: 700px) {
+      .cover { padding: 48px 24px 40px; }
+      .cover-title { font-size: 26px; }
+      .cover-subtitle { font-size: 14px; margin-bottom: 32px; }
+      .cover-meta { gap: 16px 20px; }
+      .cover-meta-item .value { font-size: 12px; }
+      .section { padding: 40px 24px; }
+      .problem-grid { grid-template-columns: 1fr; }
+      .tiers-grid { grid-template-columns: 1fr; gap: 24px; }
+      .tier-name, .tier-desc, .tier-fit { min-height: 0; }
+      .tier-fit { display: block; padding: 10px 0; }
+      .tier-featured-full {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "content"
+          "image";
+        padding: 24px;
+        gap: 20px;
+      }
+      .tier-ff-image { max-width: 100%; }
+      .tier-ff-features { grid-template-columns: 1fr; }
+      .tier-ff-price-row {
+        gap: 16px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .tier-ff-name { font-size: 22px; }
+      .tier-ff-price { font-size: 30px; }
+      .tier-image-single { height: 200px; }
+      .tier-image-gallery { height: 130px; gap: 4px; }
+      .flow-previews { grid-template-columns: 1fr; }
+      .flow-extra-images { grid-template-columns: 1fr; }
+      .funnel-stage { grid-template-columns: 32px 1fr; }
+      .funnel-stage-meta { display: none; }
+      .funnel-stage-bar { padding: 16px 18px; }
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+      .footer { flex-direction: column; text-align: center; padding: 32px 24px; }
+      .footer-contacts { text-align: center; }
+      .callout { flex-direction: column; text-align: center; padding: 22px 20px; }
+      .addon-card { padding: 24px; }
+      .addon-card-body {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "content"
+          "price"
+          "image";
+        gap: 20px;
+      }
+      .addon-price-box-wrap, .addon-price-box, .addon-image { max-width: 100%; margin: 0; }
+      .addon-features { grid-template-columns: 1fr; }
+      .addon-superlabel { font-size: 11px; padding: 8px 16px; letter-spacing: 0.15em; }
+      .section-title { font-size: 19px; }
+      .level-detail { padding: 22px 20px 20px; }
+      .level-detail-header { gap: 8px; }
+      .level-detail-tag { margin-left: 0; }
+      .inv-total-box { flex-direction: column; align-items: flex-start; padding: 24px 20px; }
+
+      /* ─── TABLAS → CARDS APILADAS EN MOBILE ─── */
+      .inv-table, .inv-table thead, .inv-table tbody,
+      .inv-table tr, .inv-table th, .inv-table td {
+        display: block;
+        width: 100%;
+      }
+      .inv-table thead { display: none; }
+      .inv-table tbody tr,
+      .inv-table tbody tr:nth-child(even),
+      .inv-table tbody tr:nth-child(odd) {
+        background: white;
+        border: 1px solid #eef0f5;
+        border-radius: 4px;
+        padding: 16px;
+        margin-bottom: 12px;
+      }
+      .inv-table tbody td {
+        padding: 6px 0;
+        border-bottom: none;
+        text-align: left !important;
+      }
+      .inv-table tbody td:first-child {
+        width: 100%;
+        font-size: 14px;
+        padding-bottom: 10px;
+        margin-bottom: 8px;
+        border-bottom: 1px solid #eef0f5;
+      }
+      .inv-table tbody td:nth-child(3),
+      .inv-table tbody td:nth-child(4) {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 12px;
+        padding: 8px 0;
+        border-top: 1px solid #f5f6f8;
+      }
+      .inv-table tbody td:nth-child(3)::before { content: 'Desarrollo'; }
+      .inv-table tbody td:nth-child(4)::before { content: 'Soporte / mes'; }
+      .inv-table tbody td:nth-child(3)::before,
+      .inv-table tbody td:nth-child(4)::before {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #c9a227;
+      }
+
+      .services-table, .services-table thead, .services-table tbody,
+      .services-table tr, .services-table th, .services-table td {
+        display: block;
+        width: 100%;
+      }
+      .services-table thead { display: none; }
+      .services-table tbody tr,
+      .services-table tbody tr:nth-child(even) {
+        background: white;
+        border: 1px solid #eef0f5;
+        border-radius: 4px;
+        padding: 14px;
+        margin-bottom: 10px;
+      }
+      .services-table tbody td {
+        padding: 4px 0;
+        border-bottom: none;
+        text-align: left !important;
+        white-space: normal !important;
+      }
+      .services-table tbody td:first-child {
+        font-size: 13px;
+        padding-bottom: 8px;
+        margin-bottom: 6px;
+        border-bottom: 1px solid #eef0f5;
+      }
+      .services-table tbody td.cost-cell {
+        margin-top: 8px;
+        padding-top: 8px;
+        border-top: 1px solid #f5f6f8;
+        font-size: 13px;
+        color: #c9a227;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .cover { padding: 36px 18px 32px; }
+      .cover-title { font-size: 22px; }
+      .cover-subtitle { font-size: 13px; margin-bottom: 28px; }
+      .cover-meta { gap: 14px 18px; }
+      .cover-meta-item { padding-left: 10px; }
+      .section { padding: 32px 18px; }
+      .section-title { font-size: 18px; }
+      .tier-featured-full { padding: 20px 16px; }
+      .tier-ff-name { font-size: 20px; }
+      .tier-ff-price { font-size: 26px; }
+      .tier-header { padding: 20px 18px 18px; }
+      .tier-body { padding: 20px 18px 20px; }
+      .tier-name { font-size: 22px; }
+      .tier-price { font-size: 30px; }
+      .tier-image-single { height: 180px; }
+      .tier-image-gallery { height: 110px; }
+      .level-detail { padding: 20px 16px 18px; }
+      .level-stack-item { padding: 12px 14px; }
+      .addon-card { padding: 18px 16px; }
+      .addon-title { font-size: 18px; }
+      .addon-price { font-size: 26px; }
+      .addon-price-box { padding: 18px; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .footer { padding: 28px 18px; }
+      .funnel-stage-bar { padding: 14px 14px; }
+      .stage-title { font-size: 12px !important; }
+      .stage-desc { font-size: 11px !important; }
+      .inv-total-box { padding: 20px 18px; }
+      .inv-price-highlight { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══════════════════════════════════════
+       PORTADA
+  ══════════════════════════════════════ -->
+  <div class="cover">
+    <div class="cover-logo">
+      <img src="../../Lineamientos_agencia/logo_elbufalo.png" alt="Elbufalo IA" onerror="this.style.display='none'" />
+    </div>
+    <div class="cover-label">Propuesta comercial · Atención automatizada por WhatsApp</div>
+    <h1 class="cover-title">
+      Tu policonsultorio que<br>
+      nunca pierde un <span>turno.</span>
+    </h1>
+    <p class="cover-subtitle">
+      Tres niveles de asistente por WhatsApp para gestionar turnos, responder consultas y reducir el ausentismo — sin que tu recepción levante el teléfono.
+    </p>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <div class="label">Preparado para</div>
+        <div class="value">Policonsultorio Médico</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="label">Servicio</div>
+        <div class="value">Asistente WhatsApp · 3 niveles</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="label">Fecha</div>
+        <div class="value">Junio 2026</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="label">Estado</div>
+        <div class="value">Propuesta inicial</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SECCIÓN 1 — LA SOLUCIÓN EN 3 NIVELES
+  ══════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">Propuesta</div>
+    <h2 class="section-title">Tres opciones de chatbot para agendar turnos</h2>
+    <p class="section-text">
+      Esta propuesta se estructura en <strong>tres niveles escalables</strong>: cada uno resuelve el problema base de agendar turnos, pero suma capas según el nivel de automatización que el consultorio esté listo para adoptar.
+    </p>
+
+    <!-- NIVEL 1 — DESTACADO FULL WIDTH -->
+    <div class="tier-featured-full">
+      <div class="tier-ff-image">
+        <img src="chatbot1.png" alt="Ejemplo del chatbot Nivel 1 en WhatsApp" />
+      </div>
+      <div class="tier-ff-content">
+        <span class="tier-ff-badge">Recomendado para arrancar</span>
+        <div class="tier-ff-num">Nivel 01</div>
+        <div class="tier-ff-name">Chatbot Recepcionista</div>
+        <p class="tier-ff-desc">
+          Flujos predefinidos por WhatsApp administrados desde <strong style="color:#c9a227;">Chatwoot</strong>, conectados a una agenda estándar del mercado. Sin IA. Funciona 24/7 y libera a la recepción de tomar turnos por teléfono.
+        </p>
+        <div class="tier-ff-price-row">
+          <div>
+            <div class="tier-ff-price">USD 950</div>
+            <div class="tier-ff-price-sub">Pago único · Desarrollo</div>
+          </div>
+          <div class="tier-ff-monthly">
+            <strong>+ USD 50 / mes</strong><br>
+            Soporte Elbufalo<br>
+            <span style="color: rgba(255,255,255,0.45); font-size: 11px;">Listo en 2–3 semanas</span>
+          </div>
+        </div>
+        <ul class="tier-ff-features">
+          <li class="tier-ff-feature"><span class="tier-check">✓</span> Bot WhatsApp con menú guiado</li>
+          <li class="tier-ff-feature"><span class="tier-check">✓</span> Administración del canal con Chatwoot</li>
+          <li class="tier-ff-feature"><span class="tier-check">✓</span> Selección de especialidad y profesional</li>
+          <li class="tier-ff-feature"><span class="tier-check">✓</span> Cancelación y reprogramación por flujo</li>
+          <li class="tier-ff-feature"><span class="tier-check">✓</span> Conexión con Google Calendar, Calendly, Doctoralia o el sistema de reserva que se esté usando actualmente</li>
+          <li class="tier-ff-feature"><span class="tier-check">✓</span> Escalamiento a humano desde el mismo Chatwoot</li>
+          <li class="tier-ff-feature"><span class="tier-check">✓</span> Atención 24/7 sin recepción humana</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tiers-grid">
+
+      <!-- NIVEL 2 -->
+      <div class="tier-card">
+        <div class="tier-header">
+          <div class="tier-num">Nivel 02 · Alternativa</div>
+          <div class="tier-name">Asistente Conversacional IA</div>
+          <div class="tier-desc">Todo lo del Nivel 1 + capa de IA que entiende lenguaje natural y resuelve consultas frecuentes.</div>
+        </div>
+        <div class="tier-body">
+          <div class="tier-fit">Equilibrio entre costo y autonomía</div>
+          <div class="tier-price-block">
+            <div class="tier-price">USD 1.500</div>
+            <div class="tier-price-sub">Pago único · Desarrollo</div>
+            <div class="tier-price-rec">+ USD 100 / mes soporte Elbufalo</div>
+          </div>
+          <ul class="tier-feature-list">
+            <li class="tier-feature"><span class="tier-check">✓</span> Todo lo del Nivel 1</li>
+            <li class="tier-feature"><span class="tier-check">✓</span> Conversación natural (sin menús rígidos)</li>
+            <li class="tier-feature"><span class="tier-check">✓</span> Responde preguntas sobre obras sociales, precios y especialidades</li>
+            <li class="tier-feature"><span class="tier-check">✓</span> Explica preparaciones de estudios y derivaciones</li>
+            <li class="tier-feature"><span class="tier-check">✓</span> Detección de urgencia y derivación inmediata</li>
+            <li class="tier-feature"><span class="tier-check">✓</span> Base de conocimiento editable por la clínica</li>
+          </ul>
+          <div class="tier-image-bottom">
+            <div class="tier-image-single">
+              <img src="chatbot2.png" alt="Ejemplo del asistente IA Nivel 2" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NIVEL 3 -->
+      <div class="tier-card">
+        <div class="tier-header">
+          <div class="tier-num">Nivel 03 · Alternativa</div>
+          <div class="tier-name">Sistema Integral IA</div>
+          <div class="tier-desc">Asistente IA completo + agenda propia + base de pacientes + automatizaciones de seguimiento.</div>
+        </div>
+        <div class="tier-body">
+          <div class="tier-fit">Para profesionalizar la operación completa</div>
+          <div class="tier-price-block">
+            <div class="tier-price">USD 3.500</div>
+            <div class="tier-price-sub">Pago único · Desarrollo</div>
+            <div class="tier-price-rec">+ USD 200 / mes soporte Elbufalo</div>
+          </div>
+          <ul class="tier-feature-list">
+            <li class="tier-feature"><span class="tier-check">✓</span> Todo lo del Nivel 2</li>
+            <li class="tier-feature"><span class="tier-check">✓</span> Base de datos propia de pacientes con historial</li>
+            <li class="tier-feature"><span class="tier-check">✓</span> Agenda propia integrada (no depende de terceros)</li>
+            <li class="tier-feature"><span class="tier-check">✓</span> Confirmaciones y recordatorios automáticos 24h antes</li>
+            <li class="tier-feature"><span class="tier-check">✓</span> Reprogramación inteligente de turnos cancelados</li>
+            <li class="tier-feature"><span class="tier-check">✓</span> Dashboard de demanda, ausentismo y reactivación</li>
+            <li class="tier-feature"><span class="tier-check">✓</span> Reactivación automática de pacientes inactivos</li>
+          </ul>
+          <div class="tier-image-bottom">
+            <div class="tier-image-single">
+              <img src="crm.png" alt="CRM y dashboard del Nivel 3" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SECCIÓN 3 — DETALLE NIVEL 1
+  ══════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">Detalle por nivel</div>
+    <h2 class="section-title">Qué construimos en cada nivel</h2>
+    <p class="section-text">
+      Las tres opciones comparten la misma base — un chatbot por WhatsApp que toma turnos — pero cada nivel agrega capas distintas de inteligencia, autonomía y datos. Estos son los componentes que se desarrollan en cada caso.
+    </p>
+
+    <!-- NIVEL 1 DETALLE -->
+    <div class="level-detail">
+      <div class="level-detail-header">
+        <div class="level-detail-num">Nivel 01</div>
+        <div class="level-detail-title">Chatbot Recepcionista — sin IA, con Chatwoot</div>
+        <div class="level-detail-tag">2–3 semanas</div>
+      </div>
+      <p class="level-detail-intro">
+        Un bot por WhatsApp con menú guiado que toma turnos, cancela y reprograma. No conversa — sigue un guion fijo de opciones. Todo el canal se administra desde <strong>Chatwoot</strong>, una plataforma multicanal que le da al equipo una bandeja unificada para ver y responder cualquier mensaje en tiempo real. Funciona como una recepcionista digital 24/7.
+      </p>
+      <div class="level-stack">
+        <div class="level-stack-item">
+          <div class="level-stack-dot">●</div>
+          <div>
+            <div class="level-stack-item-title">Administración del canal con Chatwoot</div>
+            <div class="level-stack-item-desc">Chatwoot conecta directamente con WhatsApp Business API y le da al equipo una bandeja única donde se ve toda la conversación, se asigna a un agente, se etiqueta y se transfiere — todo en el mismo panel.</div>
+          </div>
+        </div>
+        <div class="level-stack-item">
+          <div class="level-stack-dot">●</div>
+          <div>
+            <div class="level-stack-item-title">Flujos predefinidos desde Chatwoot</div>
+            <div class="level-stack-item-desc">Menú con opciones numeradas: "1. Sacar turno · 2. Cancelar · 3. Reprogramar · 4. Hablar con recepción". Cada opción dispara un sub-flujo guiado configurado en el bot.</div>
+          </div>
+        </div>
+        <div class="level-stack-item">
+          <div class="level-stack-dot">●</div>
+          <div>
+            <div class="level-stack-item-title">Selección de especialidad y profesional</div>
+            <div class="level-stack-item-desc">El paciente elige de una lista fija (Cardiología, Dermatología, Pediatría, etc.) y luego ve los profesionales disponibles con sus horarios.</div>
+          </div>
+        </div>
+        <div class="level-stack-item">
+          <div class="level-stack-dot">●</div>
+          <div>
+            <div class="level-stack-item-title">Integración con agenda estándar del mercado</div>
+            <div class="level-stack-item-desc">Conexión con Google Calendar, Calendly, Doctoralia o el sistema de reserva que se esté usando actualmente. Los turnos se reservan directamente sin doble carga.</div>
+          </div>
+        </div>
+        <div class="level-stack-item">
+          <div class="level-stack-dot">●</div>
+          <div>
+            <div class="level-stack-item-title">Escalamiento a humano en un click</div>
+            <div class="level-stack-item-desc">Si el paciente escribe algo fuera del menú o pide hablar con alguien, la conversación se asigna automáticamente a un humano dentro de Chatwoot y queda registrada con todo el contexto.</div>
+          </div>
+        </div>
+        <div class="level-stack-item">
+          <div class="level-stack-dot">●</div>
+          <div>
+            <div class="level-stack-item-title">Confirmación inmediata del turno</div>
+            <div class="level-stack-item-desc">El paciente recibe el turno por escrito (fecha, hora, profesional, dirección) apenas termina el flujo. Sin esperas ni dudas.</div>
+          </div>
+        </div>
+      </div>
+      <div class="level-chips">
+        <span class="level-chip">Chatwoot</span>
+        <span class="level-chip">WhatsApp Business API</span>
+        <span class="level-chip">Google Calendar / Calendly / Doctoralia / sistema de reserva actual</span>
+      </div>
+    </div>
+
+    <!-- NIVEL 2 DETALLE -->
+    <div class="level-detail">
+      <div class="level-detail-header">
+        <div class="level-detail-num">Nivel 02</div>
+        <div class="level-detail-title">Asistente Conversacional con IA</div>
+        <div class="level-detail-tag">4–5 semanas</div>
+      </div>
+      <p class="level-detail-intro">
+        Todo lo del Nivel 1, pero sumando una capa de IA que entiende lenguaje natural. El paciente no tiene que elegir opciones numeradas: escribe como hablaría con una recepcionista humana, y el asistente entiende, responde y resuelve.
+      </p>
+      <div class="level-stack">
+        <div class="level-stack-item">
+          <div class="level-stack-dot">●</div>
+          <div>
+            <div class="level-stack-item-title">Comprensión de lenguaje natural</div>
+            <div class="level-stack-item-desc">El paciente puede escribir "necesito un turno con dermatólogo el viernes a la tarde" y el sistema entiende sin pedirle que use menús ni botones.</div>
+          </div>
+        </div>
+        <div class="level-stack-item">
+          <div class="level-stack-dot">●</div>
+          <div>
+            <div class="level-stack-item-title">Resolución de consultas frecuentes</div>
+            <div class="level-stack-item-desc">Responde sobre obras sociales aceptadas, precios particulares, horarios, dirección, profesionales, preparación de estudios y derivaciones — usando una base de conocimiento que la clínica puede editar.</div>
+          </div>
+        </div>
+        <div class="level-stack-item">
+          <div class="level-stack-dot">●</div>
+          <div>
+            <div class="level-stack-item-title">Base de conocimiento editable</div>
+            <div class="level-stack-item-desc">Panel simple donde la clínica carga preguntas frecuentes, políticas, horarios especiales y novedades. El asistente actualiza su respuesta sin reprogramación.</div>
+          </div>
+        </div>
+        <div class="level-stack-item">
+          <div class="level-stack-dot">●</div>
+          <div>
+            <div class="level-stack-item-title">Detección de urgencia</div>
+            <div class="level-stack-item-desc">Si el paciente describe síntomas de urgencia (dolor de pecho, sangrado, fiebre alta en pediatría), el asistente deriva inmediatamente a un humano y deja constancia.</div>
+          </div>
+        </div>
+        <div class="level-stack-item">
+          <div class="level-stack-dot">●</div>
+          <div>
+            <div class="level-stack-item-title">Tono y voz personalizables</div>
+            <div class="level-stack-item-desc">El asistente puede hablar formal o informal según el perfil del consultorio. Configurable en una sola línea de instrucción.</div>
+          </div>
+        </div>
+      </div>
+      <div class="level-chips">
+        <span class="level-chip">Chatwoot</span>
+        <span class="level-chip">n8n self-hosted</span>
+        <span class="level-chip">Claude API / GPT-4o-mini</span>
+        <span class="level-chip">WhatsApp Business API</span>
+        <span class="level-chip">Vector DB (base de conocimiento)</span>
+        <span class="level-chip">Google Calendar / Doctoralia / sistema de reserva actual</span>
+      </div>
+    </div>
+
+    <!-- NIVEL 3 DETALLE -->
+    <div class="level-detail">
+      <div class="level-detail-header">
+        <div class="level-detail-num">Nivel 03</div>
+        <div class="level-detail-title">Sistema Integral IA — el consultorio en piloto automático</div>
+        <div class="level-detail-tag">8–10 semanas</div>
+      </div>
+      <p class="level-detail-intro">
+        Todo lo del Nivel 2 + agenda propia, base de datos propia de pacientes y un ecosistema de automatizaciones que cubre el ciclo completo del paciente: desde que pide el primer turno hasta que vuelve seis meses después. La operación deja de depender de herramientas de terceros.
+      </p>
+      <div class="level-stack">
+        <div class="level-stack-item">
+          <div class="level-stack-dot">●</div>
+          <div>
+            <div class="level-stack-item-title">Agenda propia integrada</div>
+            <div class="level-stack-item-desc">Sistema de turnos a medida del consultorio: gestiona disponibilidad por profesional, especialidad, box físico y duración por tipo de consulta. Sin depender de Calendly, Doctoralia ni del sistema de reserva externo que se esté usando hoy.</div>
+          </div>
+        </div>
+        <div class="level-stack-item">
+          <div class="level-stack-dot">●</div>
+          <div>
+            <div class="level-stack-item-title">Base de datos propia de pacientes</div>
+            <div class="level-stack-item-desc">Cada paciente queda registrado con su historial de turnos, profesionales que lo atendieron, obra social, preferencias y fechas relevantes. El asistente lo reconoce automáticamente en cada conversación.</div>
+          </div>
+        </div>
+        <div class="level-stack-item">
+          <div class="level-stack-dot">●</div>
+          <div>
+            <div class="level-stack-item-title">Confirmaciones y recordatorios automáticos</div>
+            <div class="level-stack-item-desc">El paciente recibe confirmación apenas reserva, recordatorio 24 horas antes y un check de "¿venís?" 3 horas antes. Si confirma o cancela, la agenda se actualiza sola.</div>
+          </div>
+        </div>
+        <div class="level-stack-item">
+          <div class="level-stack-dot">●</div>
+          <div>
+            <div class="level-stack-item-title">Reprogramación inteligente de cancelaciones</div>
+            <div class="level-stack-item-desc">Cuando un paciente cancela, el sistema ofrece automáticamente ese hueco a otro paciente en lista de espera o le sugiere un nuevo turno al que canceló — sin intervención manual.</div>
+          </div>
+        </div>
+        <div class="level-stack-item">
+          <div class="level-stack-dot">●</div>
+          <div>
+            <div class="level-stack-item-title">Dashboard de demanda y operación</div>
+            <div class="level-stack-item-desc">Panel con métricas clave: tasa de ocupación por especialidad, horarios pico, tasa de ausentismo por profesional, tiempo promedio de espera y obras sociales más demandadas. Datos para decidir contrataciones y horarios.</div>
+          </div>
+        </div>
+        <div class="level-stack-item">
+          <div class="level-stack-dot">●</div>
+          <div>
+            <div class="level-stack-item-title">Seguimiento post-turno y reactivación</div>
+            <div class="level-stack-item-desc">Encuesta de satisfacción automática 24 horas después de la consulta. Reactivación de pacientes inactivos a los 6 o 12 meses con un mensaje contextual ("hace un año que no venís para tu control anual…").</div>
+          </div>
+        </div>
+      </div>
+      <div class="level-chips">
+        <span class="level-chip">Chatwoot</span>
+        <span class="level-chip">n8n self-hosted</span>
+        <span class="level-chip">Claude API</span>
+        <span class="level-chip">PostgreSQL</span>
+        <span class="level-chip">WhatsApp Business API</span>
+        <span class="level-chip">Dashboard custom (Next.js)</span>
+        <span class="level-chip">VPS dedicado</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SECCIÓN EXTRA — LANDING CON WIDGET DE CHAT
+  ══════════════════════════════════════ -->
+  <div class="section">
+    <span class="addon-superlabel">★ Extra opcional</span>
+    <h2 class="section-title">Landing del policonsultorio<br>con <span style="color:#c9a227;">widget de chat para agendar turnos</span></h2>
+    <p class="section-text">
+      Un sitio simple, claro y rápido — con un widget de chat integrado que toma turnos directamente desde la web. El mismo asistente de WhatsApp atendiendo también a quien llega por Google. Se puede sumar a cualquiera de los tres niveles.
+    </p>
+
+    <div class="addon-card">
+      <div class="addon-card-body">
+        <div class="addon-content">
+          <div class="addon-label">Add-on · compatible con los 3 niveles</div>
+          <div class="addon-title">Landing + widget de chat<br>integrado al asistente</div>
+          <p class="addon-desc">
+            Un sitio one-page con la información clave del policonsultorio (especialidades, profesionales, ubicación, obras sociales) y un widget de chat embebido. El paciente puede agendar el turno sin salir de la web — usando el mismo motor que el bot de WhatsApp.
+          </p>
+          <ul class="addon-features">
+            <li class="addon-feature"><span class="tier-check">✓</span> Diseño responsive y rápido</li>
+            <li class="addon-feature"><span class="tier-check">✓</span> Widget de chat de Chatwoot integrado</li>
+            <li class="addon-feature"><span class="tier-check">✓</span> Mismo asistente que en WhatsApp</li>
+            <li class="addon-feature"><span class="tier-check">✓</span> SEO local básico (Google Maps)</li>
+            <li class="addon-feature"><span class="tier-check">✓</span> Sección de especialidades y profesionales</li>
+            <li class="addon-feature"><span class="tier-check">✓</span> Formulario de contacto y horarios</li>
+          </ul>
+        </div>
+        <div class="addon-price-box-wrap">
+          <div class="addon-price-box">
+            <div class="label">Pago único</div>
+            <div class="addon-price">USD 400</div>
+            <div class="addon-price-sub">Desarrollo + integración</div>
+            <div class="addon-price-note">
+              <strong style="color:#c9a227;">Hosting:</strong> gratis en Cloudflare Pages o Vercel.<br>
+              <strong style="color:#c9a227;">Dominio:</strong> ~USD 12/año (a cargo del cliente).
+            </div>
+          </div>
+        </div>
+        <div class="addon-image">
+          <img src="landing1.png" alt="Vista previa de la landing con widget de chat" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SECCIÓN 4 — CÓMO FUNCIONA (FUNNEL NIVEL 3)
+  ══════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">Arquitectura del sistema</div>
+    <h2 class="section-title">Cómo se siente del lado del paciente</h2>
+    <p class="section-text">
+      Cada nivel tiene una experiencia distinta. Estas son las muestras reales de cómo se ve el chat en cada caso — desde el bot guiado del Nivel 1 hasta el sistema completo del Nivel 3.
+    </p>
+
+    <!-- MUESTRAS NIVEL 1 Y 2 -->
+    <div class="flow-previews">
+      <div class="flow-preview">
+        <div class="flow-preview-label">Nivel 01</div>
+        <div class="flow-preview-title">Chatbot Recepcionista — flujo guiado</div>
+        <div class="flow-preview-image">
+          <img src="chatbot1.png" alt="Muestra del chatbot del Nivel 1" />
+        </div>
+        <div class="flow-preview-desc">
+          El paciente elige opciones numeradas. El bot lo guía paso a paso hasta confirmar el turno. Sin IA — fiable y predecible.
+        </div>
+      </div>
+      <div class="flow-preview">
+        <div class="flow-preview-label">Nivel 02</div>
+        <div class="flow-preview-title">Asistente IA — conversación natural</div>
+        <div class="flow-preview-image">
+          <img src="chatbot2.png" alt="Muestra del asistente IA del Nivel 2" />
+        </div>
+        <div class="flow-preview-desc">
+          El paciente escribe libremente como hablaría con una recepcionista. El asistente entiende, resuelve dudas y agenda en una sola conversación.
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-divider"><span>Flujo completo · Nivel 03</span></div>
+
+    <p class="section-text" style="margin-top: 8px;">
+      Desde que un paciente escribe el primer mensaje hasta que vuelve seis meses después — el Sistema Integral del Nivel 3 acompaña cada etapa sin que la recepción tenga que intervenir en el flujo estándar.
+    </p>
+
+    <div class="funnel-wrapper">
+      <div class="funnel-stages">
+
+        <div class="funnel-stage funnel-s1">
+          <div class="funnel-stage-num">1</div>
+          <div class="funnel-stage-bar">
+            <div class="stage-title">Llega el mensaje</div>
+            <div class="stage-desc">El paciente escribe a WhatsApp. El asistente lo reconoce si ya estuvo antes ("Hola Carolina, ¿venís a controlar tu hipertensión?") o le pide los datos básicos si es la primera vez.</div>
+          </div>
+          <div class="funnel-stage-meta">
+            <div class="funnel-meta-box">
+              <div class="meta-label">Canal</div>
+              <div class="meta-items">WhatsApp Business<br>Identificación automática<br>Respuesta &lt; 3 seg</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="funnel-stage funnel-s2">
+          <div class="funnel-stage-num">2</div>
+          <div class="funnel-stage-bar">
+            <div class="stage-title">Entiende la necesidad</div>
+            <div class="stage-desc">El asistente identifica si es turno, consulta, urgencia o pedido administrativo. Resuelve consultas directamente o pasa al flujo de agenda según el caso.</div>
+          </div>
+          <div class="funnel-stage-meta">
+            <div class="funnel-meta-box">
+              <div class="meta-label">IA</div>
+              <div class="meta-items">Claude Haiku<br>Clasificación de intención<br>Detección de urgencia</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="funnel-stage funnel-s3">
+          <div class="funnel-stage-num">3</div>
+          <div class="funnel-stage-bar">
+            <div class="stage-title">Reserva el turno</div>
+            <div class="stage-desc">Busca disponibilidad por especialidad, profesional y horario preferido. Confirma duración, obra social y costo si aplica. Bloquea el horario en la agenda propia.</div>
+          </div>
+          <div class="funnel-stage-meta">
+            <div class="funnel-meta-box">
+              <div class="meta-label">Agenda propia</div>
+              <div class="meta-items">Por profesional y box<br>Reglas configurables<br>Multi-sucursal opcional</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="funnel-stage funnel-s4">
+          <div class="funnel-stage-num">4</div>
+          <div class="funnel-stage-bar">
+            <div class="stage-title">Confirma y recuerda</div>
+            <div class="stage-desc">Mensaje de confirmación inmediato. Recordatorio 24h antes. Check de presencia 3h antes. Si cancela, libera el slot y avisa a la lista de espera.</div>
+          </div>
+          <div class="funnel-stage-meta">
+            <div class="funnel-meta-box">
+              <div class="meta-label">Automatización</div>
+              <div class="meta-items">3 puntos de contacto<br>Reduce ausentismo ~60%<br>Reocupa cancelaciones</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="funnel-stage funnel-s5">
+          <div class="funnel-stage-num">5</div>
+          <div class="funnel-stage-bar">
+            <div class="stage-title">Mantiene la relación</div>
+            <div class="stage-desc">Encuesta post-turno opcional. Recordatorio de controles periódicos. Reactivación al paciente inactivo con mensaje contextual y propuesta de turno.</div>
+          </div>
+          <div class="funnel-stage-meta">
+            <div class="funnel-meta-box">
+              <div class="meta-label">Fidelización</div>
+              <div class="meta-items">Reactivación 6–12 meses<br>Satisfacción NPS<br>Datos para marketing</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- IMÁGENES DEBAJO DEL FUNNEL: CRM + CONFIRMA -->
+    <div class="flow-extra-images">
+      <div class="img-box">
+        <div class="img-caption"><span class="label">CRM</span>Dashboard de gestión y pacientes</div>
+        <img src="crm.png" alt="CRM del Nivel 3 — gestión de pacientes y turnos" />
+      </div>
+      <div class="img-box">
+        <div class="img-caption"><span class="label">Confirmación</span>Recordatorios automáticos por WhatsApp</div>
+        <img src="confirma.png" alt="Confirmación automática de turnos por WhatsApp" />
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-quote">"</div>
+      <div class="callout-text">
+        En los niveles 1 y 2 el paciente sigue gestionando turnos en la agenda externa (Google Calendar, Doctoralia, Calendly o el sistema de reserva que se esté usando actualmente). En el <strong>Nivel 3</strong> el sistema corre sobre infraestructura propia del consultorio — los datos te pertenecen y no quedás atado a la herramienta de un tercero.
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SECCIÓN 5 — FASES DEL PROYECTO
+  ══════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">Hoja de ruta</div>
+    <h2 class="section-title">Cómo trabajamos cada nivel</h2>
+    <p class="section-text">
+      Independientemente del nivel elegido, el proyecto se organiza en cuatro etapas con entregables concretos en cada una. Vas viendo resultados desde la primera fase — no es un proyecto de 3 meses sin novedades.
+    </p>
+
+    <div class="steps-grid">
+      <div class="step-item">
+        <div class="step-circle">0</div>
+        <div class="step-title">Relevamiento</div>
+        <div class="step-desc">Mapeo de procesos actuales, especialidades, profesionales y obras sociales.</div>
+      </div>
+      <div class="step-item">
+        <div class="step-circle">1</div>
+        <div class="step-title">Infraestructura</div>
+        <div class="step-desc">Conexión a WhatsApp Business, agenda y base de conocimiento.</div>
+      </div>
+      <div class="step-item">
+        <div class="step-circle">2</div>
+        <div class="step-title">Construcción</div>
+        <div class="step-desc">Desarrollo de flujos, IA, integraciones y panel según nivel.</div>
+      </div>
+      <div class="step-item">
+        <div class="step-circle">3</div>
+        <div class="step-title">Entrega y soporte</div>
+        <div class="step-desc">Pruebas con pacientes reales, ajustes finos y capacitación al equipo.</div>
+      </div>
+    </div>
+
+    <div class="timeline" style="margin-top: 40px;">
+      <div class="timeline-item">
+        <div class="timeline-badge">S1</div>
+        <div class="timeline-content">
+          <div class="timeline-week">Semana 1</div>
+          <div class="timeline-title">Fase 0 — Relevamiento operativo</div>
+          <div class="timeline-desc">Reunión con dirección y administración: mapeo de especialidades, profesionales, horarios, obras sociales y consultas más frecuentes. Definición del alcance final del nivel contratado.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-badge">S2</div>
+        <div class="timeline-content">
+          <div class="timeline-week">Semana 2–3 (Nivel 1) · Semana 2–4 (Nivel 2) · Semana 2–5 (Nivel 3)</div>
+          <div class="timeline-title">Fase 1 — Infraestructura base</div>
+          <div class="timeline-desc">Alta de la línea WhatsApp Business, configuración del entorno, conexión con la agenda elegida y carga de la base de conocimiento de la clínica.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-badge">S3</div>
+        <div class="timeline-content">
+          <div class="timeline-week">Semana 2–3 (Nivel 1) · Semana 4–5 (Nivel 2) · Semana 5–8 (Nivel 3)</div>
+          <div class="timeline-title">Fase 2 — Construcción del asistente</div>
+          <div class="timeline-desc">Desarrollo de flujos, integración con IA si aplica, lógica de agenda, panel de control del Nivel 3, automatizaciones de confirmación y reactivación.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-badge">S4</div>
+        <div class="timeline-content">
+          <div class="timeline-week">Última semana de cada nivel</div>
+          <div class="timeline-title">Fase 3 — Prueba, ajuste y entrega</div>
+          <div class="timeline-desc">Pruebas con pacientes reales en piloto, ajustes finos del tono y los flujos, capacitación al equipo y entrega en producción con documentación completa.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SECCIÓN 6 — INVERSIÓN
+  ══════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">Inversión</div>
+    <h2 class="section-title">Cuánto cuesta cada nivel</h2>
+    <p class="section-text">
+      La inversión tiene dos componentes claros: <strong>el fee de Elbufalo IA</strong> (desarrollo único + soporte mensual continuo) y los <strong>servicios externos</strong> que el cliente contrata directamente a los proveedores (Chatwoot, agenda, hosting, APIs, WhatsApp). Mantener esta separación permite que el cliente pague sólo por lo que usa y escale los servicios cuando el negocio lo pida.
+    </p>
+
+    <table class="inv-table">
+      <thead>
+        <tr>
+          <th>Nivel</th>
+          <th>Qué incluye el fee de Elbufalo</th>
+          <th style="text-align:right">Desarrollo</th>
+          <th style="text-align:right">Soporte / mes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Nivel 01<br><span style="font-weight:400; color:#666d84; font-size:12px;">Chatbot Recepcionista</span></td>
+          <td>Bot WhatsApp con flujos predefinidos administrado desde Chatwoot, integración con agenda estándar (Google Calendar / Calendly / Doctoralia o el sistema de reserva que se esté usando actualmente), escalamiento a humano, cancelación y reprogramación. Soporte e iteración sobre los flujos.</td>
+          <td style="text-align:right"><span class="price-strong">USD 950</span></td>
+          <td style="text-align:right"><span class="price-strong">USD 50</span></td>
+        </tr>
+        <tr>
+          <td>Nivel 02<br><span style="font-weight:400; color:#666d84; font-size:12px;">Asistente Conversacional IA</span></td>
+          <td>Todo lo del Nivel 1 + comprensión de lenguaje natural, base de conocimiento editable, resolución de consultas sobre obras sociales y especialidades, detección de urgencias. Ajustes de prompt y base de conocimiento.</td>
+          <td style="text-align:right"><span class="price-strong">USD 1.500</span></td>
+          <td style="text-align:right"><span class="price-strong">USD 100</span></td>
+        </tr>
+        <tr>
+          <td>Nivel 03<br><span style="font-weight:400; color:#666d84; font-size:12px;">Sistema Integral IA</span></td>
+          <td>Todo lo del Nivel 2 + base de datos propia, agenda propia, dashboard de gestión, confirmaciones y recordatorios automáticos, reprogramación inteligente, seguimiento post-turno y reactivación.</td>
+          <td style="text-align:right"><span class="price-strong">USD 3.500</span></td>
+          <td style="text-align:right"><span class="price-strong">USD 200</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="inv-total-box">
+      <div>
+        <div class="inv-total-label">Nivel recomendado para arrancar</div>
+        <div class="inv-total-sub">Nivel 01 · Chatbot Recepcionista con Chatwoot · agenda estándar conectada · atención 24/7 sin recepción humana, listo en 2-3 semanas.</div>
+      </div>
+      <div class="inv-price-highlight">USD 950</div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         SERVICIOS EXTERNOS QUE PAGA EL CLIENTE
+    ══════════════════════════════════════ -->
+    <div style="margin-top: 40px;">
+      <div class="section-label">Servicios externos</div>
+      <h3 style="font-size: 18px; font-weight: 700; color: #0a0f2e; margin-bottom: 10px; line-height: 1.3;">
+        Servicios de terceros — los contrata y paga el cliente
+      </h3>
+      <p class="section-text" style="margin-bottom: 4px;">
+        Estos servicios no se incluyen en el fee de Elbufalo. El cliente abre su propia cuenta con cada proveedor y mantiene la titularidad de su data. Los costos son aproximados y dependen del volumen real de uso.
+      </p>
+
+      <!-- Servicios Nivel 1 -->
+      <div style="margin-top: 24px;">
+        <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #c9a227; margin-bottom: 8px;">
+          Para el Nivel 01 — Chatbot Recepcionista
+        </div>
+        <table class="services-table">
+          <thead>
+            <tr>
+              <th>Servicio</th>
+              <th>Para qué se usa</th>
+              <th style="text-align:right">Costo aproximado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Chatwoot Cloud (Starter)</td>
+              <td>Plataforma multicanal donde corre el bot y el equipo atiende WhatsApp.<br><em style="color:#777d94; font-size:11px;">Alternativa: Chatwoot self-hosted en VPS (~USD 8/mes) si se prefiere ahorrar.</em></td>
+              <td style="text-align:right" class="cost-cell">USD 19 / mes</td>
+            </tr>
+            <tr>
+              <td>WhatsApp Business API</td>
+              <td>Cuenta oficial de Meta para enviar y recibir mensajes desde el bot.</td>
+              <td style="text-align:right" class="cost-cell">USD 0,005–0,03<br><span style="font-weight:400; font-size:11px; color:#777d94;">por conversación</span></td>
+            </tr>
+            <tr>
+              <td>Agenda — Google Calendar</td>
+              <td>Opción gratuita y suficiente para la mayoría de los policonsultorios.</td>
+              <td style="text-align:right" class="cost-cell">Gratis</td>
+            </tr>
+            <tr>
+              <td>Agenda — Calendly Standard</td>
+              <td>Alternativa profesional con mejor UX por profesional.</td>
+              <td style="text-align:right" class="cost-cell">USD 12 / mes</td>
+            </tr>
+            <tr>
+              <td>Agenda — Doctoralia</td>
+              <td>Agenda especializada en salud con captación SEO de pacientes.</td>
+              <td style="text-align:right" class="cost-cell">USD 60–90<br><span style="font-weight:400; font-size:11px; color:#777d94;">por profesional / mes</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="services-note">El cliente elige una sola opción de agenda. La conexión se hace al servicio elegido.</div>
+      </div>
+
+      <!-- Servicios Niveles 2 y 3 -->
+      <div style="margin-top: 32px;">
+        <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #c9a227; margin-bottom: 8px;">
+          Para los Niveles 02 y 03 — con n8n self-hosted
+        </div>
+        <table class="services-table">
+          <thead>
+            <tr>
+              <th>Servicio</th>
+              <th>Para qué se usa</th>
+              <th style="text-align:right">Costo aproximado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>VPS Cloud (Hostinger / Hetzner / DigitalOcean)</td>
+              <td>Servidor donde corren <strong>n8n self-hosted + Chatwoot self-hosted</strong>.<br>Nivel 2: VPS 2 GB RAM · Nivel 3: VPS 4 GB RAM + PostgreSQL.</td>
+              <td style="text-align:right" class="cost-cell">USD 12–28 / mes</td>
+            </tr>
+            <tr>
+              <td>WhatsApp Business API</td>
+              <td>Cuenta oficial de Meta — mismo modelo que en Nivel 1.</td>
+              <td style="text-align:right" class="cost-cell">USD 0,005–0,03<br><span style="font-weight:400; font-size:11px; color:#777d94;">por conversación</span></td>
+            </tr>
+            <tr>
+              <td>Claude API (Anthropic) o GPT-4o-mini (OpenAI)</td>
+              <td>Motor de IA conversacional del asistente. Costo proporcional al volumen de mensajes procesados.</td>
+              <td style="text-align:right" class="cost-cell">USD 30–80 / mes<br><span style="font-weight:400; font-size:11px; color:#777d94;">según volumen</span></td>
+            </tr>
+            <tr>
+              <td>Dominio + certificado SSL</td>
+              <td>Para acceder al panel y al dashboard interno del consultorio.</td>
+              <td style="text-align:right" class="cost-cell">~USD 12 / año</td>
+            </tr>
+            <tr>
+              <td>Backup gestionado (opcional pero recomendado en Nivel 3)</td>
+              <td>Respaldo automático de la base de datos de pacientes.</td>
+              <td style="text-align:right" class="cost-cell">USD 5–10 / mes</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="services-note">Si el cliente prefiere no administrar el VPS, Chatwoot Cloud (USD 39–99/mes) reemplaza el self-hosted con la misma funcionalidad.</div>
+      </div>
+
+      <!-- Resumen aproximado mensual -->
+      <div style="margin-top: 32px; padding: 22px 26px; background: #f5f6f8; border-left: 3px solid #c9a227; border-radius: 0 4px 4px 0;">
+        <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #c9a227; margin-bottom: 10px;">
+          Resumen mensual estimado (fee Elbufalo + servicios externos)
+        </div>
+        <table class="services-table" style="margin-top: 4px;">
+          <tbody>
+            <tr>
+              <td>Nivel 01 — operación total/mes</td>
+              <td>Soporte Elbufalo (USD 50) + Chatwoot Cloud (USD 19) + WhatsApp + agenda gratuita</td>
+              <td style="text-align:right" class="cost-cell">≈ USD 70–90 / mes</td>
+            </tr>
+            <tr>
+              <td>Nivel 02 — operación total/mes</td>
+              <td>Soporte Elbufalo (USD 100) + VPS + APIs IA + WhatsApp</td>
+              <td style="text-align:right" class="cost-cell">≈ USD 150–210 / mes</td>
+            </tr>
+            <tr>
+              <td>Nivel 03 — operación total/mes</td>
+              <td>Soporte Elbufalo (USD 200) + VPS robusto + APIs IA + backup + WhatsApp</td>
+              <td style="text-align:right" class="cost-cell">≈ USD 270–350 / mes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="inv-note" style="margin-top: 28px;">
+      
+      <strong>Forma de pago del desarrollo:</strong> 50% al inicio del proyecto · 50% contra entrega en producción. <br>
+      <strong>Servicios externos:</strong> el cliente abre su propia cuenta con cada proveedor (Chatwoot, Meta, agenda, etc.) y asume directamente su costo. Esto mantiene la titularidad de la data y permite escalar sin intermediarios.
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SECCIÓN 7 — CONDICIONES Y PRÓXIMOS PASOS
+  ══════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">Modalidad de trabajo</div>
+    <h2 class="section-title">Condiciones y próximos pasos</h2>
+
+    <div class="conditions-list">
+      <div class="condition-item">
+        <div class="condition-arrow">→</div>
+        <div class="condition-text"><strong>Pago:</strong> 50% al inicio del proyecto · 50% contra entrega en producción</div>
+      </div>
+      <div class="condition-item">
+        <div class="condition-arrow">→</div>
+        <div class="condition-text"><strong>Tiempos:</strong> Nivel 1 — 2 a 3 semanas · Nivel 2 — 4 a 5 semanas · Nivel 3 — 8 a 10 semanas, desde la firma del proyecto</div>
+      </div>
+      <div class="condition-item">
+        <div class="condition-arrow">→</div>
+        <div class="condition-text"><strong>Entregables incluidos:</strong> sistema funcionando en producción · documentación de uso · capacitación al equipo · acceso al panel de administración</div>
+      </div>
+      <div class="condition-item">
+        <div class="condition-arrow">→</div>
+        <div class="condition-text"><strong>Soporte post-entrega:</strong> 30 días de soporte directo incluidos · mantenimiento mensual continuo según operación contratada</div>
+      </div>
+      <div class="condition-item">
+        <div class="condition-arrow">→</div>
+        <div class="condition-text"><strong>Escalabilidad entre niveles:</strong> el Nivel 1 y el Nivel 2 se pueden escalar al siguiente sin reescribir el sistema base — la inversión inicial no se pierde</div>
+      </div>
+      <div class="condition-item">
+        <div class="condition-arrow">→</div>
+        <div class="condition-text"><strong>WhatsApp Business API:</strong> se gestiona el alta de la línea oficial (Meta) — los costos de mensajes son externos y se trasladan al consultorio (alrededor de USD 0,005 a USD 0,03 por conversación según país)</div>
+      </div>
+      <div class="condition-item">
+        <div class="condition-arrow">→</div>
+        <div class="condition-text"><strong>Próximo paso:</strong> agendar una reunión de 30 minutos para definir el nivel adecuado al volumen y la operación actual del policonsultorio</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-brand">
+      <div class="name">Andrea Arizcun · Elbufalo IA</div>
+      <div class="role">Agencia de Automatización Inteligente con IA</div>
+    </div>
+    <div class="footer-contacts">
+      <a href="https://elbufalo.site/">elbufalo.site</a>
+      <a href="mailto:elbufaloia@gmail.com">elbufaloia@gmail.com</a>
+      <a href="https://wa.me/5491157083080">WhatsApp +54 11 5708-3080</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
