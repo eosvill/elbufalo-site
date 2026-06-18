@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galería de trabajos — Elbufalo</title>
+<meta name="description" content="Galería completa de sitios web y landings diseñados por Elbufalo: estudios jurídicos, e-commerce, estética, gastronomía y más.">
+<link rel="icon" type="image/png" href="assets/favicon_neg.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/elbufalo.css">
+<link rel="stylesheet" href="assets/landing.css">
+</head>
+<body>
+
+<!-- ==================== NAV (igual al index.html) ==================== -->
+<nav class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="Landing que Vende Landings.html#top" class="nav__logo">
+      <img src="assets/logo-elbufalo.png" alt="Elbufalo IA" class="nav__logo-img">
+    </a>
+    <a href="https://wa.me/541157083080?text=Hola!%20Quiero%20una%20landing%20que%20venda." target="_blank" rel="noopener" class="btn btn--gold btn--sm">Solicitar diagnóstico</a>
+  </div>
+</nav>
+
+<!-- ==================== GALERÍA — grilla 3 columnas ==================== -->
+<section class="section gallery-page" id="top">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow center">Galería</span>
+      <h2 class="section-title">Todos nuestros <em>trabajos</em>.</h2>
+      <p class="section-sub">Cliqueá cualquier tarjeta para ver la web completa. Más de diez marcas ya venden con su sitio.</p>
+    </div>
+    <div class="gallery-page__grid" id="gallery-grid">
+      <!-- inyectado por JS -->
+    </div>
+    <div class="gallery-page__back">
+      <a class="btn btn-ghost" href="Landing que Vende Landings.html#top">← Volver a la landing</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== MODAL DE GALERÍA ==================== -->
+<div id="gallery-modal" class="gmodal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="gmodal-name">
+  <div class="gmodal__panel" role="document">
+    <button class="gmodal__close" type="button" aria-label="Cerrar">×</button>
+    <div class="gmodal__header">
+      <div class="gmodal__title">
+        <span class="gmodal__tag"></span>
+        <span class="gmodal__name" id="gmodal-name"></span>
+      </div>
+      <div class="gmodal__zoom" aria-label="Zoom">
+        <button class="gmodal__zoom-btn" type="button" data-action="out" aria-label="Reducir zoom">−</button>
+        <input type="range" class="gmodal__zoom-range" min="20" max="200" value="66" step="2" aria-label="Nivel de zoom">
+        <button class="gmodal__zoom-btn" type="button" data-action="in" aria-label="Aumentar zoom">+</button>
+        <span class="gmodal__zoom-val">66%</span>
+      </div>
+    </div>
+    <div class="gmodal__viewport">
+      <img class="gmodal__img" src="" alt="" decoding="async">
+    </div>
+  </div>
+</div>
+
+<!-- ==================== FOOTER (igual al index.html) ==================== -->
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <a href="#" class="nav__logo footer__logo">
+        <img src="assets/logo-elbufalo.png" alt="Elbufalo IA" class="footer__logo-img">
+      </a>
+      <p>Sistemas de ventas con inteligencia artificial para PyMEs, emprendedores y comercios. </p>
+    </div>
+    <div class="footer__contact">
+      <p>Buenos Aires, Argentina</p>
+      <p>
+        <a href="https://wa.me/5491157083080" target="_blank" rel="noopener noreferrer">
+          11 5708-3080
+        </a>
+      </p>
+      <a href="https://elbufalo.site" target="_blank" rel="noopener noreferrer">elbufalo.site</a>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <div class="container">
+      <p>© 2026 Elbufalo IA. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ---- construcción de la grilla ---- */
+  (function(){
+    var grid = document.getElementById('gallery-grid');
+    if(!grid) return;
+    var meta = [
+      {f:'01', t:'Estudio jurídico', n:'Alejandra Genua'},
+      {f:'02', t:'Estudio jurídico', n:'Plastina & Asoc.'},
+      {f:'03', t:'Dashboard CRM', n:'Elbufalo System'},
+      {f:'04', t:'Estética & salud', n:'Estética Abril'},
+      {f:'05', t:'Salud', n:'IACM Células Madre'},
+      {f:'06', t:'Eventos', n:'Quinta & Salón'},
+      {f:'07', t:'Bienestar', n:'Lunala'},
+      {f:'08', t:'Bienestar', n:'Marian Inn'},
+      {f:'09', t:'Custom design', n:'Ronald Design'},
+      {f:'10', t:'E-commerce', n:'Farfalla Bijou'},
+      {f:'11', t:'E-commerce', n:'Facial Creams'},
+      {f:'12', t:'Blog & guías', n:'Selected by experts'},
+      {f:'13', t:'Blog', n:'Vovixo Guide'},
+      {f:'14', t:'Catálogo', n:'Vovixo Catalog'},
+      {f:'15', t:'Colecciones', n:'Farfalla'},
+      {f:'16', t:'Dashboard', n:'Vovixo Admin'},
+      {f:'17', t:'E-commerce', n:'Vovixo Beauty'},
+      {f:'18', t:'Landing', n:'Vovixo'}
+    ];
+    function cardHTML(m){
+      return '<figure class="gp-card" tabindex="0" role="button"' +
+        ' data-num="'+m.f+'" data-name="'+m.n+'" data-tag="'+m.t+'">' +
+        '<img src="assets/gallery/'+m.f+'.jpg" alt="'+m.n+' — '+m.t+'" width="1280" height="608" loading="lazy" decoding="async">' +
+        '<figcaption><span class="gp-tag">'+m.t+'</span><span class="gp-name">'+m.n+'</span></figcaption>' +
+        '</figure>';
+    }
+    grid.innerHTML = meta.map(cardHTML).join('');
+    grid.addEventListener('click', function(e){
+      var c = e.target.closest('.gp-card');
+      if(c && window.openGalleryModal){
+        window.openGalleryModal(c.dataset.num, c.dataset.name, c.dataset.tag);
+      }
+    });
+    grid.addEventListener('keydown', function(e){
+      if(e.key !== 'Enter' && e.key !== ' ') return;
+      var c = e.target.closest('.gp-card');
+      if(c && window.openGalleryModal){
+        e.preventDefault();
+        window.openGalleryModal(c.dataset.num, c.dataset.name, c.dataset.tag);
+      }
+    });
+  })();
+
+  /* ---- modal de galería: zoom + scroll + blur de fondo ---- */
+  (function(){
+    var modal = document.getElementById('gallery-modal');
+    if(!modal) return;
+    var img      = modal.querySelector('.gmodal__img');
+    var nameEl   = modal.querySelector('.gmodal__name');
+    var tagEl    = modal.querySelector('.gmodal__tag');
+    var closeBtn = modal.querySelector('.gmodal__close');
+    var range    = modal.querySelector('.gmodal__zoom-range');
+    var valEl    = modal.querySelector('.gmodal__zoom-val');
+    var btns     = modal.querySelectorAll('.gmodal__zoom-btn');
+    var viewport = modal.querySelector('.gmodal__viewport');
+
+    var captureMap = {
+      '01':'01_captura.png', '02':'02_captura.png',
+      '04':'04_captura.png', '05':'05_captura.jpg',
+      '06':'06_captura.jpg', '07':'07_captura.png',
+      '08':'08_captura.png', '09':'09_captura.png',
+      '10':'10_captura.jpg', '11':'11_captura.jpg',
+      '12':'12_captura.jpg', '13':'13_captura.jpg',
+      '14':'14_captura.jpg', '15':'15_captura.png',
+      '16':'16_captura.jpg', '17':'17_captura.jpg'
+    };
+
+    function open(num, name, tag){
+      var cap = captureMap[num];
+      img.src = 'assets/gallery/' + (cap || (num + '.jpg'));
+      img.alt = (name || '') + ' — ' + (tag || '');
+      nameEl.textContent = name || '';
+      tagEl.textContent  = tag  || '';
+      setZoom(66);
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+      viewport.scrollTop = 0;
+      viewport.scrollLeft = 0;
+    }
+    function close(){
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('modal-open');
+      img.removeAttribute('src');
+    }
+    function setZoom(v){
+      v = Math.max(20, Math.min(200, Math.round(v)));
+      range.value = v;
+      valEl.textContent = v + '%';
+      img.style.width = v + '%';
+    }
+
+    closeBtn.addEventListener('click', close);
+    modal.addEventListener('click', function(e){ if(e.target === modal) close(); });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && modal.classList.contains('is-open')) close();
+    });
+    range.addEventListener('input', function(){ setZoom(+range.value); });
+    btns.forEach(function(b){
+      b.addEventListener('click', function(){
+        var step = b.getAttribute('data-action') === 'in' ? 10 : -10;
+        setZoom((+range.value) + step);
+      });
+    });
+
+    window.openGalleryModal = open;
+  })();
+
+  /* ---- aparición suave del título ---- */
+  (function(){
+    var reveals = [].slice.call(document.querySelectorAll('.reveal'));
+    function check(){
+      reveals = reveals.filter(function(e){
+        var r = e.getBoundingClientRect();
+        var vh = window.innerHeight || document.documentElement.clientHeight;
+        if(r.top < vh - vh*0.08 && r.bottom > 0){ e.classList.add('in'); return false; }
+        return true;
+      });
+    }
+    check();
+    window.addEventListener('scroll', check, { passive:true });
+    window.addEventListener('resize', check);
+    setTimeout(function(){ document.querySelectorAll('.reveal').forEach(function(e){ e.classList.add('in'); }); }, 1600);
+  })();
+</script>
+
+</body>
+</html>

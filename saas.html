@@ -1,0 +1,1812 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO base -->
+  <title>Sistemas SaaS a medida — Software propio para tu empresa · Elbufalo IA</title>
+  <meta name="description" content="Dashboards, CRM, stock, finanzas y administración hechos a medida. Sistemas SaaS propios con IA embebida que reemplazan licencias por usuario y planillas paralelas.">
+  <link rel="canonical" href="https://elbufalo.site/saas.html">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/png" href="assets/favicon_neg.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://elbufalo.site/saas.html">
+  <meta property="og:title" content="Sistemas SaaS a medida — Software propio para tu empresa · Elbufalo IA">
+  <meta property="og:description" content="Dejá de adaptar tu empresa al software. Sistemas SaaS hechos a medida con IA embebida: dashboards, CRM, stock, finanzas y administración propios.">
+  <meta property="og:image" content="https://elbufalo.site/assets/og-image.png">
+  <meta property="og:locale" content="es_AR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sistemas SaaS a medida — Software propio para tu empresa">
+  <meta name="twitter:description" content="Que el software se adapte a tu empresa, no al revés. SaaS propio con IA embebida y código en propiedad del cliente.">
+  <meta name="twitter:image" content="https://elbufalo.site/assets/og-image.png">
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Estilos globales del sitio (nav, footer, botones, container) -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9QFN8M7PDV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9QFN8M7PDV');
+  </script>
+
+  <style>
+    /* ── PALETA LOCAL — SaaS a medida ───────────────────────────
+       background  #001C5E (navy)
+       transición  #0a2a7a
+       acento azul #6892EA
+       acento rojo #F72C2E
+       ─────────────────────────────────────────────────────────── */
+    :root {
+      --saas-navy:        #001C5E;
+      --saas-navy-deep:   #00134a;
+      --saas-navy-soft:   #0a2a7a;
+      --saas-blue:        #6892EA;
+      --saas-blue-soft:   #e7eeff;
+      --saas-red:         #F72C2E;
+      --saas-red-soft:    #ffe6e6;
+      --saas-ink:         #0a1340;
+      --saas-body:        #3d4566;
+      --saas-mute:        #7a82a0;
+      --saas-line:        #e6eaf5;
+      --saas-bg:          #f4f6fb;
+      --saas-white:       #ffffff;
+    }
+
+    body { padding-top: 66px; background: var(--saas-bg); }
+
+    /* ── HERO ──────────────────────────────────────────────── */
+    .saas-hero {
+      position: relative;
+      min-height: 720px;
+      padding: 130px 0 100px;
+      background: var(--saas-navy);
+      color: #fff;
+      overflow: hidden;
+    }
+    .saas-hero::before {
+      content: '';
+      position: absolute;
+      top: -180px; right: -200px;
+      width: 640px; height: 640px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(104,146,234,0.40) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .saas-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -140px; left: -140px;
+      width: 420px; height: 420px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(247,44,46,0.28) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .saas-hero__inner { position: relative; z-index: 2; }
+    .saas-hero__content { max-width: 880px; width: 100%; }
+    .saas-hero__brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--saas-blue);
+      margin-bottom: 28px;
+    }
+    .saas-hero__brand::before {
+      content: '';
+      width: 28px; height: 2px; background: var(--saas-red);
+    }
+    .saas-hero__eyebrow {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--saas-red);
+      margin-bottom: 22px;
+    }
+    .saas-hero__title {
+      font-size: clamp(2.1rem, 4.4vw, 3.6rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      color: #fff;
+      margin-bottom: 22px;
+    }
+    .saas-hero__title span { color: var(--saas-red); }
+    .saas-hero__title em   { color: var(--saas-blue); font-style: normal; }
+    .saas-hero__sub {
+      font-size: 1.08rem;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.65;
+      margin-bottom: 40px;
+      max-width: 760px;
+    }
+    .saas-hero__ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 60px;
+    }
+    .btn--red {
+      background: var(--saas-red);
+      color: #fff;
+      border-color: var(--saas-red);
+      box-shadow: 0 4px 16px rgba(247,44,46,0.35);
+    }
+    .btn--red:hover {
+      background: #d61c1e;
+      border-color: #d61c1e;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(247,44,46,0.45);
+    }
+    .btn--ghost {
+      background: transparent;
+      color: #fff;
+      border-color: rgba(255,255,255,0.45);
+    }
+    .btn--ghost:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: #fff;
+    }
+
+    .saas-hero__meta {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+      border-top: 1px solid rgba(255,255,255,0.14);
+      padding-top: 32px;
+    }
+    .saas-hero__meta .meta-label {
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--saas-blue);
+      margin-bottom: 8px;
+    }
+    .saas-hero__meta .meta-value {
+      font-size: 0.95rem;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* ── SECCIONES BASE ────────────────────────────────────── */
+    .saas-section {
+      padding: 88px 0;
+      background: var(--saas-white);
+    }
+    .saas-section.alt  { background: var(--saas-bg); }
+    .saas-section.dark { background: var(--saas-navy); color: rgba(255,255,255,0.78); }
+    .saas-section.dark .saas-label { color: var(--saas-red); }
+    .saas-section.dark .saas-title { color: #fff; }
+    .saas-section.dark .saas-title span { color: var(--saas-blue); }
+    .saas-section.dark .saas-intro { color: rgba(255,255,255,0.72); }
+
+    .saas-label {
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--saas-red);
+      margin-bottom: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .saas-label::before {
+      content: '';
+      width: 24px;
+      height: 2px;
+      background: var(--saas-red);
+    }
+    .saas-title {
+      font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+      font-weight: 800;
+      color: var(--saas-ink);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 18px;
+      max-width: 820px;
+    }
+    .saas-title span { color: var(--saas-red); }
+    .saas-title em   { color: var(--saas-blue); font-style: normal; }
+    .saas-intro {
+      color: var(--saas-body);
+      font-size: 1.02rem;
+      line-height: 1.65;
+      max-width: 760px;
+      margin-bottom: 40px;
+    }
+
+    /* ── STATS DEL PROBLEMA ────────────────────────────────── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 32px;
+    }
+    .stat-card {
+      background: var(--saas-white);
+      border: 1px solid var(--saas-line);
+      border-radius: 8px;
+      padding: 36px 28px;
+      position: relative;
+      overflow: hidden;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .stat-card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,28,94,0.10); }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--saas-red);
+    }
+    .stat-num {
+      font-size: 3.4rem;
+      font-weight: 900;
+      color: var(--saas-navy);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin-bottom: 14px;
+    }
+    .stat-num span { color: var(--saas-red); font-size: 2rem; vertical-align: top; margin-left: 4px; }
+    .stat-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--saas-ink);
+      margin-bottom: 8px;
+    }
+    .stat-body {
+      font-size: 0.85rem;
+      color: var(--saas-mute);
+      line-height: 1.6;
+    }
+
+    /* ── PILARES ───────────────────────────────────────────── */
+    .pilares-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      margin-top: 32px;
+      border: 1px solid var(--saas-line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--saas-white);
+    }
+    .pilar {
+      padding: 40px 32px;
+      background: var(--saas-white);
+      position: relative;
+      border-right: 1px solid var(--saas-line);
+    }
+    .pilar:last-child { border-right: none; }
+    .pilar-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--saas-navy);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 800;
+      margin-bottom: 22px;
+      position: relative;
+    }
+    .pilar-num::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid var(--saas-red);
+      opacity: 0.4;
+    }
+    .pilar-tag {
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--saas-red);
+      margin-bottom: 6px;
+    }
+    .pilar-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--saas-ink);
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+    .pilar-body {
+      font-size: 0.88rem;
+      color: var(--saas-body);
+      line-height: 1.65;
+      margin-bottom: 18px;
+    }
+    .pilar-chips {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 0;
+      margin: 0;
+    }
+    .pilar-chips li {
+      background: var(--saas-blue-soft);
+      color: var(--saas-navy);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
+    /* ── COMPARATIVA SAAS GENÉRICO VS A MEDIDA ─────────────── */
+    .vs-wrap {
+      margin-top: 32px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .vs-card {
+      background: var(--saas-white);
+      border: 1px solid var(--saas-line);
+      border-radius: 8px;
+      padding: 32px 28px;
+      position: relative;
+    }
+    .vs-card.good {
+      background: var(--saas-navy);
+      color: #fff;
+      border-color: var(--saas-navy);
+    }
+    .vs-card.good::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--saas-red);
+    }
+    .vs-tag {
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      color: var(--saas-mute);
+    }
+    .vs-card.good .vs-tag { color: var(--saas-blue); }
+    .vs-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--saas-ink);
+      margin-bottom: 22px;
+      line-height: 1.3;
+    }
+    .vs-card.good .vs-title { color: #fff; }
+    .vs-list { list-style: none; padding: 0; margin: 0; }
+    .vs-list li {
+      font-size: 0.92rem;
+      line-height: 1.55;
+      padding: 10px 0 10px 30px;
+      border-bottom: 1px solid var(--saas-line);
+      position: relative;
+      color: var(--saas-body);
+    }
+    .vs-card.good .vs-list li { color: rgba(255,255,255,0.92); border-bottom-color: rgba(255,255,255,0.1); }
+    .vs-list li:last-child { border-bottom: none; }
+    .vs-card.bad .vs-list li::before {
+      content: '✕';
+      position: absolute;
+      left: 0;
+      top: 11px;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: var(--saas-red-soft);
+      color: var(--saas-red);
+      font-weight: 900;
+      font-size: 0.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .vs-card.good .vs-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      top: 11px;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: var(--saas-red);
+      color: #fff;
+      font-weight: 900;
+      font-size: 0.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .quote-block {
+      margin-top: 32px;
+      background: var(--saas-white);
+      border: 1px solid var(--saas-line);
+      border-left: 4px solid var(--saas-red);
+      padding: 28px 32px;
+      border-radius: 4px;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--saas-ink);
+      line-height: 1.55;
+      font-style: italic;
+    }
+    .quote-block strong { color: var(--saas-red); font-style: normal; font-weight: 800; }
+    .saas-section.dark .quote-block {
+      background: rgba(255,255,255,0.04);
+      color: #fff;
+      border-color: rgba(255,255,255,0.1);
+      border-left-color: var(--saas-red);
+    }
+
+    /* ── MÓDULOS / RUBROS ──────────────────────────────────── */
+    .rubros-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .rubro {
+      background: var(--saas-white);
+      border: 1px solid var(--saas-line);
+      border-radius: 8px;
+      padding: 28px 24px;
+      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .rubro::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 0; height: 3px;
+      background: var(--saas-red);
+      transition: width .35s ease;
+    }
+    .rubro:hover {
+      transform: translateY(-3px);
+      border-color: var(--saas-blue);
+      box-shadow: 0 10px 28px rgba(0,28,94,0.10);
+    }
+    .rubro:hover::before { width: 100%; }
+    .rubro-icon {
+      width: 44px; height: 44px;
+      background: var(--saas-navy);
+      color: var(--saas-blue);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+    .rubro-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--saas-ink);
+      margin-bottom: 8px;
+    }
+    .rubro-body {
+      font-size: 0.85rem;
+      color: var(--saas-mute);
+      line-height: 1.55;
+      margin-bottom: 14px;
+    }
+    .rubro-kw {
+      font-size: 0.72rem;
+      color: var(--saas-navy);
+      font-weight: 600;
+      background: var(--saas-blue-soft);
+      padding: 4px 10px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    /* ── STACK ENTREGABLES ─────────────────────────────────── */
+    .stack {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 32px;
+    }
+    .stack-item {
+      background: var(--saas-white);
+      border: 1px solid var(--saas-line);
+      border-left: 3px solid var(--saas-red);
+      border-radius: 4px;
+      padding: 22px 24px;
+    }
+    .stack-item-title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--saas-ink);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .stack-item-title::before {
+      content: '✓';
+      color: var(--saas-red);
+      font-weight: 900;
+    }
+    .stack-item-body {
+      font-size: 0.85rem;
+      color: var(--saas-mute);
+      line-height: 1.6;
+    }
+
+    /* ── METODOLOGÍA / IMPL ────────────────────────────────── */
+    .impl-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 32px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .impl-step {
+      padding: 32px 26px;
+      position: relative;
+      color: #fff;
+    }
+    .impl-step:nth-child(1) { background: var(--saas-navy-deep); }
+    .impl-step:nth-child(2) { background: var(--saas-navy); }
+    .impl-step:nth-child(3) { background: var(--saas-navy-soft); }
+    .impl-step:nth-child(4) { background: var(--saas-red); }
+    .impl-step:not(:last-child)::after {
+      content: '›';
+      position: absolute;
+      right: -8px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.7rem;
+      color: #fff;
+      font-weight: 800;
+      z-index: 2;
+      line-height: 1;
+    }
+    .impl-num {
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 10px;
+    }
+    .impl-step:nth-child(4) .impl-num { color: rgba(255,255,255,0.9); }
+    .impl-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+    .impl-body {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.55;
+    }
+    .impl-step:nth-child(4) .impl-body { color: rgba(255,255,255,0.95); }
+
+    /* ── CRONOGRAMA ────────────────────────────────────────── */
+    .saas-timeline { margin-top: 32px; position: relative; }
+    .saas-timeline::before {
+      content: '';
+      position: absolute;
+      left: 16px;
+      top: 14px;
+      bottom: 14px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--saas-red), var(--saas-blue));
+    }
+    .tl-item {
+      display: flex;
+      gap: 28px;
+      margin-bottom: 28px;
+      align-items: flex-start;
+      position: relative;
+    }
+    .tl-item:last-child { margin-bottom: 0; }
+    .tl-dot {
+      width: 34px;
+      height: 34px;
+      min-width: 34px;
+      border-radius: 50%;
+      background: var(--saas-white);
+      border: 3px solid var(--saas-red);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: var(--saas-red);
+      z-index: 2;
+      position: relative;
+    }
+    .tl-content {
+      flex: 1;
+      background: var(--saas-white);
+      border: 1px solid var(--saas-line);
+      border-radius: 6px;
+      padding: 20px 24px;
+    }
+    .tl-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--saas-red);
+      margin-bottom: 6px;
+    }
+    .tl-title {
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: var(--saas-ink);
+      margin-bottom: 10px;
+    }
+    .tl-list { list-style: none; padding: 0; margin: 0; }
+    .tl-list li {
+      font-size: 0.85rem;
+      color: var(--saas-body);
+      padding: 4px 0 4px 18px;
+      position: relative;
+    }
+    .tl-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--saas-blue);
+      font-weight: 700;
+    }
+
+    /* ── INVERSIÓN ─────────────────────────────────────────── */
+    .precio-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 32px;
+    }
+    .precio-card {
+      background: var(--saas-white);
+      border: 1px solid var(--saas-line);
+      border-radius: 8px;
+      padding: 36px;
+      position: relative;
+      overflow: hidden;
+    }
+    .precio-card.highlight {
+      background: var(--saas-navy);
+      color: #fff;
+      border-color: var(--saas-navy);
+    }
+    .precio-card.highlight::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--saas-red);
+    }
+    .precio-tag {
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--saas-red);
+      margin-bottom: 10px;
+    }
+    .precio-card.highlight .precio-tag { color: var(--saas-blue); }
+    .precio-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--saas-ink);
+      margin-bottom: 20px;
+    }
+    .precio-card.highlight .precio-title { color: #fff; }
+    .precio-monto {
+      font-size: 3.1rem;
+      font-weight: 900;
+      color: var(--saas-navy);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin-bottom: 6px;
+    }
+    .precio-card.highlight .precio-monto { color: var(--saas-blue); }
+    .precio-monto small {
+      font-size: 1.35rem;
+      color: var(--saas-mute);
+      font-weight: 700;
+      margin-right: 6px;
+    }
+    .precio-card.highlight .precio-monto small { color: rgba(255,255,255,0.55); }
+    .precio-monto span {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--saas-mute);
+      letter-spacing: 0;
+      margin-left: 6px;
+    }
+    .precio-card.highlight .precio-monto span { color: rgba(255,255,255,0.55); }
+    .precio-desc {
+      font-size: 0.88rem;
+      color: var(--saas-body);
+      line-height: 1.6;
+      margin-bottom: 22px;
+    }
+    .precio-card.highlight .precio-desc { color: rgba(255,255,255,0.75); }
+    .precio-list {
+      list-style: none;
+      border-top: 1px solid var(--saas-line);
+      padding: 18px 0 0;
+      margin: 0;
+    }
+    .precio-card.highlight .precio-list { border-top-color: rgba(255,255,255,0.18); }
+    .precio-list li {
+      font-size: 0.85rem;
+      padding: 5px 0 5px 18px;
+      position: relative;
+      color: var(--saas-body);
+    }
+    .precio-card.highlight .precio-list li { color: rgba(255,255,255,0.88); }
+    .precio-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--saas-red);
+      font-weight: 800;
+    }
+    .precio-note {
+      margin-top: 24px;
+      background: var(--saas-blue-soft);
+      border-left: 3px solid var(--saas-blue);
+      padding: 16px 22px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      color: var(--saas-ink);
+      line-height: 1.6;
+    }
+    .precio-note strong { color: var(--saas-red); }
+
+    /* ── FAQ ───────────────────────────────────────────────── */
+    .saas-faq__list { max-width: 780px; margin: 32px 0 0; }
+    .saas-faq__item {
+      background: var(--saas-white);
+      border: 1px solid var(--saas-line);
+      border-radius: 6px;
+      padding: 18px 24px;
+      margin-bottom: 12px;
+      transition: border-color .2s ease;
+    }
+    .saas-faq__item[open] { border-color: var(--saas-blue); }
+    .saas-faq__q {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--saas-ink);
+      cursor: pointer;
+      list-style: none;
+      position: relative;
+      padding-right: 30px;
+    }
+    .saas-faq__q::-webkit-details-marker { display: none; }
+    .saas-faq__q::after {
+      content: '+';
+      position: absolute;
+      right: 0; top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.4rem;
+      color: var(--saas-red);
+      font-weight: 700;
+      transition: transform .2s ease;
+    }
+    .saas-faq__item[open] .saas-faq__q::after { transform: translateY(-50%) rotate(45deg); }
+    .saas-faq__a {
+      font-size: 0.9rem;
+      color: var(--saas-body);
+      line-height: 1.65;
+      margin-top: 12px;
+    }
+
+    /* ── CTA FINAL ─────────────────────────────────────────── */
+    .saas-cta {
+      background: var(--saas-navy);
+      color: #fff;
+      padding: 96px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .saas-cta::before {
+      content: '';
+      position: absolute;
+      top: -150px; right: -150px;
+      width: 460px; height: 460px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(247,44,46,0.30) 0%, transparent 70%);
+    }
+    .saas-cta__inner { position: relative; z-index: 2; }
+    .saas-cta__header { text-align: center; max-width: 720px; margin: 0 auto 50px; }
+    .saas-cta__eyebrow {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--saas-red);
+      margin-bottom: 18px;
+    }
+    .saas-cta__title {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
+    }
+    .saas-cta__sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.65;
+    }
+    .saas-cta__dual {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    .saas-col {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 36px;
+    }
+    .saas-col__label {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--saas-red);
+      margin-bottom: 22px;
+    }
+    .lf-field { margin-bottom: 16px; }
+    .lf-label {
+      display: block;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+    .lf-req { color: var(--saas-red); }
+    .lf-opt { color: rgba(255,255,255,0.5); font-weight: 400; font-size: 0.75rem; }
+    .lf-input {
+      width: 100%;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 6px;
+      padding: 12px 14px;
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: border-color .2s ease, background .2s ease;
+    }
+    .lf-input::placeholder { color: rgba(255,255,255,0.4); }
+    .lf-input:focus {
+      outline: none;
+      border-color: var(--saas-red);
+      background: rgba(255,255,255,0.12);
+    }
+    .lf-submit { width: 100%; margin-top: 8px; }
+    .lf-msg { margin-top: 12px; font-size: 0.85rem; min-height: 20px; }
+    .lf-msg--error { color: var(--saas-red); }
+    .lf-success {
+      background: rgba(247,44,46,0.12);
+      border: 1px solid var(--saas-red);
+      color: #fff;
+      padding: 18px;
+      border-radius: 6px;
+      text-align: center;
+      font-size: 0.95rem;
+    }
+
+    .saas-wa__desc {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.6;
+      margin-bottom: 22px;
+    }
+    .saas-wa__bullets {
+      list-style: none;
+      padding: 22px 0 0;
+      margin: 22px 0 0;
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+    .saas-wa__bullets li {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.82);
+      padding: 8px 0 8px 26px;
+      position: relative;
+    }
+    .saas-wa__bullets li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--saas-red);
+      font-weight: 800;
+    }
+
+    /* ── BREADCRUMB ────────────────────────────────────────── */
+    .saas-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 28px;
+      text-decoration: none;
+      transition: color .2s ease;
+    }
+    .saas-back:hover { color: var(--saas-red); }
+
+    /* ── RESPONSIVE ────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .stat-grid, .pilares-grid, .rubros-grid, .impl-grid, .precio-grid, .stack, .vs-wrap {
+        grid-template-columns: 1fr;
+      }
+      .pilar { border-right: none; border-bottom: 1px solid var(--saas-line); }
+      .pilar:last-child { border-bottom: none; }
+      .impl-step:not(:last-child)::after { display: none; }
+      .saas-hero { min-height: auto; padding: 100px 0 70px; }
+      .saas-hero__meta { grid-template-columns: repeat(2, 1fr); gap: 22px; }
+      .saas-cta__dual { grid-template-columns: 1fr; }
+      .saas-timeline::before { left: 12px; }
+      .tl-dot { width: 26px; height: 26px; min-width: 26px; font-size: 0.65rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== NAV ==================== -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <img src="assets/logo-elbufalo.png" alt="Elbufalo IA" class="nav__logo-img">
+      </a>
+      <a href="#saas-cta" class="btn btn--red btn--sm">Solicitar diagnóstico</a>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO ==================== -->
+  <header class="saas-hero">
+    <div class="container saas-hero__inner">
+      <div class="saas-hero__content">
+        <a href="index.html#servicios" class="saas-back">← Volver a todos los servicios</a>
+        <div class="saas-hero__brand">Elbufalo IA · Desarrollo SaaS</div>
+        <p class="saas-hero__eyebrow">Software propio con IA embebida</p>
+        <h1 class="saas-hero__title">
+          Dejá de <span>adaptar tu empresa</span> al software.<br>
+          Que el software se adapte <em>a tu empresa</em>.
+        </h1>
+        <p class="saas-hero__sub">
+          Sistemas SaaS hechos a medida — dashboards ejecutivos, CRMs, control de stock, administración
+          y finanzas — que reflejan cómo funciona realmente tu negocio. Sin licencias por usuario,
+          sin módulos que no usás, sin pelearte con un sistema diseñado para otra empresa.
+        </p>
+        <div class="saas-hero__ctas">
+          <a href="#saas-cta" class="btn btn--red">Solicitar diagnóstico</a>
+          <a href="#solucion" class="btn btn--ghost">Ver cómo funciona →</a>
+        </div>
+
+        <div class="saas-hero__meta">
+          <div>
+            <div class="meta-label">Servicio</div>
+            <div class="meta-value">SaaS a medida</div>
+          </div>
+          <div>
+            <div class="meta-label">Implementación</div>
+            <div class="meta-value">Desde 6 semanas</div>
+          </div>
+          <div>
+            <div class="meta-label">Aplicable a</div>
+            <div class="meta-value">Cualquier proceso interno</div>
+          </div>
+          <div>
+            <div class="meta-label">Modalidad</div>
+            <div class="meta-value">MVP por módulos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== PROBLEMA ==================== -->
+  <section class="saas-section alt" id="problema">
+    <div class="container">
+      <p class="saas-label">El contexto</p>
+      <h2 class="saas-title">
+        Tu empresa no necesita doce herramientas.<br>
+        <span>Necesita un sistema que las reemplace.</span>
+      </h2>
+      <p class="saas-intro">
+        La mayoría de las empresas paga licencias mensuales de SaaS genéricos que cubren el 30% de
+        lo que necesitan, mientras el 70% restante vive en Excel, WhatsApp y planillas paralelas.
+        El resultado: datos duplicados, decisiones lentas y un equipo que pierde horas pasando
+        información de un lado a otro.
+      </p>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-num">73<span>%</span></div>
+          <div class="stat-title">Funcionalidad sin usar</div>
+          <div class="stat-body">De cada SaaS genérico que la empresa contrata. Pagás por módulos que tu equipo nunca abre, mientras te falta justo el que necesitás.</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">5<span>+</span></div>
+          <div class="stat-title">Sistemas paralelos</div>
+          <div class="stat-body">Promedio de herramientas que coexisten en una PYME: ERP, CRM, planillas, WhatsApp, Drive. La información se duplica y se contradice.</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">40<span>%</span></div>
+          <div class="stat-title">Tiempo operativo perdido</div>
+          <div class="stat-body">En tareas de copiar, pegar y conciliar datos entre sistemas, en lugar de usarlos para decidir y vender.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SOLUCIÓN — 3 PILARES ==================== -->
+  <section class="saas-section" id="solucion">
+    <div class="container">
+      <p class="saas-label">La solución</p>
+      <h2 class="saas-title">
+        Un sistema propio, en <span>3 pilares</span>, que ordena tu operación.
+      </h2>
+      <p class="saas-intro">
+        Primero ordenamos el proceso, después diseñamos las pantallas que tu equipo realmente necesita
+        y por último lo construimos. Sin licencias por usuario, sin atarte a una plataforma de terceros,
+        sin pagar por lo que no usás.
+      </p>
+
+      <div class="pilares-grid">
+        <div class="pilar">
+          <div class="pilar-num">1</div>
+          <div class="pilar-tag">Fundamento</div>
+          <div class="pilar-title">Diagnóstico del proceso real</div>
+          <div class="pilar-body">
+            Antes de tocar tecnología, mapeamos cómo funciona hoy tu empresa: qué se hace, cómo se hace,
+            quién interviene, quién decide. Si los procesos están desordenados, la IA y el software los
+            potencian — para mal.
+          </div>
+          <ul class="pilar-chips">
+            <li>Auditoría 4 áreas</li>
+            <li>BPMN del proceso</li>
+            <li>Puntos de fricción</li>
+            <li>Stack actual</li>
+            <li>Riesgos</li>
+          </ul>
+        </div>
+        <div class="pilar">
+          <div class="pilar-num">2</div>
+          <div class="pilar-tag">Diseño</div>
+          <div class="pilar-title">Arquitectura y pantallas</div>
+          <div class="pilar-body">
+            Diseñamos la estructura de datos, los flujos, los permisos y las pantallas que tu equipo
+            va a usar todos los días. Lo validamos en wireframes antes de escribir una línea de código.
+          </div>
+          <ul class="pilar-chips">
+            <li>Modelo de datos</li>
+            <li>Wireframes</li>
+            <li>Roles y permisos</li>
+            <li>Integraciones</li>
+            <li>Reportes</li>
+          </ul>
+        </div>
+        <div class="pilar">
+          <div class="pilar-num">3</div>
+          <div class="pilar-tag">Desarrollo + IA</div>
+          <div class="pilar-title">Software propio con IA embebida</div>
+          <div class="pilar-body">
+            Construimos el sistema por módulos, con entregas iterativas. Donde hay tareas repetitivas,
+            embebemos agentes IA: clasifican mails, completan formularios, generan reportes, atienden por WhatsApp.
+          </div>
+          <ul class="pilar-chips">
+            <li>Backend propio</li>
+            <li>Multiusuario</li>
+            <li>Agentes IA</li>
+            <li>API abierta</li>
+            <li>Mobile-ready</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SAAS GENÉRICO VS A MEDIDA ==================== -->
+  <section class="saas-section alt" id="comparacion">
+    <div class="container">
+      <p class="saas-label">La comparación</p>
+      <h2 class="saas-title">
+        SaaS genérico vs. <span>sistema a medida</span>.
+      </h2>
+      <p class="saas-intro">
+        La diferencia no es solo de funcionalidad. Es de control, de propiedad del dato y de cuánto te
+        cuesta cada vez que tu empresa crece o cambia.
+      </p>
+
+      <div class="vs-wrap">
+        <div class="vs-card bad">
+          <div class="vs-tag">El traje prestado</div>
+          <div class="vs-title">SaaS genérico de licencia</div>
+          <ul class="vs-list">
+            <li>Pagás por usuario, todos los meses, para siempre</li>
+            <li>Tu proceso se adapta al software, no al revés</li>
+            <li>Funcionalidades que no necesitás cargan la interfaz</li>
+            <li>Falta justo el módulo que tu rubro requiere</li>
+            <li>El dato vive en servidores de un tercero</li>
+            <li>Integrar con tu stack actual requiere un plan superior</li>
+            <li>Si suben el precio o cambian el producto, no podés hacer nada</li>
+          </ul>
+        </div>
+        <div class="vs-card good">
+          <div class="vs-tag">El traje a medida</div>
+          <div class="vs-title">Sistema propio de Elbufalo IA</div>
+          <ul class="vs-list">
+            <li>Pago único de desarrollo + mantenimiento fijo mensual</li>
+            <li>El software se diseña sobre tu proceso real</li>
+            <li>Solo las pantallas y módulos que tu equipo va a usar</li>
+            <li>Cada rubro, cada flujo, cada permiso, configurado a medida</li>
+            <li>El dato vive en tu infraestructura, bajo tu control</li>
+            <li>Integraciones con WhatsApp, AFIP, MercadoPago, contabilidad</li>
+            <li>Si tu empresa evoluciona, el sistema evoluciona con ella</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="quote-block">
+        No vendemos tecnología — vendemos <strong>criterio y orden</strong>. El software a medida es
+        consecuencia: primero entendemos cómo funciona tu negocio, después construimos la herramienta
+        exacta que necesita.
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== MÓDULOS / SISTEMAS ==================== -->
+  <section class="saas-section" id="modulos">
+    <div class="container">
+      <p class="saas-label">Sistemas que construimos</p>
+      <h2 class="saas-title">
+        Un solo sistema, <span>todos los módulos</span> que tu empresa necesita.
+      </h2>
+      <p class="saas-intro">
+        Cada empresa arranca por el módulo de mayor impacto y va sumando los demás a medida que el primero
+        empieza a generar resultados. No es un paquete cerrado: es un sistema que crece con vos.
+      </p>
+
+      <div class="rubros-grid">
+        <div class="rubro">
+          <div class="rubro-icon">D</div>
+          <div class="rubro-title">Dashboards ejecutivos</div>
+          <div class="rubro-body">KPIs reales en tiempo real: ventas, cobranzas, margen, conversión, productividad. La pantalla que el CEO mira primero a la mañana.</div>
+          <span class="rubro-kw">Decisiones con dato propio</span>
+        </div>
+        <div class="rubro">
+          <div class="rubro-icon">A</div>
+          <div class="rubro-title">Administración interna</div>
+          <div class="rubro-body">Procesos administrativos automatizados: aprobaciones, órdenes de compra, gastos, viáticos, alta de proveedores. Trazabilidad completa.</div>
+          <span class="rubro-kw">Adiós Excel + WhatsApp</span>
+        </div>
+        <div class="rubro">
+          <div class="rubro-icon">S</div>
+          <div class="rubro-title">Control de stock</div>
+          <div class="rubro-body">Multi-depósito, multi-unidad, alertas de mínimo, trazabilidad por lote y vencimiento, integración con ventas y compras en una sola vista.</div>
+          <span class="rubro-kw">Stock real, no estimado</span>
+        </div>
+        <div class="rubro">
+          <div class="rubro-icon">C</div>
+          <div class="rubro-title">CRM propio</div>
+          <div class="rubro-body">Pipeline diseñado sobre tu proceso de venta — no sobre el de Monday o HubSpot. Etapas, scoring, seguimiento automático y reporte de conversión.</div>
+          <span class="rubro-kw">Tu pipeline, tu lógica</span>
+        </div>
+        <div class="rubro">
+          <div class="rubro-icon">F</div>
+          <div class="rubro-title">Finanzas y cobranzas</div>
+          <div class="rubro-body">Facturación electrónica, cuenta corriente de clientes, conciliación bancaria, recordatorios automáticos, reportes de cash flow y rentabilidad.</div>
+          <span class="rubro-kw">Cobranza al día</span>
+        </div>
+        <div class="rubro">
+          <div class="rubro-icon">O</div>
+          <div class="rubro-title">Operaciones y OT</div>
+          <div class="rubro-body">Órdenes de trabajo, asignación de cuadrillas, partes de servicio, seguimiento GPS, reporte de horas y cierre de obra o instalación.</div>
+          <span class="rubro-kw">Equipo en calle, control en oficina</span>
+        </div>
+        <div class="rubro">
+          <div class="rubro-icon">P</div>
+          <div class="rubro-title">Portal de clientes</div>
+          <div class="rubro-body">Acceso autogestionado para que tu cliente vea su estado, descargue facturas, abra tickets o autorice trabajos. Menos llamados, más velocidad.</div>
+          <span class="rubro-kw">Self-service real</span>
+        </div>
+        <div class="rubro">
+          <div class="rubro-icon">R</div>
+          <div class="rubro-title">Reportería automatizada</div>
+          <div class="rubro-body">Informes diarios, semanales y mensuales generados automáticamente y enviados por email o WhatsApp al equipo correcto, con datos del sistema.</div>
+          <span class="rubro-kw">Reporte sin armar reporte</span>
+        </div>
+        <div class="rubro">
+          <div class="rubro-icon">I</div>
+          <div class="rubro-title">Integraciones + IA</div>
+          <div class="rubro-body">WhatsApp Business, MercadoPago, AFIP, Tango, Holded, Google Sheets, ERPs existentes. Agentes IA para atención, calificación de leads y clasificación de mails.</div>
+          <span class="rubro-kw">Todo conectado, no pegado</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== STACK / ENTREGABLES ==================== -->
+  <section class="saas-section alt" id="entregables">
+    <div class="container">
+      <p class="saas-label">Qué se entrega</p>
+      <h2 class="saas-title">
+        El stack técnico — y lo que <span>queda en tu propiedad</span>.
+      </h2>
+      <p class="saas-intro">
+        Todo lo que recibe el cliente al cierre del desarrollo: código, accesos, infraestructura,
+        documentación y capacitación. El sistema queda en propiedad del negocio, no de la agencia.
+      </p>
+
+      <div class="stack">
+        <div class="stack-item">
+          <div class="stack-item-title">Backend propio en Node + PostgreSQL</div>
+          <div class="stack-item-body">
+            API REST documentada, base de datos relacional, autenticación segura y arquitectura
+            preparada para escalar. Código fuente en propiedad del cliente.
+          </div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-item-title">Frontend responsive multi-dispositivo</div>
+          <div class="stack-item-body">
+            Interfaz limpia que funciona igual en desktop, tablet y móvil. Diseñada para uso intensivo
+            diario, no para una demo de 5 minutos.
+          </div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-item-title">Sistema multiusuario con permisos por rol</div>
+          <div class="stack-item-body">
+            Cada rol del equipo ve solo lo que tiene que ver. Permisos granulares por módulo,
+            por acción y por dato. Auditoría de accesos incluida.
+          </div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-item-title">Dashboards y reportes con datos reales</div>
+          <div class="stack-item-body">
+            Tableros configurables con KPIs del negocio. Exportables a Excel y PDF. Programables
+            para envío automático por email o WhatsApp.
+          </div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-item-title">Hosting, dominio y SSL configurados</div>
+          <div class="stack-item-body">
+            Infraestructura cloud lista desde el primer día. HTTPS, backups diarios automáticos y
+            monitoreo de uptime. Todo bajo cuentas del cliente.
+          </div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-item-title">Documentación + capacitación al equipo</div>
+          <div class="stack-item-body">
+            Manuales por módulo, videos cortos por flujo y dos sesiones de capacitación con el equipo.
+            Soporte por WhatsApp durante el mes de adopción.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== METODOLOGÍA ==================== -->
+  <section class="saas-section dark" id="metodologia">
+    <div class="container">
+      <p class="saas-label">Metodología</p>
+      <h2 class="saas-title">
+        Un proceso de <span>4 etapas</span> — entregas iterativas, sin sorpresas.
+      </h2>
+      <p class="saas-intro">
+        No desaparecemos durante meses para entregar "el sistema completo". Trabajamos por módulos,
+        con entregas cada 2–3 semanas. Vos ves el avance, validás funcionalidad y el equipo se
+        familiariza con la herramienta a medida que se construye.
+      </p>
+
+      <div class="impl-grid">
+        <div class="impl-step">
+          <div class="impl-num">Etapa 01</div>
+          <div class="impl-title">Diagnóstico</div>
+          <div class="impl-body">
+            Mapeo de procesos, áreas y stack actual. Detección del módulo de mayor impacto
+            para arrancar. Roadmap por fases.
+          </div>
+        </div>
+        <div class="impl-step">
+          <div class="impl-num">Etapa 02</div>
+          <div class="impl-title">Diseño funcional</div>
+          <div class="impl-body">
+            Wireframes, modelo de datos, flujos y permisos validados con el equipo antes de
+            tocar una línea de código.
+          </div>
+        </div>
+        <div class="impl-step">
+          <div class="impl-num">Etapa 03</div>
+          <div class="impl-title">Desarrollo iterativo</div>
+          <div class="impl-body">
+            Construcción por módulos con entregas cada 2–3 semanas. Testing con usuarios reales
+            antes de cerrar cada módulo.
+          </div>
+        </div>
+        <div class="impl-step">
+          <div class="impl-num">Etapa 04</div>
+          <div class="impl-title">Mantenimiento evolutivo</div>
+          <div class="impl-body">
+            Hosting, soporte, ajustes mensuales y nuevos módulos a medida que el negocio crece.
+            Sin cobros sorpresa.
+          </div>
+        </div>
+      </div>
+
+      <div class="quote-block">
+        Si el proceso es problemático y se automatiza tal cual está, la IA lo potencia <strong>por mil</strong>.
+        Por eso primero ordenamos. Recién ahí construimos un sistema que funciona.
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CRONOGRAMA ==================== -->
+  <section class="saas-section" id="cronograma">
+    <div class="container">
+      <p class="saas-label">Cronograma estándar</p>
+      <h2 class="saas-title">
+        De la firma al <span>primer módulo en producción</span>.
+      </h2>
+      <p class="saas-intro">
+        Seis semanas para tener el primer módulo funcionando con tu equipo usándolo todos los días.
+        A partir de ahí, sumamos módulos cada 3–4 semanas según el roadmap del diagnóstico.
+      </p>
+
+      <div class="saas-timeline">
+        <div class="tl-item">
+          <div class="tl-dot">S1</div>
+          <div class="tl-content">
+            <div class="tl-badge">Semana 1 – 2</div>
+            <div class="tl-title">Diagnóstico y diseño funcional</div>
+            <ul class="tl-list">
+              <li>Auditoría de procesos en las 4 áreas clave</li>
+              <li>BPMN del proceso actual y propuesto</li>
+              <li>Wireframes del primer módulo validados con el equipo</li>
+              <li>Modelo de datos, roles y permisos definidos</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">S3</div>
+          <div class="tl-content">
+            <div class="tl-badge">Semana 3 – 5</div>
+            <div class="tl-title">Desarrollo del MVP del primer módulo</div>
+            <ul class="tl-list">
+              <li>Backend, base de datos y API publicados</li>
+              <li>Frontend operativo con pantallas críticas</li>
+              <li>Permisos por rol activados y testeados</li>
+              <li>Hosting y dominio configurados con SSL</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">S6</div>
+          <div class="tl-content">
+            <div class="tl-badge">Semana 6</div>
+            <div class="tl-title">Capacitación y salida a producción</div>
+            <ul class="tl-list">
+              <li>Dos sesiones de capacitación con el equipo</li>
+              <li>Manuales y videos por flujo entregados</li>
+              <li>Soporte directo por WhatsApp durante adopción</li>
+              <li>Primer módulo en uso real con datos productivos</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">M2</div>
+          <div class="tl-content">
+            <div class="tl-badge">Mes 2 en adelante</div>
+            <div class="tl-title">Módulos adicionales + evolución continua</div>
+            <ul class="tl-list">
+              <li>Sumamos módulos del roadmap cada 3–4 semanas</li>
+              <li>Integraciones con WhatsApp, MercadoPago, AFIP, contabilidad</li>
+              <li>Agentes IA para tareas repetitivas detectadas en diagnóstico</li>
+              <li>Reportes ejecutivos automatizados por email y WhatsApp</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== INVERSIÓN ==================== -->
+  <section class="saas-section dark" id="inversion">
+    <div class="container">
+      <p class="saas-label">Inversión</p>
+      <h2 class="saas-title">
+        Estructura clara: <span>diagnóstico + desarrollo + mantenimiento</span>.
+      </h2>
+      <p class="saas-intro">
+        Sin licencias por usuario. Sin cobros sorpresa. Un diagnóstico inicial que ordena la operación,
+        un desarrollo por módulos con precio cerrado y un mantenimiento mensual fijo que incluye
+        hosting, soporte y mejoras continuas.
+      </p>
+
+      <div class="precio-grid">
+        <div class="precio-card highlight">
+          <div class="precio-tag">Desarrollo · Pago único por módulo</div>
+          <div class="precio-title">Sistema SaaS a medida</div>
+          <div class="precio-monto"><small>desde</small>USD 1.500<span>/ módulo</span></div>
+          <div class="precio-desc">Diseño funcional, desarrollo, testing y puesta en producción del primer módulo. Precio cerrado por módulo definido en el diagnóstico.</div>
+          <ul class="precio-list">
+            <li>Backend + base de datos propios</li>
+            <li>Frontend responsive multi-dispositivo</li>
+            <li>Permisos por rol y auditoría</li>
+            <li>Hosting, dominio y SSL configurados</li>
+            <li>Capacitación + documentación incluida</li>
+            <li>Código fuente en propiedad del cliente</li>
+          </ul>
+        </div>
+        <div class="precio-card">
+          <div class="precio-tag">Continuidad · Mensual</div>
+          <div class="precio-title">Mantenimiento + evolución</div>
+          <div class="precio-monto"><small>desde</small>USD 120<span>/ mes</span></div>
+          <div class="precio-desc">Hosting, monitoreo, backups, soporte directo y banco de horas mensuales para ajustes y nuevas funcionalidades.</div>
+          <ul class="precio-list">
+            <li>Infraestructura cloud incluida</li>
+            <li>Backups diarios y monitoreo 24/7</li>
+            <li>Soporte directo por WhatsApp</li>
+            <li>Banco de horas para mejoras y ajustes</li>
+            <li>Roadmap evolutivo trimestral</li>
+            <li>Cancelable con 30 días de aviso</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="precio-note">
+        <strong>Diagnóstico inicial: USD 300 — se descuenta del desarrollo.</strong> Empezamos siempre
+        por un diagnóstico de 3 días que entrega el roadmap del sistema, los módulos priorizados y un
+        presupuesto cerrado para cada uno. Si avanzás con el desarrollo dentro de los 30 días, esos
+        USD 300 se descuentan del total. No es un descuento — es la inversión de saber exactamente qué
+        construir y en qué orden.
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FAQ ==================== -->
+  <section class="saas-section" id="faq">
+    <div class="container">
+      <p class="saas-label">Preguntas frecuentes</p>
+      <h2 class="saas-title">
+        Lo que <span>siempre nos preguntan</span> antes de empezar.
+      </h2>
+
+      <div class="saas-faq__list">
+        <details class="saas-faq__item">
+          <summary class="saas-faq__q">¿Cuánto tarda en estar funcionando el primer módulo?</summary>
+          <p class="saas-faq__a">Seis semanas desde la firma del contrato hasta el primer módulo en producción con datos reales. Los módulos siguientes salen cada 3–4 semanas, según el roadmap definido en el diagnóstico.</p>
+        </details>
+        <details class="saas-faq__item">
+          <summary class="saas-faq__q">¿Por qué no me conviene un SaaS genérico tipo Monday, HubSpot u Holded?</summary>
+          <p class="saas-faq__a">Te convienen mientras tu proceso encaje en lo que el SaaS asume. Cuando tu rubro tiene flujos propios, integraciones particulares o el costo por usuario empieza a doler, un sistema a medida se paga solo en menos de 18 meses y queda en tu propiedad para siempre.</p>
+        </details>
+        <details class="saas-faq__item">
+          <summary class="saas-faq__q">¿El código y los datos quedan en propiedad de mi empresa?</summary>
+          <p class="saas-faq__a">Sí. Backend, frontend, base de datos, hosting y dominio quedan bajo cuentas de tu empresa. Te entregamos el código fuente y la documentación técnica para que cualquier desarrollador pueda continuarlo si algún día lo necesitás.</p>
+        </details>
+        <details class="saas-faq__item">
+          <summary class="saas-faq__q">¿Qué pasa con los sistemas que ya uso (Tango, AFIP, WhatsApp, ERP existente)?</summary>
+          <p class="saas-faq__a">Se integran. El sistema a medida no reemplaza tu contabilidad oficial ni tu ERP fiscal — se conecta a ellos por API o Webhook para que la operación, las ventas y la administración hablen el mismo idioma sin doble carga.</p>
+        </details>
+        <details class="saas-faq__item">
+          <summary class="saas-faq__q">¿Qué incluye el mantenimiento mensual?</summary>
+          <p class="saas-faq__a">Hosting cloud, backups diarios, monitoreo 24/7, soporte directo por WhatsApp y un banco de horas mensual para ajustes y nuevas funcionalidades. Cada trimestre revisamos el roadmap evolutivo y priorizamos lo que más impacto tiene en el negocio.</p>
+        </details>
+        <details class="saas-faq__item">
+          <summary class="saas-faq__q">¿Puedo arrancar con un solo módulo y sumar después?</summary>
+          <p class="saas-faq__a">Es exactamente cómo lo recomendamos. Empezamos por el módulo de mayor impacto, lo ponemos a generar resultados y a partir de ahí sumamos. La arquitectura está pensada desde el inicio para que cada módulo se enchufe sin tener que rehacer lo anterior.</p>
+        </details>
+        <details class="saas-faq__item">
+          <summary class="saas-faq__q">¿Necesito un perfil técnico en mi equipo para usarlo?</summary>
+          <p class="saas-faq__a">No. Diseñamos las pantallas para que las use tu equipo operativo todos los días, no un programador. La capacitación y la documentación están incluidas, y durante el primer mes de adopción tenés soporte directo por WhatsApp.</p>
+        </details>
+        <details class="saas-faq__item">
+          <summary class="saas-faq__q">¿Qué pasa si mi empresa crece o el proceso cambia?</summary>
+          <p class="saas-faq__a">Es la principal razón por la que existe este servicio. El sistema se diseña sobre tu proceso real y evoluciona con él. Sumar usuarios no cuesta más por mes; sumar funcionalidades pasa por el banco de horas del mantenimiento o por nuevos módulos cerrados.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CTA FINAL ==================== -->
+  <section class="saas-cta" id="saas-cta">
+    <div class="container saas-cta__inner">
+      <div class="saas-cta__header">
+        <p class="saas-cta__eyebrow">Próximo paso</p>
+        <h2 class="saas-cta__title">¿Qué sistema empezarías a construir primero?</h2>
+        <p class="saas-cta__sub">
+          Diagnóstico inicial de 60 minutos sin costo. Te decimos por qué módulo arrancar, qué impacto
+          esperar y cuánto sale antes de invertir un peso.
+        </p>
+      </div>
+
+      <div class="saas-cta__dual">
+        <!-- Formulario -->
+        <div class="saas-col">
+          <p class="saas-col__label">Dejá tus datos y te contactamos</p>
+          <form id="leadForm" novalidate>
+            <div class="lf-field">
+              <label class="lf-label" for="nombre">Nombre <span class="lf-req">*</span></label>
+              <input class="lf-input" type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required autocomplete="name">
+            </div>
+            <div class="lf-field">
+              <label class="lf-label" for="email">Email <span class="lf-req">*</span></label>
+              <input class="lf-input" type="email" id="email" name="email" placeholder="tu@email.com" required autocomplete="email">
+            </div>
+            <div class="lf-field">
+              <label class="lf-label" for="telefono">Teléfono <span class="lf-opt">(opcional)</span></label>
+              <input class="lf-input" type="tel" id="telefono" name="telefono" placeholder="11 1234-5678" autocomplete="tel">
+            </div>
+            <button class="btn btn--red lf-submit" type="submit" id="leadSubmit">
+              Solicitar diagnóstico
+            </button>
+            <p class="lf-msg" id="leadMsg" aria-live="polite"></p>
+          </form>
+        </div>
+
+        <!-- WhatsApp -->
+        <div class="saas-col">
+          <p class="saas-col__label">O escribinos directo por WhatsApp</p>
+          <p class="saas-wa__desc">
+            Nuestro agente IA está disponible 24/7 para responder tus preguntas sobre el sistema SaaS
+            a medida y agendar tu diagnóstico.
+          </p>
+          <a
+            href="https://wa.me/5491157083080?text=Hola%21%20Quiero%20mi%20diagn%C3%B3stico%20de%20Sistema%20SaaS%20a%20medida"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn--wa"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            Hablar con el agente ahora
+          </a>
+          <ul class="saas-wa__bullets">
+            <li>Diagnóstico sin compromiso de contratación</li>
+            <li>Te decimos por qué módulo te conviene arrancar</li>
+            <li>60 minutos para tener claridad antes de invertir</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="nav__logo footer__logo">
+          <img src="assets/logo-elbufalo.png" alt="Elbufalo IA" class="footer__logo-img">
+        </a>
+        <p>Sistemas de ventas con inteligencia artificial para PyMEs, emprendedores y comercios.</p>
+      </div>
+      <div class="footer__contact">
+        <p>Buenos Aires, Argentina</p>
+        <p>
+          <a href="https://wa.me/5491157083080" target="_blank" rel="noopener noreferrer">
+            11 5708-3080
+          </a>
+        </p>
+        <a href="https://elbufalo.site" target="_blank" rel="noopener noreferrer">elbufalo.site</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <p>© 2026 Elbufalo IA. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== FORM SUBMIT ==================== -->
+  <script>
+    const WEBHOOK_URL = 'https://ai-optimazer-n8n.ot80ss.easypanel.host/webhook/registro-leads';
+
+    document.getElementById('leadForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('leadSubmit');
+      const msg = document.getElementById('leadMsg');
+
+      const nombre   = document.getElementById('nombre').value.trim();
+      const email    = document.getElementById('email').value.trim();
+      const telefono = document.getElementById('telefono').value.trim();
+
+      const emailValido    = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+      const telefonoValido = telefono === '' || /^[\d\s\-\+\(\)]{6,20}$/.test(telefono);
+
+      function mostrarError(texto) {
+        msg.textContent = texto;
+        msg.className = 'lf-msg lf-msg--error';
+      }
+
+      if (!nombre)                     { mostrarError('Por favor ingresá tu nombre.'); return; }
+      if (!email || !emailValido)      { mostrarError('El email no tiene un formato válido.'); return; }
+      if (!telefonoValido)             { mostrarError('El teléfono solo puede contener números, espacios, +, - y paréntesis (mín. 6 dígitos).'); return; }
+
+      btn.disabled = true;
+      btn.textContent = 'Enviando…';
+      msg.textContent = '';
+      msg.className = 'lf-msg';
+
+      try {
+        await fetch(WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nombre, email, telefono, origen: 'Sistemas SaaS a medida' })
+        });
+        mostrarExito();
+      } catch (_) {
+        mostrarExito();
+      }
+
+      function mostrarExito() {
+        document.getElementById('leadForm').innerHTML =
+          '<div class="lf-success">✓ ¡Listo! Te contactamos en las próximas horas para coordinar tu diagnóstico de Sistema SaaS a medida.</div>';
+      }
+    });
+  </script>
+
+  <script src="buffy-widget.js"></script>
+
+  <!-- ==================== SCHEMA: Service ==================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Desarrollo de software SaaS a medida",
+    "name": "Sistemas SaaS a medida — Software propio para tu empresa",
+    "provider": {
+      "@type": "ProfessionalService",
+      "name": "Elbufalo IA",
+      "url": "https://elbufalo.site",
+      "logo": "https://elbufalo.site/assets/logo-elbufalo.png",
+      "telephone": "+5491157083080",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Buenos Aires",
+        "addressCountry": "AR"
+      }
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "Argentina"
+    },
+    "description": "Sistemas SaaS hechos a medida — dashboards ejecutivos, CRM, control de stock, finanzas y administración interna — con IA embebida y código en propiedad del cliente. Reemplaza licencias por usuario y planillas paralelas.",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Diagnóstico inicial",
+        "price": "300",
+        "priceCurrency": "USD",
+        "description": "Diagnóstico de 3 días que entrega el roadmap del sistema, los módulos priorizados y un presupuesto cerrado para cada uno. Se descuenta del desarrollo si se avanza en 30 días."
+      },
+      {
+        "@type": "Offer",
+        "name": "Desarrollo de sistema SaaS a medida",
+        "price": "1500",
+        "priceCurrency": "USD",
+        "description": "Pago único por módulo. Incluye diseño funcional, desarrollo, testing, hosting, dominio, SSL, capacitación, documentación y código fuente en propiedad del cliente."
+      },
+      {
+        "@type": "Offer",
+        "name": "Mantenimiento mensual",
+        "price": "120",
+        "priceCurrency": "USD",
+        "description": "Hosting cloud, monitoreo 24/7, backups diarios, soporte directo por WhatsApp y banco de horas para ajustes y nuevas funcionalidades. Cancelable con 30 días de aviso."
+      }
+    ]
+  }
+  </script>
+
+  <!-- ==================== SCHEMA: FAQPage ==================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Cuánto tarda en estar funcionando el primer módulo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Seis semanas desde la firma del contrato hasta el primer módulo en producción con datos reales. Los módulos siguientes salen cada 3–4 semanas, según el roadmap definido en el diagnóstico."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Por qué no me conviene un SaaS genérico tipo Monday, HubSpot u Holded?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Te convienen mientras tu proceso encaje en lo que el SaaS asume. Cuando tu rubro tiene flujos propios, integraciones particulares o el costo por usuario empieza a doler, un sistema a medida se paga solo en menos de 18 meses y queda en tu propiedad para siempre."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿El código y los datos quedan en propiedad de mi empresa?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. Backend, frontend, base de datos, hosting y dominio quedan bajo cuentas de tu empresa. Te entregamos el código fuente y la documentación técnica para que cualquier desarrollador pueda continuarlo si algún día lo necesitás."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué pasa con los sistemas que ya uso (Tango, AFIP, WhatsApp, ERP existente)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Se integran. El sistema a medida no reemplaza tu contabilidad oficial ni tu ERP fiscal — se conecta a ellos por API o Webhook para que la operación, las ventas y la administración hablen el mismo idioma sin doble carga."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué incluye el mantenimiento mensual?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Hosting cloud, backups diarios, monitoreo 24/7, soporte directo por WhatsApp y un banco de horas mensual para ajustes y nuevas funcionalidades. Cada trimestre revisamos el roadmap evolutivo y priorizamos lo que más impacto tiene en el negocio."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Puedo arrancar con un solo módulo y sumar después?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Es exactamente cómo lo recomendamos. Empezamos por el módulo de mayor impacto, lo ponemos a generar resultados y a partir de ahí sumamos. La arquitectura está pensada desde el inicio para que cada módulo se enchufe sin tener que rehacer lo anterior."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Necesito un perfil técnico en mi equipo para usarlo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Diseñamos las pantallas para que las use tu equipo operativo todos los días, no un programador. La capacitación y la documentación están incluidas, y durante el primer mes de adopción tenés soporte directo por WhatsApp."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué pasa si mi empresa crece o el proceso cambia?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Es la principal razón por la que existe este servicio. El sistema se diseña sobre tu proceso real y evoluciona con él. Sumar usuarios no cuesta más por mes; sumar funcionalidades pasa por el banco de horas del mantenimiento o por nuevos módulos cerrados."
+        }
+      }
+    ]
+  }
+  </script>
+
+</body>
+</html>

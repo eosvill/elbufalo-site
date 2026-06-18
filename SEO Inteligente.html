@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO base -->
+  <title>SEO Inteligente — Posicionamiento Local con IA · Elbufalo IA</title>
+  <meta name="description" content="Sistema de SEO Local que pone tu negocio en la primera página de Google cuando alguien busca el servicio que ofrecés, en tu zona, con intención de comprar.">
+  <link rel="canonical" href="https://elbufalo.site/SEO%20Inteligente.html">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/png" href="assets/favicon_neg.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://elbufalo.site/SEO%20Inteligente.html">
+  <meta property="og:title" content="SEO Inteligente — Posicionamiento Local con IA · Elbufalo IA">
+  <meta property="og:description" content="Sistema de SEO Local que pone tu negocio en la primera página de Google cuando alguien busca el servicio que ofrecés, en tu zona, con intención de comprar.">
+  <meta property="og:image" content="https://elbufalo.site/assets/og-image.png">
+  <meta property="og:locale" content="es_AR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SEO Inteligente — Posicionamiento Local con IA">
+  <meta name="twitter:description" content="Que Google muestre tu negocio cuando tus clientes lo buscan en tu zona.">
+  <meta name="twitter:image" content="https://elbufalo.site/assets/og-image.png">
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Estilos globales del sitio (nav, footer, botones, container) -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9QFN8M7PDV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9QFN8M7PDV');
+  </script>
+
+  <style>
+    /* ── PALETA LOCAL — SEO INTELIGENTE ─────────────────────────
+       background  #230B65
+       transición  #5A0C8F
+       acento      #C64FC6
+       ─────────────────────────────────────────────────────────── */
+    :root {
+      --seo-navy:       #230B65;
+      --seo-navy-deep:  #15053D;
+      --seo-navy-soft:  #3D1085;
+      --seo-blue:       #5A0C8F;
+      --seo-blue-soft:  #efe5f8;
+      --seo-red:        #C64FC6;
+      --seo-red-soft:   #f9e6f9;
+      --seo-ink:        #1a0a40;
+      --seo-body:       #3d4566;
+      --seo-mute:       #7a82a0;
+      --seo-line:       #ebe6f3;
+      --seo-bg:         #f6f3fb;
+      --seo-white:      #ffffff;
+    }
+
+    body { padding-top: 66px; background: var(--seo-bg); }
+
+    /* ── HERO ──────────────────────────────────────────────── */
+    .seo-hero {
+      position: relative;
+      min-height: 720px;
+      padding: 130px 0 100px;
+      background-color: var(--seo-navy);
+      background-image:
+        linear-gradient(90deg, rgba(35,11,101,0) 0%, rgba(35,11,101,0) 30%, rgba(35,11,101,0.72) 58%, var(--seo-navy) 82%),
+        url('assets/hero_seo.jpg');
+      background-repeat: no-repeat;
+      background-position: center, left center;
+      background-size: cover, auto 100%;
+      color: #fff;
+      overflow: hidden;
+    }
+    .seo-hero::before {
+      content: '';
+      position: absolute;
+      top: -180px; right: -200px;
+      width: 620px; height: 620px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(198,79,198,0.30) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .seo-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -150px; right: -120px;
+      width: 420px; height: 420px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(198,79,198,0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .seo-hero__inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .seo-hero__content {
+      max-width: 600px;
+      width: 100%;
+    }
+    .seo-hero__brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--seo-red);
+      margin-bottom: 28px;
+    }
+    .seo-hero__brand::before {
+      content: '';
+      width: 28px; height: 2px; background: var(--seo-red);
+    }
+    .seo-hero__eyebrow {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 22px;
+    }
+    .seo-hero__title {
+      font-size: clamp(2.1rem, 4.2vw, 3.3rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      color: #fff;
+      margin-bottom: 22px;
+    }
+    .seo-hero__title span { color: var(--seo-red); }
+    .seo-hero__title em   { color: var(--seo-red); font-style: normal; opacity: 0.85; }
+    .seo-hero__sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.65;
+      margin-bottom: 40px;
+    }
+    .seo-hero__ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 60px;
+    }
+    .btn--red {
+      background: var(--seo-red);
+      color: #fff;
+      border-color: var(--seo-red);
+      box-shadow: 0 4px 16px rgba(198,79,198,0.35);
+    }
+    .btn--red:hover {
+      background: #d61c1e;
+      border-color: #d61c1e;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(198,79,198,0.45);
+    }
+    .btn--ghost {
+      background: transparent;
+      color: #fff;
+      border-color: rgba(255,255,255,0.45);
+    }
+    .btn--ghost:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: #fff;
+    }
+
+    .seo-hero__meta {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+      border-top: 1px solid rgba(255,255,255,0.14);
+      padding-top: 32px;
+    }
+    .seo-hero__meta .meta-label {
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--seo-red);
+      margin-bottom: 8px;
+    }
+    .seo-hero__meta .meta-value {
+      font-size: 0.95rem;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* ── SECCIONES BASE ────────────────────────────────────── */
+    .seo-section {
+      padding: 88px 0;
+      background: var(--seo-white);
+    }
+    .seo-section.alt  { background: var(--seo-bg); }
+    .seo-section.dark { background: var(--seo-navy); color: rgba(255,255,255,0.78); }
+    .seo-section.dark#solucion,
+    .seo-section.dark#rubros,
+    .seo-section.dark#inversion { background: #011021; }
+    .seo-section.dark .seo-label { color: var(--seo-red); }
+    .seo-section.dark .seo-title { color: #fff; }
+    .seo-section.dark .seo-title span { color: var(--seo-red); }
+    .seo-section.dark .seo-intro { color: rgba(255,255,255,0.72); }
+
+    .seo-label {
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--seo-red);
+      margin-bottom: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .seo-label::before {
+      content: '';
+      width: 24px;
+      height: 2px;
+      background: var(--seo-red);
+    }
+    .seo-title {
+      font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+      font-weight: 800;
+      color: var(--seo-ink);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 18px;
+      max-width: 800px;
+    }
+    .seo-title span { color: var(--seo-red); }
+    .seo-intro {
+      color: var(--seo-body);
+      font-size: 1.02rem;
+      line-height: 1.65;
+      max-width: 720px;
+      margin-bottom: 40px;
+    }
+
+    /* ── STATS DEL PROBLEMA ────────────────────────────────── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 32px;
+    }
+    .stat-card {
+      background: var(--seo-white);
+      border: 1px solid var(--seo-line);
+      border-radius: 8px;
+      padding: 36px 28px;
+      position: relative;
+      overflow: hidden;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .stat-card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(35,11,101,0.08); }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--seo-red);
+    }
+    .stat-num {
+      font-size: 3.4rem;
+      font-weight: 900;
+      color: var(--seo-navy);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin-bottom: 14px;
+    }
+    .stat-num span { color: var(--seo-red); font-size: 2rem; vertical-align: top; margin-left: 4px; }
+    .stat-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--seo-ink);
+      margin-bottom: 8px;
+    }
+    .stat-body {
+      font-size: 0.85rem;
+      color: var(--seo-mute);
+      line-height: 1.6;
+    }
+
+    /* ── PILARES (solo imágenes, vista completa) ──────────── */
+    .pilares-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 32px;
+      align-items: start;
+    }
+    .pilar {
+      position: relative;
+      background: var(--seo-white);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 6px 22px rgba(0,0,0,0.25);
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .pilar:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 38px rgba(0,0,0,0.4);
+    }
+    .pilar img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ── STACK ENTREGABLES ─────────────────────────────────── */
+    .stack {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 32px;
+    }
+    .stack-item {
+      background: var(--seo-white);
+      border: 1px solid var(--seo-line);
+      border-left: 3px solid var(--seo-red);
+      border-radius: 4px;
+      padding: 22px 24px;
+    }
+    .stack-item-title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--seo-ink);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .stack-item-title::before {
+      content: '✓';
+      color: var(--seo-red);
+      font-weight: 900;
+    }
+    .stack-item-body {
+      font-size: 0.85rem;
+      color: var(--seo-mute);
+      line-height: 1.6;
+    }
+
+    /* ── RUBROS (tarjetas tipo glassmorphic con imagen bg) ── */
+    .rubros-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 32px;
+    }
+    .rubro {
+      position: relative;
+      background-color: #4C7EFE;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius: 20px;
+      padding: 30px 28px;
+      color: #fff;
+      min-height: 360px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: transform .3s ease, box-shadow .3s ease;
+      box-shadow: 0 10px 26px rgba(76,126,254,0.20);
+    }
+    .rubro::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,16,40,0.18) 0%, rgba(0,16,40,0) 35%, rgba(0,16,40,0) 65%, rgba(0,16,40,0.28) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .rubro > * { position: relative; z-index: 2; }
+    .rubro:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 38px rgba(76,126,254,0.40);
+    }
+    .rubro-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+      max-width: 90%;
+    }
+    .rubro-body {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.55;
+      margin-bottom: 0;
+    }
+    .rubro-bottom {
+      margin-top: auto;
+      padding-top: 26px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .rubro-kw {
+      background: rgba(255,255,255,0.22);
+      color: #fff;
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: 999px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.25);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: calc(100% - 56px);
+    }
+    .rubro-arrow {
+      width: 42px;
+      height: 42px;
+      min-width: 42px;
+      border-radius: 50%;
+      background: #fff;
+      color: #001028;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform .25s ease, background .25s ease;
+    }
+    .rubro:hover .rubro-arrow {
+      transform: rotate(-45deg);
+      background: var(--seo-red);
+      color: #fff;
+    }
+    .rubro-arrow svg { width: 16px; height: 16px; }
+
+    /* ── PLAN DE IMPLEMENTACIÓN ────────────────────────────── */
+    .impl-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 32px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .impl-step {
+      padding: 32px 26px;
+      position: relative;
+      color: #fff;
+    }
+    .impl-step:nth-child(1) { background: var(--seo-navy-deep); }
+    .impl-step:nth-child(2) { background: var(--seo-navy); }
+    .impl-step:nth-child(3) { background: var(--seo-navy-soft); }
+    .impl-step:nth-child(4) { background: var(--seo-red); }
+    .impl-step:not(:last-child)::after {
+      content: '›';
+      position: absolute;
+      right: -8px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.7rem;
+      color: #fff;
+      font-weight: 800;
+      z-index: 2;
+      line-height: 1;
+    }
+    .impl-num {
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 10px;
+    }
+    .impl-step:nth-child(4) .impl-num { color: rgba(255,255,255,0.85); }
+    .impl-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+    .impl-body {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.55;
+    }
+    .impl-step:nth-child(4) .impl-body { color: rgba(255,255,255,0.95); }
+
+    /* ── ADAPTACIÓN POR RUBRO ──────────────────────────────── */
+    .adap-table-wrap {
+      margin-top: 32px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--seo-line);
+    }
+    .adap-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--seo-white);
+    }
+    .adap-table thead th {
+      background: var(--seo-navy);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 16px 22px;
+      text-align: left;
+    }
+    .adap-table tbody td {
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--seo-line);
+      font-size: 0.88rem;
+      color: var(--seo-body);
+      vertical-align: top;
+      line-height: 1.55;
+    }
+    .adap-table tbody td:first-child {
+      color: var(--seo-ink);
+      font-weight: 700;
+      background: var(--seo-blue-soft);
+      width: 26%;
+    }
+    .adap-table tbody tr:last-child td { border-bottom: none; }
+
+    /* ── CRONOGRAMA ────────────────────────────────────────── */
+    .seo-timeline { margin-top: 32px; position: relative; }
+    .seo-timeline::before {
+      content: '';
+      position: absolute;
+      left: 16px;
+      top: 14px;
+      bottom: 14px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--seo-red), var(--seo-blue));
+    }
+    .tl-item {
+      display: flex;
+      gap: 28px;
+      margin-bottom: 28px;
+      align-items: flex-start;
+      position: relative;
+    }
+    .tl-item:last-child { margin-bottom: 0; }
+    .tl-dot {
+      width: 34px;
+      height: 34px;
+      min-width: 34px;
+      border-radius: 50%;
+      background: var(--seo-white);
+      border: 3px solid var(--seo-red);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: var(--seo-red);
+      z-index: 2;
+      position: relative;
+    }
+    .tl-content {
+      flex: 1;
+      background: var(--seo-white);
+      border: 1px solid var(--seo-line);
+      border-radius: 6px;
+      padding: 20px 24px;
+    }
+    .tl-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--seo-red);
+      margin-bottom: 6px;
+    }
+    .tl-title {
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: var(--seo-ink);
+      margin-bottom: 10px;
+    }
+    .tl-list { list-style: none; padding: 0; }
+    .tl-list li {
+      font-size: 0.85rem;
+      color: var(--seo-body);
+      padding: 4px 0 4px 18px;
+      position: relative;
+    }
+    .tl-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--seo-blue);
+      font-weight: 700;
+    }
+
+    /* ── INVERSIÓN ─────────────────────────────────────────── */
+    .precio-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 32px;
+    }
+    .precio-card {
+      background: var(--seo-white);
+      border: 1px solid var(--seo-line);
+      border-radius: 8px;
+      padding: 36px;
+      position: relative;
+      overflow: hidden;
+    }
+    .precio-card.highlight {
+      background: var(--seo-navy);
+      color: #fff;
+      border-color: var(--seo-navy);
+    }
+    .precio-card.highlight::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--seo-red);
+    }
+    .precio-tag {
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--seo-red);
+      margin-bottom: 10px;
+    }
+    .precio-card.highlight .precio-tag { color: var(--seo-red); }
+    .precio-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--seo-ink);
+      margin-bottom: 20px;
+    }
+    .precio-card.highlight .precio-title { color: #fff; }
+    .precio-monto {
+      font-size: 3.1rem;
+      font-weight: 900;
+      color: var(--seo-navy);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin-bottom: 6px;
+    }
+    .precio-card.highlight .precio-monto { color: var(--seo-red); }
+    .precio-monto span {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--seo-mute);
+      letter-spacing: 0;
+      margin-left: 6px;
+    }
+    .precio-card.highlight .precio-monto span { color: rgba(255,255,255,0.55); }
+    .precio-desc {
+      font-size: 0.88rem;
+      color: var(--seo-body);
+      line-height: 1.6;
+      margin-bottom: 22px;
+    }
+    .precio-card.highlight .precio-desc { color: rgba(255,255,255,0.75); }
+    .precio-list {
+      list-style: none;
+      border-top: 1px solid var(--seo-line);
+      padding: 18px 0 0;
+      margin: 0;
+    }
+    .precio-card.highlight .precio-list { border-top-color: rgba(255,255,255,0.18); }
+    .precio-list li {
+      font-size: 0.85rem;
+      padding: 5px 0 5px 18px;
+      position: relative;
+      color: var(--seo-body);
+    }
+    .precio-card.highlight .precio-list li { color: rgba(255,255,255,0.88); }
+    .precio-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--seo-red);
+      font-weight: 800;
+    }
+    .precio-note {
+      margin-top: 24px;
+      background: var(--seo-blue-soft);
+      border-left: 3px solid var(--seo-blue);
+      padding: 16px 22px;
+      border-radius: 4px;
+      font-size: 0.88rem;
+      color: var(--seo-ink);
+      line-height: 1.6;
+    }
+    .precio-note strong { color: var(--seo-red); }
+
+    /* ── FAQ ───────────────────────────────────────────────── */
+    .seo-faq__list { max-width: 780px; margin: 32px 0 0; }
+    .seo-faq__item {
+      background: var(--seo-white);
+      border: 1px solid var(--seo-line);
+      border-radius: 6px;
+      padding: 18px 24px;
+      margin-bottom: 12px;
+      transition: border-color .2s ease;
+    }
+    .seo-faq__item[open] { border-color: var(--seo-blue); }
+    .seo-faq__q {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--seo-ink);
+      cursor: pointer;
+      list-style: none;
+      position: relative;
+      padding-right: 30px;
+    }
+    .seo-faq__q::-webkit-details-marker { display: none; }
+    .seo-faq__q::after {
+      content: '+';
+      position: absolute;
+      right: 0; top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.4rem;
+      color: var(--seo-red);
+      font-weight: 700;
+      transition: transform .2s ease;
+    }
+    .seo-faq__item[open] .seo-faq__q::after { transform: translateY(-50%) rotate(45deg); }
+    .seo-faq__a {
+      font-size: 0.9rem;
+      color: var(--seo-body);
+      line-height: 1.65;
+      margin-top: 12px;
+    }
+
+    /* ── CTA FINAL ─────────────────────────────────────────── */
+    .seo-cta {
+      background: var(--seo-navy);
+      color: #fff;
+      padding: 96px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .seo-cta::before {
+      content: '';
+      position: absolute;
+      top: -150px; right: -150px;
+      width: 460px; height: 460px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(198,79,198,0.25) 0%, transparent 70%);
+    }
+    .seo-cta__inner { position: relative; z-index: 2; }
+    .seo-cta__header { text-align: center; max-width: 720px; margin: 0 auto 50px; }
+    .seo-cta__eyebrow {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--seo-red);
+      margin-bottom: 18px;
+    }
+    .seo-cta__title {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
+    }
+    .seo-cta__sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.65;
+    }
+    .seo-cta__dual {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    .seo-col {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 36px;
+    }
+    .seo-col__label {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--seo-red);
+      margin-bottom: 22px;
+    }
+    .lf-field { margin-bottom: 16px; }
+    .lf-label {
+      display: block;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+    .lf-req { color: var(--seo-red); }
+    .lf-opt { color: rgba(255,255,255,0.5); font-weight: 400; font-size: 0.75rem; }
+    .lf-input {
+      width: 100%;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 6px;
+      padding: 12px 14px;
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: border-color .2s ease, background .2s ease;
+    }
+    .lf-input::placeholder { color: rgba(255,255,255,0.4); }
+    .lf-input:focus {
+      outline: none;
+      border-color: var(--seo-red);
+      background: rgba(255,255,255,0.12);
+    }
+    .lf-submit { width: 100%; margin-top: 8px; }
+    .lf-msg { margin-top: 12px; font-size: 0.85rem; min-height: 20px; }
+    .lf-msg--error { color: var(--seo-red); }
+    .lf-success {
+      background: rgba(198,79,198,0.12);
+      border: 1px solid var(--seo-red);
+      color: #fff;
+      padding: 18px;
+      border-radius: 6px;
+      text-align: center;
+      font-size: 0.95rem;
+    }
+
+    .seo-wa__desc {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.6;
+      margin-bottom: 22px;
+    }
+    .seo-wa__bullets {
+      list-style: none;
+      padding: 22px 0 0;
+      margin: 22px 0 0;
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+    .seo-wa__bullets li {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.82);
+      padding: 8px 0 8px 26px;
+      position: relative;
+    }
+    .seo-wa__bullets li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--seo-red);
+      font-weight: 800;
+    }
+
+    /* ── BREADCRUMB ────────────────────────────────────────── */
+    .seo-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 28px;
+      transition: color .2s ease;
+    }
+    .seo-back:hover { color: var(--seo-red); }
+
+    /* ── RESPONSIVE ────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .stat-grid, .pilares-grid, .rubros-grid, .impl-grid, .precio-grid, .stack {
+        grid-template-columns: 1fr;
+      }
+      .impl-step:not(:last-child)::after { display: none; }
+      .seo-hero { min-height: auto; padding: 100px 0 70px; background-image: linear-gradient(180deg, rgba(35,11,101,0.55) 0%, rgba(35,11,101,0.88) 60%, var(--seo-navy) 100%), url('assets/hero_seo.jpg'); background-position: center, center; background-size: cover, cover; }
+      .seo-hero__inner { justify-content: flex-start; }
+      .seo-hero__content { max-width: 100%; }
+      .seo-hero__meta { grid-template-columns: repeat(2, 1fr); gap: 22px; }
+      .seo-cta__dual { grid-template-columns: 1fr; }
+      .adap-table thead { display: none; }
+      .adap-table, .adap-table tbody, .adap-table tr, .adap-table td { display: block; width: 100%; }
+      .adap-table tbody tr { margin-bottom: 16px; border: 1px solid var(--seo-line); border-radius: 6px; overflow: hidden; }
+      .adap-table tbody td { border-bottom: 1px solid var(--seo-line); }
+      .adap-table tbody td:first-child { width: 100%; background: var(--seo-navy); color: #fff; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== NAV ==================== -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <img src="assets/logo-elbufalo.png" alt="Elbufalo IA" class="nav__logo-img">
+      </a>
+      <a href="#seo-cta" class="btn btn--red btn--sm">Solicitar diagnóstico</a>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO ==================== -->
+  <header class="seo-hero">
+    <div class="container seo-hero__inner">
+      <div class="seo-hero__content">
+        <a href="index.html#servicios" class="seo-back">← Volver a todos los servicios</a>
+        <div class="seo-hero__brand">Elbufalo IA · SEO Local</div>
+        <p class="seo-hero__eyebrow">Posicionamiento orgánico con IA</p>
+        <h1 class="seo-hero__title">
+          Convertí <span>búsquedas locales</span> en clientes <em>reales</em>.
+        </h1>
+        <p class="seo-hero__sub">
+          Un sistema replicable de SEO Local que pone a tu negocio en la primera página de Google
+          cuando alguien busca el servicio que ofrecés, en tu zona, con intención de comprar.
+        </p>
+        <div class="seo-hero__ctas">
+          <a href="#seo-cta" class="btn btn--red">Solicitar diagnóstico gratuito</a>
+          <a href="#solucion" class="btn btn--ghost">Ver cómo funciona →</a>
+        </div>
+
+        <div class="seo-hero__meta">
+          <div>
+            <div class="meta-label">Servicio</div>
+            <div class="meta-value">SEO Local Completo</div>
+          </div>
+          <div>
+            <div class="meta-label">Implementación</div>
+            <div class="meta-value">4 semanas</div>
+          </div>
+          <div>
+            <div class="meta-label">Aplicable a</div>
+            <div class="meta-value">Múltiples rubros</div>
+          </div>
+          <div>
+            <div class="meta-label">Resultados visibles</div>
+            <div class="meta-value">Desde el mes 3</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== PROBLEMA ==================== -->
+  <section class="seo-section alt" id="problema">
+    <div class="container">
+      <p class="seo-label">El contexto</p>
+      <h2 class="seo-title">
+        Tus clientes te buscan en Google.<br>
+        <span>El problema es que no te encuentran.</span>
+      </h2>
+      <p class="seo-intro">
+        La mayoría de los negocios de servicios tienen un sitio web que no aparece en las búsquedas
+        donde realmente se decide una compra. El tráfico cualificado existe — el problema es
+        capturarlo antes que la competencia.
+      </p>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-num">46<span>%</span></div>
+          <div class="stat-title">Búsquedas con intención local</div>
+          <div class="stat-body">De todas las búsquedas en Google tienen intención local. El usuario busca un servicio cerca y compara en pantalla.</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">76<span>%</span></div>
+          <div class="stat-title">Llama dentro de las 24h</div>
+          <div class="stat-body">Quien busca un servicio local en el móvil visita o contacta al negocio dentro del día siguiente.</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">3<span>×</span></div>
+          <div class="stat-title">Más conversión que paid</div>
+          <div class="stat-body">El tráfico orgánico de búsqueda local convierte hasta 3 veces más que el tráfico pago, sin costo por clic.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SOLUCIÓN — 3 PILARES ==================== -->
+  <section class="seo-section dark" id="solucion">
+    <div class="container">
+      <p class="seo-label">La solución</p>
+      <h2 class="seo-title">
+        Un sistema de <span>3 pilares</span> que activa tu captación orgánica.
+      </h2>
+      <p class="seo-intro">
+        Combinamos SEO técnico, contenido geolocalizado y presencia en mapas de Google para que tu negocio
+        aparezca cuando alguien con intención de compra busca tu servicio en tu zona.
+      </p>
+
+      <div class="pilares-grid">
+        <div class="pilar">
+          <img src="assets/gallery/seo_01.jpg" alt="SEO técnico on-page para negocios locales" loading="lazy">
+        </div>
+        <div class="pilar">
+          <img src="assets/gallery/seo_02.jpg" alt="Landing pages geográficas por zona para captación local" loading="lazy">
+        </div>
+        <div class="pilar">
+          <img src="assets/gallery/seo_03.jpg" alt="Google My Business y ficha local optimizada" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ENTREGABLES ==================== -->
+  <section class="seo-section alt" id="entregables">
+    <div class="container">
+      <p class="seo-label">Qué se entrega</p>
+      <h2 class="seo-title">El stack completo del servicio.</h2>
+      <p class="seo-intro">
+        Todo lo que recibe el cliente al cierre del setup. Cada entregable queda en propiedad
+        del negocio y bajo control de sus propias cuentas.
+      </p>
+
+      <div class="stack">
+        <div class="stack-item">
+          <h3 class="stack-item-title">Auditoría técnica del sitio</h3>
+          <p class="stack-item-body">Análisis completo de problemas técnicos que limitan el posicionamiento: estructura, metadatos, rendimiento, indexación. Listado priorizado de correcciones.</p>
+        </div>
+        <div class="stack-item">
+          <h3 class="stack-item-title">Implementación de SEO on-page</h3>
+          <p class="stack-item-body">Meta descriptions, H1 semánticos, Schema JSON-LD de negocio local, Open Graph, alt text descriptivo, sitemap optimizado y NAP unificado en todas las páginas.</p>
+        </div>
+        <div class="stack-item">
+          <h3 class="stack-item-title">Landing pages geográficas</h3>
+          <p class="stack-item-body">Hasta 4 páginas optimizadas para las zonas donde opera el negocio. Cada una con keywords locales, contenido único y estructura orientada a conversión.</p>
+        </div>
+        <div class="stack-item">
+          <h3 class="stack-item-title">Google My Business optimizado</h3>
+          <p class="stack-item-body">Verificación o creación de la ficha. Carga de fotos, horarios, descripción y categorías correctas. Protocolo de solicitud de reseñas para clientes actuales.</p>
+        </div>
+        <div class="stack-item">
+          <h3 class="stack-item-title">Indexación en Search Console</h3>
+          <p class="stack-item-body">Submit manual de todas las páginas nuevas para acelerar indexación. Configuración de monitoreo y alertas de rendimiento de búsqueda.</p>
+        </div>
+        <div class="stack-item">
+          <h3 class="stack-item-title">Reporte mensual de posicionamiento</h3>
+          <p class="stack-item-body">Seguimiento de keywords objetivo, posición en SERPs, tráfico orgánico y rendimiento de cada landing page por zona. Ajustes técnicos según evolución.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== RUBROS ==================== -->
+  <section class="seo-section dark" id="rubros">
+    <div class="container">
+      <p class="seo-label">Multi-rubro</p>
+      <h2 class="seo-title">
+        El mismo sistema, <span>adaptado a tu industria</span>.
+      </h2>
+      <p class="seo-intro">
+        El SEO local funciona en cualquier negocio que dependa de clientes de zona. Lo que cambia
+        son las keywords, las categorías de GMB y el ángulo del contenido. La metodología es la misma.
+      </p>
+
+      <div class="rubros-grid">
+        <article class="rubro" style="background-image: url('assets/gallery/seo_ico_1.jpg');">
+          <h3 class="rubro-title">Administración de consorcios</h3>
+          <p class="rubro-body">Captación de propietarios y consorcios por zona. Alta intención cuando se evalúa cambio de administrador.</p>
+          <div class="rubro-bottom">
+            <span class="rubro-kw">administrador consorcios + zona</span>
+            <span class="rubro-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </span>
+          </div>
+        </article>
+        <article class="rubro" style="background-image: url('assets/gallery/seo_ico_2.jpg');">
+          <h3 class="rubro-title">Estudios profesionales</h3>
+          <p class="rubro-body">Contables, jurídicos, escribanías, arquitectos. Servicios de alto valor donde la zona condiciona la decisión.</p>
+          <div class="rubro-bottom">
+            <span class="rubro-kw">estudio contable + barrio</span>
+            <span class="rubro-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </span>
+          </div>
+        </article>
+        <article class="rubro" style="background-image: url('assets/gallery/seo_ico_3.jpg');">
+          <h3 class="rubro-title">Clínicas y salud</h3>
+          <p class="rubro-body">Odontología, kinesiología, dermatología, nutrición, veterinarias. Búsquedas con altísima intención de turno.</p>
+          <div class="rubro-bottom">
+            <span class="rubro-kw">odontólogo + ciudad</span>
+            <span class="rubro-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </span>
+          </div>
+        </article>
+        <article class="rubro" style="background-image: url('assets/gallery/seo_ico_4.jpg');">
+          <h3 class="rubro-title">Inmobiliario</h3>
+          <p class="rubro-body">Inmobiliarias, tasaciones, desarrollos, constructoras. El usuario filtra por barrio antes que por marca.</p>
+          <div class="rubro-bottom">
+            <span class="rubro-kw">inmobiliaria + barrio</span>
+            <span class="rubro-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </span>
+          </div>
+        </article>
+        <article class="rubro" style="background-image: url('assets/gallery/seo_ico_5.jpg');">
+          <h3 class="rubro-title">Gastronomía y eventos</h3>
+          <p class="rubro-body">Restaurantes, cafeterías, catering, salones. El pack de mapa de Google define la elección final.</p>
+          <div class="rubro-bottom">
+            <span class="rubro-kw">restaurante + zona</span>
+            <span class="rubro-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </span>
+          </div>
+        </article>
+        <article class="rubro" style="background-image: url('assets/gallery/seo_ico_6.jpg');">
+          <h3 class="rubro-title">Servicios al hogar</h3>
+          <p class="rubro-body">Plomería, electricidad, climatización, mudanzas, jardinería. Búsquedas urgentes con conversión inmediata.</p>
+          <div class="rubro-bottom">
+            <span class="rubro-kw">plomero + ciudad</span>
+            <span class="rubro-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== METODOLOGÍA ==================== -->
+  <section class="seo-section dark" id="metodologia">
+    <div class="container">
+      <p class="seo-label">Metodología</p>
+      <h2 class="seo-title">
+        Un proceso de <span>4 etapas</span> que se repite para cada nuevo rubro.
+      </h2>
+      <p class="seo-intro">
+        La metodología es industrial: lo que cambia entre un rubro y otro es el insumo (keywords,
+        zonas, categorías). El sistema de implementación es siempre el mismo.
+      </p>
+
+      <div class="impl-grid">
+        <div class="impl-step">
+          <div class="impl-num">Etapa 01</div>
+          <h3 class="impl-title">Diagnóstico del rubro</h3>
+          <p class="impl-body">Mapeo de búsquedas locales del sector, análisis de competencia en SERPs y detección de oportunidades de posicionamiento por zona.</p>
+        </div>
+        <div class="impl-step">
+          <div class="impl-num">Etapa 02</div>
+          <h3 class="impl-title">Auditoría técnica</h3>
+          <p class="impl-body">Revisión completa del sitio actual. Identificación de bloqueadores de indexación y oportunidades on-page priorizadas por impacto.</p>
+        </div>
+        <div class="impl-step">
+          <div class="impl-num">Etapa 03</div>
+          <h3 class="impl-title">Implementación</h3>
+          <p class="impl-body">Aplicación de correcciones técnicas, publicación de landings geográficas y activación de Google My Business con categorías del rubro.</p>
+        </div>
+        <div class="impl-step">
+          <div class="impl-num">Etapa 04</div>
+          <h3 class="impl-title">Mantenimiento</h3>
+          <p class="impl-body">Monitoreo mensual de posicionamiento, ajustes técnicos, gestión de reseñas y reporte de evolución de tráfico orgánico.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ADAPTACIÓN POR RUBRO ==================== -->
+  <section class="seo-section alt" id="adaptacion">
+    <div class="container">
+      <p class="seo-label">Qué se adapta · Qué no</p>
+      <h2 class="seo-title">Lo que cambia entre rubros — y lo que se mantiene.</h2>
+      <p class="seo-intro">
+        El sistema base es siempre el mismo. Lo que se ajusta a cada industria es el insumo de
+        contenido y las categorías de búsqueda.
+      </p>
+
+      <div class="adap-table-wrap">
+        <table class="adap-table">
+          <thead>
+            <tr>
+              <th>Variable</th>
+              <th>Qué se adapta</th>
+              <th>Ejemplo de aplicación</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Keywords objetivo</td>
+              <td>Investigación específica del rubro y zona, con foco en términos de alta intención comercial.</td>
+              <td>"administrador consorcios san isidro" / "estudio contable belgrano" / "odontólogo niños palermo"</td>
+            </tr>
+            <tr>
+              <td>Categorías de GMB</td>
+              <td>Selección y orden de categorías de Google My Business propias del sector.</td>
+              <td>Property management firm, Accountant, Dental clinic, Real estate agency, Restaurant, Plumber.</td>
+            </tr>
+            <tr>
+              <td>Schema markup</td>
+              <td>Tipo de Schema JSON-LD específico al negocio: LocalBusiness, Dentist, Restaurant, Attorney, etc.</td>
+              <td>Mejor presentación en SERPs con horarios, reseñas, rango de precios y servicios destacados.</td>
+            </tr>
+            <tr>
+              <td>Estructura de landings</td>
+              <td>Ángulo de copy y prueba social orientados al criterio de decisión del comprador del rubro.</td>
+              <td>Salud: confianza profesional. Servicios al hogar: rapidez y garantía. Inmobiliario: experiencia en zona.</td>
+            </tr>
+            <tr>
+              <td>Protocolo de reseñas</td>
+              <td>Momento y canal de pedido adaptados al ciclo de compra (post-turno, post-servicio, post-firma).</td>
+              <td>Clínica: al cierre del turno. Restaurante: al pagar la cuenta. Inmobiliaria: al firmar boleto.</td>
+            </tr>
+            <tr>
+              <td>Lo que NO cambia</td>
+              <td>Metodología, plazos, stack técnico, estructura de reporte y modelo de pricing.</td>
+              <td>El cliente recibe siempre el mismo nivel de servicio, con entregables auditables.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CRONOGRAMA ==================== -->
+  <section class="seo-section" id="cronograma">
+    <div class="container">
+      <p class="seo-label">Cronograma estándar</p>
+      <h2 class="seo-title">
+        De la firma a los <span>primeros resultados</span>.
+      </h2>
+      <p class="seo-intro">
+        Un setup de cuatro semanas y mantenimiento mensual continuo. Los resultados de posicionamiento
+        orgánico comienzan a verse desde el mes 3.
+      </p>
+
+      <div class="seo-timeline">
+        <div class="tl-item">
+          <div class="tl-dot">S1</div>
+          <div class="tl-content">
+            <div class="tl-badge">Semana 1</div>
+            <h3 class="tl-title">Auditoría y primeras correcciones técnicas</h3>
+            <ul class="tl-list">
+              <li>Schema LocalBusiness publicado</li>
+              <li>Meta descriptions y H1 semánticos aplicados</li>
+              <li>Open Graph y alt text configurados</li>
+              <li>NAP unificado en todo el sitio</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">S2</div>
+          <div class="tl-content">
+            <div class="tl-badge">Semana 2</div>
+            <h3 class="tl-title">Google My Business verificado y optimizado</h3>
+            <ul class="tl-list">
+              <li>Ficha GMB con dirección, horarios y categorías del rubro</li>
+              <li>Fotos profesionales cargadas y descripción optimizada</li>
+              <li>Protocolo de reseñas activado con clientes actuales</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">S3</div>
+          <div class="tl-content">
+            <div class="tl-badge">Semana 3 – 4</div>
+            <h3 class="tl-title">Landing pages geográficas publicadas</h3>
+            <ul class="tl-list">
+              <li>Hasta 4 landings por zona con contenido único</li>
+              <li>Keywords locales de alta intención comercial</li>
+              <li>Submit en Google Search Console para indexación rápida</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">M3</div>
+          <div class="tl-content">
+            <div class="tl-badge">Mes 3 – 6</div>
+            <h3 class="tl-title">Resultados orgánicos y presencia consolidada</h3>
+            <ul class="tl-list">
+              <li>Aparición en el pack de mapas de Google para búsquedas locales</li>
+              <li>Primera página de SERPs para keywords objetivo</li>
+              <li>Reseñas acumuladas en la ficha y mejor CTR</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== INVERSIÓN ==================== -->
+  <section class="seo-section dark" id="inversion">
+    <div class="container">
+      <p class="seo-label">Inversión</p>
+      <h2 class="seo-title">
+        Estructura clara: <span>setup único + mensual</span>.
+      </h2>
+      <p class="seo-intro">
+        Un único pago de implementación y un mantenimiento mensual de bajo costo. Sin compromisos
+        anuales: cancelable con 30 días de aviso.
+      </p>
+
+      <div class="precio-grid">
+        <div class="precio-card highlight">
+          <div class="precio-tag">Setup inicial · Pago único</div>
+          <h3 class="precio-title">SEO Local Completo</h3>
+          <p class="precio-desc">Implementación completa del sistema. Setup en 4 semanas desde la firma del contrato.</p>
+          <ul class="precio-list">
+            <li>Auditoría técnica completa</li>
+            <li>Corrección de SEO on-page</li>
+            <li>Hasta 4 landing pages por zona</li>
+            <li>Google My Business verificado</li>
+            <li>Indexación en Search Console</li>
+          </ul>
+        </div>
+        <div class="precio-card">
+          <div class="precio-tag">Continuidad · Mensual</div>
+          <h3 class="precio-title">Mantenimiento SEO</h3>
+          <p class="precio-desc">Monitoreo continuo, ajustes técnicos y reporte mensual de posicionamiento.</p>
+          <ul class="precio-list">
+            <li>Monitoreo de keywords objetivo</li>
+            <li>Ajustes técnicos según evolución</li>
+            <li>Gestión de reseñas en GMB</li>
+            <li>Reporte mensual de rendimiento</li>
+            <li>Cancelable con 30 días de aviso</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="precio-note">
+        <strong>Hosting no incluido.</strong> El alojamiento de las landing pages corre por cuenta del cliente,
+        sobre la plataforma existente o una nueva acordada al setup. Las páginas quedan en propiedad del cliente.
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FAQ ==================== -->
+  <section class="seo-section" id="faq">
+    <div class="container">
+      <p class="seo-label">Preguntas frecuentes</p>
+      <h2 class="seo-title">Las dudas que aparecen siempre.</h2>
+      <p class="seo-intro">Todo lo que querés saber antes de avanzar con el setup.</p>
+
+      <div class="seo-faq__list">
+        <details class="seo-faq__item">
+          <summary class="seo-faq__q">¿Cuánto tarda mi negocio en aparecer en la primera página de Google?</summary>
+          <p class="seo-faq__a">El setup técnico se entrega en 4 semanas. Los resultados de posicionamiento orgánico comienzan a verse desde el mes 3, y se consolidan entre el mes 3 y 6. El SEO no es publicidad paga: requiere maduración, pero el tráfico que llega es más cualificado y sin costo por clic.</p>
+        </details>
+        <details class="seo-faq__item">
+          <summary class="seo-faq__q">¿Funciona para mi rubro?</summary>
+          <p class="seo-faq__a">El sistema funciona en cualquier negocio de servicios o comercio que dependa de clientes locales: clínicas, estudios profesionales, inmobiliarias, gastronomía, servicios al hogar, estética, educación y comercios de barrio. Lo que cambia entre rubros son las keywords, las categorías de GMB y el ángulo del contenido — la metodología es la misma.</p>
+        </details>
+        <details class="seo-faq__item">
+          <summary class="seo-faq__q">¿Qué diferencia hay con contratar Google Ads?</summary>
+          <p class="seo-faq__a">Ads te da tráfico inmediato mientras pagás. SEO te construye un activo que sigue generando consultas aunque pares de invertir. El tráfico orgánico local convierte hasta 3 veces más que el pago, sin costo por clic — pero requiere setup técnico y unos meses de maduración. Lo ideal es combinar ambos: Ads para inmediatez, SEO para sostenibilidad.</p>
+        </details>
+        <details class="seo-faq__item">
+          <summary class="seo-faq__q">¿Necesito un sitio web nuevo?</summary>
+          <p class="seo-faq__a">No necesariamente. Si tu sitio actual es funcional, lo auditamos y corregimos los problemas técnicos que limitan el posicionamiento. Si el sitio actual tiene problemas estructurales graves, te lo decimos en el diagnóstico inicial y evaluamos la opción más eficiente para tu caso.</p>
+        </details>
+        <details class="seo-faq__item">
+          <summary class="seo-faq__q">¿Las landing pages y la ficha de Google me quedan a mí?</summary>
+          <p class="seo-faq__a">Sí. Todos los entregables quedan en propiedad del cliente y bajo control de sus propias cuentas (dominio, hosting, Google My Business, Search Console). Si decidís no continuar con el mantenimiento mensual, el sistema sigue funcionando: vos sos dueño de los activos.</p>
+        </details>
+        <details class="seo-faq__item">
+          <summary class="seo-faq__q">¿Qué pasa si no logran posicionarme?</summary>
+          <p class="seo-faq__a">El diagnóstico previo existe exactamente para eso: si tu rubro o tu zona no permite un posicionamiento competitivo razonable, te lo decimos antes de firmar. Trabajamos con metodología documentada y entregables auditables: si el sistema se aplica correctamente, los resultados llegan. Si no llegaran, ajustamos sin costo adicional dentro del mantenimiento mensual.</p>
+        </details>
+        <details class="seo-faq__item">
+          <summary class="seo-faq__q">¿Puedo cancelar el mantenimiento mensual?</summary>
+          <p class="seo-faq__a">Sí, en cualquier momento, con 30 días de aviso. No hay compromiso anual. El sistema queda funcionando con el setup inicial — el mantenimiento mensual es para evolucionar el posicionamiento, monitorear keywords y gestionar reseñas de forma activa.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CTA FINAL ==================== -->
+  <section class="seo-cta" id="seo-cta">
+    <div class="container seo-cta__inner">
+      <div class="seo-cta__header">
+        <p class="seo-cta__eyebrow">Próximo paso</p>
+        <h2 class="seo-cta__title">Mostrale a Google que tu negocio existe.</h2>
+        <p class="seo-cta__sub">
+          Diagnóstico inicial gratuito de 30 minutos. Te decimos qué tan posicionable es tu rubro
+          en tu zona y qué resultados esperar antes de invertir un peso.
+        </p>
+      </div>
+
+      <div class="seo-cta__dual">
+        <!-- Formulario -->
+        <div class="seo-col">
+          <p class="seo-col__label">Dejá tus datos y te contactamos</p>
+          <form id="leadForm" novalidate>
+            <div class="lf-field">
+              <label class="lf-label" for="nombre">Nombre <span class="lf-req">*</span></label>
+              <input class="lf-input" type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required autocomplete="name">
+            </div>
+            <div class="lf-field">
+              <label class="lf-label" for="email">Email <span class="lf-req">*</span></label>
+              <input class="lf-input" type="email" id="email" name="email" placeholder="tu@email.com" required autocomplete="email">
+            </div>
+            <div class="lf-field">
+              <label class="lf-label" for="telefono">Teléfono <span class="lf-opt">(opcional)</span></label>
+              <input class="lf-input" type="tel" id="telefono" name="telefono" placeholder="11 1234-5678" autocomplete="tel">
+            </div>
+            <button class="btn btn--red lf-submit" type="submit" id="leadSubmit">
+              Solicitar diagnóstico gratuito
+            </button>
+            <p class="lf-msg" id="leadMsg" aria-live="polite"></p>
+          </form>
+        </div>
+
+        <!-- WhatsApp -->
+        <div class="seo-col">
+          <p class="seo-col__label">O escribinos directo por WhatsApp</p>
+          <p class="seo-wa__desc">
+            Nuestro agente IA está disponible 24/7 para responder tus preguntas sobre SEO local
+            y agendar tu diagnóstico.
+          </p>
+          <a
+            href="https://wa.me/5491157083080?text=Hola%21%20Quiero%20mi%20diagn%C3%B3stico%20gratuito%20de%20SEO%20Local"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn--wa"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            Hablar con el agente ahora
+          </a>
+          <ul class="seo-wa__bullets">
+            <li>Diagnóstico sin compromiso de contratación</li>
+            <li>Te decimos si tu rubro y zona son posicionables</li>
+            <li>30 minutos para tener claridad antes de invertir</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="nav__logo footer__logo">
+          <img src="assets/logo-elbufalo.png" alt="Elbufalo IA" class="footer__logo-img">
+        </a>
+        <p>Sistemas de ventas con inteligencia artificial para PyMEs, emprendedores y comercios.</p>
+      </div>
+      <div class="footer__contact">
+        <p>Buenos Aires, Argentina</p>
+        <p>
+          <a href="https://wa.me/5491157083080" target="_blank" rel="noopener noreferrer">
+            11 5708-3080
+          </a>
+        </p>
+        <a href="https://elbufalo.site" target="_blank" rel="noopener noreferrer">elbufalo.site</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <p>© 2026 Elbufalo IA. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== FORM SUBMIT ==================== -->
+  <script>
+    const WEBHOOK_URL = 'https://ai-optimazer-n8n.ot80ss.easypanel.host/webhook/registro-leads';
+
+    document.getElementById('leadForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('leadSubmit');
+      const msg = document.getElementById('leadMsg');
+
+      const nombre   = document.getElementById('nombre').value.trim();
+      const email    = document.getElementById('email').value.trim();
+      const telefono = document.getElementById('telefono').value.trim();
+
+      const emailValido    = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+      const telefonoValido = telefono === '' || /^[\d\s\-\+\(\)]{6,20}$/.test(telefono);
+
+      function mostrarError(texto) {
+        msg.textContent = texto;
+        msg.className = 'lf-msg lf-msg--error';
+      }
+
+      if (!nombre)                     { mostrarError('Por favor ingresá tu nombre.'); return; }
+      if (!email || !emailValido)      { mostrarError('El email no tiene un formato válido.'); return; }
+      if (!telefonoValido)             { mostrarError('El teléfono solo puede contener números, espacios, +, - y paréntesis (mín. 6 dígitos).'); return; }
+
+      btn.disabled = true;
+      btn.textContent = 'Enviando…';
+      msg.textContent = '';
+      msg.className = 'lf-msg';
+
+      try {
+        await fetch(WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nombre, email, telefono, origen: 'SEO Inteligente' })
+        });
+        mostrarExito();
+      } catch (_) {
+        mostrarExito();
+      }
+
+      function mostrarExito() {
+        document.getElementById('leadForm').innerHTML =
+          '<div class="lf-success">✓ ¡Listo! Te contactamos en las próximas horas para coordinar tu diagnóstico de SEO Local.</div>';
+      }
+    });
+  </script>
+
+  <script src="buffy-widget.js"></script>
+
+  <!-- ==================== SCHEMA: Service ==================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "SEO Local",
+    "name": "SEO Inteligente — Posicionamiento Local con IA",
+    "provider": {
+      "@type": "ProfessionalService",
+      "name": "Elbufalo IA",
+      "url": "https://elbufalo.site",
+      "logo": "https://elbufalo.site/assets/logo-elbufalo.png",
+      "telephone": "+5491157083080",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Buenos Aires",
+        "addressCountry": "AR"
+      }
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "Argentina"
+    },
+    "description": "Sistema de SEO Local que combina SEO técnico on-page, landing pages geográficas y optimización de Google My Business para captar tráfico orgánico con alta intención de compra.",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Setup SEO Local Completo",
+        "price": "500",
+        "priceCurrency": "USD",
+        "description": "Implementación completa en 4 semanas. Auditoría, on-page, hasta 4 landing pages por zona, Google My Business e indexación."
+      },
+      {
+        "@type": "Offer",
+        "name": "Mantenimiento SEO Mensual",
+        "price": "50",
+        "priceCurrency": "USD",
+        "description": "Monitoreo de keywords, ajustes técnicos, gestión de reseñas y reporte mensual. Cancelable con 30 días de aviso."
+      }
+    ]
+  }
+  </script>
+
+  <!-- ==================== SCHEMA: FAQPage ==================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Cuánto tarda mi negocio en aparecer en la primera página de Google?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "El setup técnico se entrega en 4 semanas. Los resultados de posicionamiento orgánico comienzan a verse desde el mes 3, y se consolidan entre el mes 3 y 6. El SEO no es publicidad paga: requiere maduración, pero el tráfico que llega es más cualificado y sin costo por clic."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Funciona para mi rubro?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "El sistema funciona en cualquier negocio de servicios o comercio que dependa de clientes locales: clínicas, estudios profesionales, inmobiliarias, gastronomía, servicios al hogar, estética, educación y comercios de barrio. Lo que cambia entre rubros son las keywords, las categorías de GMB y el ángulo del contenido — la metodología es la misma."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué diferencia hay con contratar Google Ads?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ads te da tráfico inmediato mientras pagás. SEO te construye un activo que sigue generando consultas aunque pares de invertir. El tráfico orgánico local convierte hasta 3 veces más que el pago, sin costo por clic — pero requiere setup técnico y unos meses de maduración. Lo ideal es combinar ambos: Ads para inmediatez, SEO para sostenibilidad."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Necesito un sitio web nuevo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No necesariamente. Si tu sitio actual es funcional, lo auditamos y corregimos los problemas técnicos que limitan el posicionamiento. Si el sitio actual tiene problemas estructurales graves, te lo decimos en el diagnóstico inicial y evaluamos la opción más eficiente para tu caso."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Las landing pages y la ficha de Google me quedan a mí?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. Todos los entregables quedan en propiedad del cliente y bajo control de sus propias cuentas (dominio, hosting, Google My Business, Search Console). Si decidís no continuar con el mantenimiento mensual, el sistema sigue funcionando."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué pasa si no logran posicionarme?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "El diagnóstico previo existe exactamente para eso: si tu rubro o tu zona no permite un posicionamiento competitivo razonable, te lo decimos antes de firmar. Trabajamos con metodología documentada y entregables auditables. Si el sistema se aplica correctamente, los resultados llegan."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Puedo cancelar el mantenimiento mensual?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí, en cualquier momento, con 30 días de aviso. No hay compromiso anual. El sistema queda funcionando con el setup inicial — el mantenimiento mensual es para evolucionar el posicionamiento, monitorear keywords y gestionar reseñas de forma activa."
+        }
+      }
+    ]
+  }
+  </script>
+
+</body>
+</html>

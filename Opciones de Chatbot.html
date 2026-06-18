@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO base -->
+  <title>Chatbot WhatsApp para Turnos — 3 Niveles · Elbufalo IA</title>
+  <meta name="description" content="Asistente por WhatsApp que agenda turnos, responde consultas y reduce el ausentismo 24/7. Tres niveles para clínicas, estética, abogados, psicólogos y servicios con agenda.">
+  <link rel="canonical" href="https://elbufalo.site/Opciones%20de%20Chatbot.html">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/png" href="assets/favicon_neg.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://elbufalo.site/Opciones%20de%20Chatbot.html">
+  <meta property="og:title" content="Chatbot WhatsApp para Turnos — 3 Niveles · Elbufalo IA">
+  <meta property="og:description" content="Asistente por WhatsApp que agenda turnos, responde consultas y reduce el ausentismo 24/7. Tres niveles para crecer a tu ritmo.">
+  <meta property="og:image" content="https://elbufalo.site/assets/og-image.png">
+  <meta property="og:locale" content="es_AR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Chatbot WhatsApp para Turnos — 3 Niveles · Elbufalo IA">
+  <meta name="twitter:description" content="Asistente por WhatsApp que agenda turnos y reduce el ausentismo 24/7.">
+  <meta name="twitter:image" content="https://elbufalo.site/assets/og-image.png">
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9QFN8M7PDV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9QFN8M7PDV');
+  </script>
+
+  <style>
+    :root {
+      --navy:      #0a0f2e;
+      --navy-2:    #111738;
+      --navy-soft: #1a2150;
+      --gold:      #c9a227;
+      --gold-soft: #d8b94e;
+      --gold-tint: #f9f5e8;
+      --bg:        #f5f6f8;
+      --paper:     #ffffff;
+      --ink:       #1a1d2e;
+      --body:      #444a60;
+      --muted:     #666d84;
+      --muted-2:   #8b91a6;
+      --line:      #eef0f5;
+      --line-2:    #e2e5ee;
+      --wa-bg:     #e6ddd4;
+      --wa-out:    #d9fdd3;
+      --radius:    5px;
+      --maxw:      1180px;
+      --ease:      cubic-bezier(.22,.61,.36,1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    html, body { overflow-x: clip; }
+
+    body {
+      font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding-top: 66px; /* compensa el nav fixed */
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .eyebrow::before {
+      content: '';
+      width: 22px; height: 1px;
+      background: var(--gold);
+      display: inline-block;
+    }
+    .eyebrow.center { justify-content: center; }
+
+    .section { padding: 96px 0; }
+    .section-head { max-width: 720px; }
+    .section-head.center { margin: 0 auto; text-align: center; }
+    .section-title {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+      margin: 18px 0 0;
+    }
+    .section-title em { color: var(--gold); font-style: normal; }
+    .section-sub {
+      font-size: 17px;
+      color: var(--muted);
+      margin-top: 18px;
+      font-weight: 400;
+    }
+
+    /* NAV (idéntico al index.html) */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 200;
+      background: rgba(10, 15, 46, 0.98);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .nav__inner {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 28px;
+      height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav__logo { display: flex; align-items: baseline; gap: 0; line-height: 1; }
+    .nav__logo-img { height: 36px; width: auto; display: block; }
+    .btn-nav {
+      display: inline-flex; align-items: center; justify-content: center;
+      font-weight: 700; font-family: inherit;
+      border: 1.5px solid transparent;
+      border-radius: 6px; cursor: pointer;
+      transition: all 0.25s var(--ease);
+      text-decoration: none;
+    }
+    .btn-nav--gold {
+      background: var(--gold);
+      color: #06091c;
+      border-color: var(--gold);
+      box-shadow: 0 4px 16px rgba(201, 162, 39, 0.35);
+    }
+    .btn-nav--gold:hover {
+      background: var(--gold-soft);
+      border-color: var(--gold-soft);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(201, 162, 39, 0.45);
+    }
+    .btn-nav--sm { padding: 10px 22px; font-size: 0.85rem; }
+    .wa-glyph { width: 16px; height: 16px; flex-shrink: 0; }
+
+    /* HERO */
+    .hero {
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+      padding: 80px 0 90px;
+    }
+    .hero::before {
+      content: ''; position: absolute; pointer-events: none;
+      top: -160px; right: -120px; width: 620px; height: 620px;
+      background: radial-gradient(circle, rgba(201,162,39,0.16) 0%, transparent 65%);
+    }
+    .hero::after {
+      content: ''; position: absolute; pointer-events: none;
+      bottom: -220px; left: -160px; width: 540px; height: 540px;
+      background: radial-gradient(circle, rgba(80,110,255,0.10) 0%, transparent 68%);
+    }
+    .hero .wrap {
+      position: relative; z-index: 2;
+      display: grid; grid-template-columns: 1.05fr 0.95fr;
+      gap: 56px; align-items: center;
+    }
+    .hero-pill {
+      display: inline-flex; align-items: center; gap: 9px;
+      background: rgba(201,162,39,0.12);
+      border: 1px solid rgba(201,162,39,0.3);
+      color: var(--gold);
+      font-size: 12px; font-weight: 600; letter-spacing: 0.06em;
+      padding: 7px 14px; border-radius: 999px;
+      margin-bottom: 26px;
+    }
+    .hero-pill .dot { width: 7px; height: 7px; border-radius: 50%; background: #25d366; box-shadow: 0 0 0 3px rgba(37,211,102,0.25); }
+    .hero h1 {
+      font-size: clamp(36px, 5.2vw, 60px);
+      font-weight: 800;
+      line-height: 1.04;
+      letter-spacing: -0.025em;
+      color: #fff;
+    }
+    .hero h1 em { color: var(--gold); font-style: normal; }
+    .hero-sub {
+      font-size: 18px;
+      color: rgba(255,255,255,0.62);
+      font-weight: 300;
+      line-height: 1.6;
+      margin-top: 24px;
+      max-width: 540px;
+    }
+    .hero-sub strong { color: rgba(255,255,255,0.92); font-weight: 600; }
+    .hero-actions { display: flex; gap: 14px; margin-top: 36px; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 9px;
+      font-weight: 700; font-size: 15px;
+      padding: 14px 24px; border-radius: 8px;
+      cursor: pointer; border: none;
+      transition: transform .2s var(--ease), box-shadow .2s var(--ease), background .2s;
+    }
+    .btn-gold { background: var(--gold); color: var(--navy); box-shadow: 0 10px 28px rgba(201,162,39,0.32); }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(201,162,39,0.45); }
+    .btn-wa { background: #25d366; color: #04240f; box-shadow: 0 10px 28px rgba(37,211,102,0.28); }
+    .btn-wa:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(37,211,102,0.42); }
+
+    .hero-trust { display: flex; gap: 26px; margin-top: 40px; flex-wrap: wrap; }
+    .hero-trust .ht { display: flex; flex-direction: column; gap: 2px; }
+    .hero-trust .ht b { color: #fff; font-size: 22px; font-weight: 800; letter-spacing: -0.02em; }
+    .hero-trust .ht span { color: rgba(255,255,255,0.45); font-size: 12.5px; }
+
+    /* PHONE / CHAT DEMO */
+    .demo-col { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+    .phone {
+      width: 326px;
+      background: #0b0d12;
+      border-radius: 44px;
+      padding: 11px;
+      box-shadow: 0 40px 80px -20px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05);
+      position: relative;
+    }
+    .phone-notch {
+      position: absolute; top: 11px; left: 50%; transform: translateX(-50%);
+      width: 120px; height: 26px; background: #0b0d12; border-radius: 0 0 16px 16px; z-index: 6;
+    }
+    .phone-screen {
+      background: var(--wa-bg);
+      border-radius: 34px;
+      overflow: hidden;
+      height: 600px;
+      display: flex; flex-direction: column;
+      position: relative;
+    }
+    .wa-status {
+      background: #f6f6f6; height: 32px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 6px 20px 0; color: #111;
+    }
+    .wa-time { font-size: 13px; font-weight: 700; letter-spacing: -0.01em; }
+    .wa-sysicons { display: flex; align-items: center; gap: 6px; }
+    .wa-sysicons svg { display: block; }
+    .wa-sysicons svg:first-child { width: 17px; height: 11px; }
+    .wa-sysicons svg:nth-child(2) { width: 16px; height: 12px; }
+    .wa-batt { width: 23px; height: 12px; border: 1.3px solid #111; border-radius: 3px; position: relative; padding: 1.5px; }
+    .wa-batt::after { content: ''; position: absolute; right: -3px; top: 3.5px; width: 2px; height: 4px; background: #111; border-radius: 0 1px 1px 0; }
+    .wa-batt span { display: block; width: 78%; height: 100%; background: #111; border-radius: 1px; }
+    .wa-header {
+      background: #f6f6f6; flex-shrink: 0;
+      display: flex; align-items: center; gap: 11px;
+      padding: 8px 14px 10px;
+      border-bottom: 1px solid #e3e3e3;
+    }
+    .wa-back { color: #1b8ef2; font-size: 22px; line-height: 1; font-weight: 400; }
+    .wa-avatar {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-soft));
+      display: grid; place-items: center; flex-shrink: 0;
+      color: var(--navy); font-weight: 900; font-size: 15px;
+      box-shadow: 0 2px 8px rgba(201,162,39,0.4);
+    }
+    .wa-id { line-height: 1.25; flex: 1; min-width: 0; }
+    .wa-id .nm { font-size: 14.5px; font-weight: 700; color: #111; display: flex; align-items: center; gap: 5px; }
+    .wa-id .nm .verif { color: #25d366; font-size: 12px; }
+    .wa-id .st { font-size: 11.5px; color: #25a566; font-weight: 500; }
+    .wa-icons { display: flex; gap: 16px; color: #1b8ef2; }
+    .wa-icons svg { width: 19px; height: 19px; }
+
+    .wa-body {
+      flex: 1; overflow: hidden;
+      padding: 14px 12px 8px;
+      display: flex; flex-direction: column; gap: 8px;
+      background-image:
+        radial-gradient(circle at 18% 22%, rgba(0,0,0,0.022) 0 1.5px, transparent 2px),
+        radial-gradient(circle at 62% 64%, rgba(0,0,0,0.022) 0 1.5px, transparent 2px),
+        radial-gradient(circle at 82% 38%, rgba(0,0,0,0.02) 0 1.5px, transparent 2px);
+      background-size: 140px 140px;
+      position: relative;
+      scroll-behavior: smooth;
+    }
+    .wa-daypill {
+      align-self: center;
+      background: rgba(255,255,255,0.85);
+      color: #555; font-size: 11px; font-weight: 600;
+      padding: 4px 12px; border-radius: 8px; margin: 2px 0 4px;
+      box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+    }
+
+    .bubble {
+      max-width: 80%;
+      padding: 7px 10px 6px;
+      font-size: 13.5px; line-height: 1.42; color: #111;
+      border-radius: 9px;
+      position: relative;
+      box-shadow: 0 1px 1px rgba(0,0,0,0.07);
+      white-space: pre-wrap;
+      animation: pop .26s var(--ease) both;
+    }
+    .bubble.bot { background: #fff; align-self: flex-start; border-top-left-radius: 2px; }
+    .bubble.me  { background: var(--wa-out); align-self: flex-end; border-top-right-radius: 2px; }
+    .bubble .tm { font-size: 9.5px; color: #8a8f99; float: right; margin: 4px 0 -2px 10px; }
+    .bubble.me .tm { color: #5a8a63; }
+    .bubble .tm .dbl { color: #34b7f1; font-weight: 700; letter-spacing: -1px; }
+    .bubble strong { font-weight: 700; }
+
+    .wa-opt {
+      align-self: flex-start;
+      max-width: 84%;
+      width: 84%;
+      background: #fff;
+      color: #1b8ef2;
+      font-size: 13.5px; font-weight: 600;
+      text-align: center;
+      padding: 10px; border-radius: 9px;
+      box-shadow: 0 1px 1px rgba(0,0,0,0.07);
+      border-top: 1px solid #eef0f3;
+      animation: pop .26s var(--ease) both;
+    }
+    .wa-opt.tapped { background: #eaf4ff; }
+
+    .typing {
+      align-self: flex-start;
+      background: #fff; border-radius: 9px; border-top-left-radius: 2px;
+      padding: 11px 13px; display: inline-flex; gap: 4px;
+      box-shadow: 0 1px 1px rgba(0,0,0,0.07);
+      animation: pop .2s var(--ease) both;
+    }
+    .typing span {
+      width: 7px; height: 7px; border-radius: 50%; background: #b8bdc7;
+      animation: blink 1.2s infinite ease-in-out;
+    }
+    .typing span:nth-child(2) { animation-delay: .2s; }
+    .typing span:nth-child(3) { animation-delay: .4s; }
+    @keyframes blink { 0%,60%,100% { opacity: .35; transform: translateY(0); } 30% { opacity: 1; transform: translateY(-3px); } }
+    @keyframes pop { from { opacity: 0; transform: translateY(8px) scale(.96); } to { opacity: 1; transform: none; } }
+
+    .wa-input {
+      flex-shrink: 0; background: #f6f6f6;
+      padding: 8px 12px 10px;
+      display: flex; align-items: center; gap: 9px;
+      border-top: 1px solid #e3e3e3;
+    }
+    .wa-input .field {
+      flex: 1; background: #fff; border-radius: 18px;
+      padding: 8px 14px; font-size: 12.5px; color: #9aa0ab;
+      border: 1px solid #e6e6e6;
+    }
+    .wa-input .mic {
+      width: 34px; height: 34px; border-radius: 50%; background: #25d366;
+      display: grid; place-items: center; color: #fff; flex-shrink: 0;
+    }
+    .wa-input .mic svg { width: 16px; height: 16px; }
+
+    .demo-tabs {
+      display: inline-flex; background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px; padding: 4px;
+    }
+    .demo-tab {
+      border: none; background: transparent; cursor: pointer;
+      color: rgba(255,255,255,0.6);
+      font-family: inherit; font-weight: 600; font-size: 13px;
+      padding: 8px 18px; border-radius: 999px;
+      transition: all .25s var(--ease);
+    }
+    .demo-tab.active { background: var(--gold); color: var(--navy); }
+    .demo-caption { color: rgba(255,255,255,0.5); font-size: 13px; text-align: center; max-width: 300px; }
+    .demo-caption b { color: rgba(255,255,255,0.85); font-weight: 600; }
+
+    /* RUBROS */
+    .rubros { background: var(--paper); border-bottom: 1px solid var(--line); }
+    .rubros .wrap { padding-top: 56px; padding-bottom: 56px; }
+    .rubros-head { text-align: center; margin-bottom: 34px; }
+    .rubros-head h2 { font-size: 15px; font-weight: 700; color: var(--navy); letter-spacing: -0.01em; }
+    .rubros-head p { color: var(--muted); font-size: 14px; margin-top: 6px; }
+    .rubros-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+    .rubro-chip {
+      display: inline-flex; align-items: center; gap: 9px;
+      background: var(--bg);
+      border: 1px solid var(--line-2);
+      border-radius: 999px;
+      padding: 11px 18px;
+      font-size: 14px; font-weight: 600; color: var(--ink);
+      transition: transform .2s var(--ease), border-color .2s, box-shadow .2s;
+    }
+    .rubro-chip:hover { transform: translateY(-2px); border-color: var(--gold); box-shadow: 0 8px 20px rgba(10,15,46,0.07); }
+    .rubro-chip .ic { color: var(--gold); display: grid; place-items: center; }
+    .rubro-chip .ic svg { width: 17px; height: 17px; }
+
+    /* NIVELES */
+    .levels { background: var(--bg); }
+    .levels-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
+      margin-top: 54px; align-items: stretch;
+    }
+    .lvl {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      display: flex; flex-direction: column;
+      overflow: hidden;
+      position: relative;
+      transition: transform .25s var(--ease), box-shadow .25s var(--ease);
+    }
+    .lvl:hover { transform: translateY(-4px); box-shadow: 0 24px 50px -24px rgba(10,15,46,0.3); }
+    .lvl.featured { border-color: var(--gold); box-shadow: 0 24px 60px -28px rgba(201,162,39,0.5); }
+    .lvl-badge {
+      position: absolute; top: 0; right: 0;
+      background: var(--gold); color: var(--navy);
+      font-size: 10px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 6px 14px; border-bottom-left-radius: var(--radius);
+    }
+    .lvl-head {
+      background: var(--navy);
+      padding: 28px 26px 24px;
+      position: relative; overflow: hidden;
+    }
+    .lvl-head::after {
+      content: ''; position: absolute; top: -50px; right: -50px;
+      width: 190px; height: 190px;
+      background: radial-gradient(circle, rgba(201,162,39,0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .lvl.featured .lvl-head::after { background: radial-gradient(circle, rgba(201,162,39,0.32) 0%, transparent 70%); }
+    .lvl-tier {
+      display: inline-block; position: relative; z-index: 1;
+      font-size: 10px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(201,162,39,0.14);
+      border: 1px solid rgba(201,162,39,0.34);
+      padding: 4px 11px; border-radius: 4px; margin-bottom: 14px;
+    }
+    .lvl-name { position: relative; z-index: 1; font-size: 25px; font-weight: 800; color: #fff; letter-spacing: -0.02em; line-height: 1.1; }
+    .lvl-tagline { position: relative; z-index: 1; font-size: 14px; color: rgba(255,255,255,0.6); font-weight: 300; margin-top: 9px; line-height: 1.5; min-height: 42px; }
+    .lvl-body { padding: 24px 26px 26px; display: flex; flex-direction: column; flex: 1; }
+    .lvl-fit {
+      font-size: 11.5px; font-weight: 700; color: var(--gold);
+      text-transform: uppercase; letter-spacing: 0.08em;
+      padding-bottom: 16px; margin-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .lvl-fit .ic svg { width: 15px; height: 15px; display: block; }
+    .feat { list-style: none; display: flex; flex-direction: column; gap: 11px; flex: 1; }
+    .feat li { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--body); line-height: 1.45; }
+    .feat li .chk { color: var(--gold); font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+    .feat li .new { color: var(--navy); font-weight: 600; }
+    .lvl-foot { margin-top: 24px; }
+    .lvl-cta {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; padding: 13px; border-radius: 8px;
+      font-weight: 700; font-size: 14.5px; cursor: pointer;
+      background: var(--navy); color: #fff;
+      transition: background .2s, transform .2s var(--ease);
+    }
+    .lvl-cta:hover { background: var(--navy-soft); transform: translateY(-1px); }
+    .lvl.featured .lvl-cta { background: var(--gold); color: var(--navy); }
+    .lvl.featured .lvl-cta:hover { background: var(--gold-soft); }
+
+    /* TABLA COMPARATIVA */
+    .compare { background: var(--paper); border-top: 1px solid var(--line); }
+    .ctable-wrap { margin-top: 48px; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; box-shadow: 0 20px 50px -30px rgba(10,15,46,0.25); }
+    .ctable { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+    .ctable thead th {
+      background: var(--navy); color: #fff;
+      padding: 20px 18px; text-align: center; font-weight: 700; vertical-align: bottom;
+    }
+    .ctable thead th:first-child { text-align: left; width: 40%; }
+    .ctable thead th .th-tier { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 4px; font-weight: 800; }
+    .ctable thead th .th-name { font-size: 17px; letter-spacing: -0.01em; }
+    .ctable thead th.hi { background: linear-gradient(180deg, #141b45, #0a0f2e); position: relative; }
+    .ctable thead th.hi::before { content: 'Recomendado'; position: absolute; top: 7px; left: 50%; transform: translateX(-50%); font-size: 8.5px; letter-spacing: 0.14em; color: var(--navy); background: var(--gold); padding: 2px 9px; border-radius: 3px; font-weight: 800; }
+    .ctable tbody td { padding: 15px 18px; border-bottom: 1px solid var(--line); text-align: center; color: var(--body); }
+    .ctable tbody td:first-child { text-align: left; font-weight: 600; color: var(--ink); font-size: 14px; }
+    .ctable tbody tr:nth-child(even) { background: #fafbfd; }
+    .ctable tbody td.hi { background: rgba(201,162,39,0.05); }
+    .ctable tbody tr:hover td { background: var(--gold-tint); }
+    .ctable tbody tr:hover td.hi { background: rgba(201,162,39,0.12); }
+    .ctable .yes { color: var(--gold); font-size: 18px; font-weight: 800; }
+    .ctable .no  { color: #c7ccd8; font-size: 16px; }
+    .ctable .cat td { background: var(--bg) !important; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted-2); font-weight: 700; padding: 10px 18px; }
+    .ctable tfoot td { padding: 22px 18px; text-align: center; }
+    .ctable tfoot .mini-cta {
+      display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+      background: var(--navy); color: #fff; font-weight: 700; font-size: 13px;
+      padding: 10px 18px; border-radius: 7px; cursor: pointer; width: 86%;
+      transition: background .2s;
+    }
+    .ctable tfoot td.hi .mini-cta { background: var(--gold); color: var(--navy); }
+    .ctable tfoot .mini-cta:hover { filter: brightness(1.08); }
+
+    /* EXPERIENCIA */
+    .exp { background: var(--bg); }
+    .exp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 54px; }
+    .exp-card { display: flex; flex-direction: column; }
+    .exp-shot {
+      background: var(--navy);
+      border-radius: 14px; padding: 14px;
+      position: relative; overflow: hidden;
+      box-shadow: 0 30px 60px -30px rgba(10,15,46,0.5);
+    }
+    .exp-shot::before {
+      content: ''; position: absolute; top: -40px; right: -40px; width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(201,162,39,0.18) 0%, transparent 70%); pointer-events: none;
+    }
+    .exp-shot img { border-radius: 8px; width: 100%; height: 340px; object-fit: cover; object-position: top center; position: relative; z-index: 1; box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
+    .exp-meta { margin-top: 22px; }
+    .exp-tier { font-size: 10.5px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); }
+    .exp-card h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin-top: 8px; letter-spacing: -0.01em; }
+    .exp-card p { font-size: 14px; color: var(--muted); margin-top: 8px; line-height: 1.55; }
+
+    /* ADD-ON */
+    .addon { background: var(--navy); position: relative; overflow: hidden; }
+    .addon::before { content: ''; position: absolute; top: -180px; left: -120px; width: 560px; height: 560px; background: radial-gradient(circle, rgba(201,162,39,0.13) 0%, transparent 65%); pointer-events: none; }
+    .addon .wrap { position: relative; z-index: 1; display: grid; grid-template-columns: 0.92fr 1.08fr; gap: 56px; align-items: center; }
+    .addon-tag { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); background: rgba(201,162,39,0.12); border: 1px solid rgba(201,162,39,0.3); padding: 7px 14px; border-radius: 999px; margin-bottom: 22px; }
+    .addon h2 { font-size: clamp(26px, 3.5vw, 38px); font-weight: 800; color: #fff; line-height: 1.12; letter-spacing: -0.02em; }
+    .addon h2 em { color: var(--gold); font-style: normal; }
+    .addon p { color: rgba(255,255,255,0.6); font-size: 16px; margin-top: 18px; line-height: 1.6; font-weight: 300; max-width: 480px; }
+    .addon-feats { list-style: none; margin-top: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px 20px; }
+    .addon-feats li { display: flex; gap: 9px; font-size: 14px; color: rgba(255,255,255,0.82); }
+    .addon-feats li .chk { color: var(--gold); font-weight: 800; }
+    .browser {
+      background: #fff; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 50px 90px -30px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.08);
+    }
+    .browser-bar { background: #e9ebf0; display: flex; align-items: center; gap: 7px; padding: 11px 14px; }
+    .browser-bar .dot { width: 11px; height: 11px; border-radius: 50%; }
+    .browser-bar .r { background: #ff5f57; } .browser-bar .y { background: #febc2e; } .browser-bar .g { background: #28c840; }
+    .browser-bar .url { margin-left: 12px; background: #fff; border-radius: 6px; padding: 5px 14px; font-size: 11.5px; color: #8a8f99; flex: 1; max-width: 320px; }
+    .browser img { width: 100%; display: block; }
+
+    /* PROCESO */
+    .process { background: var(--paper); border-top: 1px solid var(--line); }
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 54px; }
+    .step { position: relative; padding-top: 8px; }
+    .step-n {
+      width: 50px; height: 50px; border-radius: 12px;
+      background: var(--navy); color: var(--gold);
+      display: grid; place-items: center; font-size: 20px; font-weight: 800;
+      margin-bottom: 18px; box-shadow: 0 12px 26px -10px rgba(10,15,46,0.5);
+    }
+    .step h3 { font-size: 16px; font-weight: 700; color: var(--navy); }
+    .step p { font-size: 13.5px; color: var(--muted); margin-top: 8px; line-height: 1.55; }
+    .step:not(:last-child) .step-n::after {
+      content: ''; position: absolute; top: 33px; left: 62px; right: -8px; height: 2px;
+      background: repeating-linear-gradient(90deg, var(--line-2) 0 6px, transparent 6px 12px);
+    }
+
+    /* FAQ */
+    .faq-sec { background: var(--bg); }
+    .faq-list { max-width: 820px; margin: 48px auto 0; display: flex; flex-direction: column; gap: 12px; }
+    .faq-item {
+      background: var(--paper); border: 1px solid var(--line);
+      border-radius: var(--radius); padding: 4px 22px;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .faq-item[open] { border-color: var(--gold); box-shadow: 0 8px 24px -12px rgba(201,162,39,0.3); }
+    .faq-q {
+      list-style: none; cursor: pointer;
+      padding: 18px 0; font-size: 16px; font-weight: 600; color: var(--navy);
+      display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    }
+    .faq-q::-webkit-details-marker { display: none; }
+    .faq-q::after {
+      content: '+'; font-size: 22px; font-weight: 400; color: var(--gold);
+      transition: transform .25s var(--ease);
+    }
+    .faq-item[open] .faq-q::after { transform: rotate(45deg); }
+    .faq-a { color: var(--body); font-size: 14.5px; line-height: 1.65; padding: 0 0 18px; }
+
+    /* CTA FINAL */
+    .final { background: var(--bg); padding: 100px 0; }
+    .final-card {
+      background: var(--navy); border-radius: 16px;
+      padding: 64px 56px; position: relative; overflow: hidden;
+      text-align: center;
+    }
+    .final-card::before { content: ''; position: absolute; top: -160px; right: -100px; width: 520px; height: 520px; background: radial-gradient(circle, rgba(201,162,39,0.18) 0%, transparent 64%); pointer-events: none; }
+    .final-card::after { content: ''; position: absolute; bottom: -200px; left: -120px; width: 480px; height: 480px; background: radial-gradient(circle, rgba(80,110,255,0.12) 0%, transparent 66%); pointer-events: none; }
+    .final-card > * { position: relative; z-index: 1; }
+    .final-card h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 800; color: #fff; letter-spacing: -0.02em; line-height: 1.1; }
+    .final-card h2 em { color: var(--gold); font-style: normal; }
+    .final-card p { color: rgba(255,255,255,0.6); font-size: 18px; margin: 20px auto 0; max-width: 560px; font-weight: 300; }
+    .final-actions { display: flex; gap: 14px; justify-content: center; margin-top: 38px; flex-wrap: wrap; }
+    .final-note { color: rgba(255,255,255,0.4); font-size: 13px; margin-top: 24px; }
+
+    /* FOOTER (idéntico al index.html) */
+    .site-footer {
+      background: #06091c;
+      padding: 52px 0 24px;
+    }
+    .site-footer__container {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+    .site-footer__inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 36px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+    .site-footer__logo {
+      display: flex;
+      align-items: baseline;
+      margin-bottom: 14px;
+    }
+    .site-footer__logo-img {
+      height: 32px;
+      width: auto;
+      display: block;
+      margin-bottom: 14px;
+    }
+    .site-footer__brand p {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.42);
+      line-height: 1.7;
+      max-width: 300px;
+    }
+    .site-footer__contact {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-top: 4px;
+    }
+    .site-footer__contact p,
+    .site-footer__contact a {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.45);
+      transition: color 0.15s;
+    }
+    .site-footer__contact a:hover { color: var(--gold); }
+    .site-footer__bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      padding-top: 22px;
+      text-align: center;
+    }
+    .site-footer__bottom p {
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.25);
+    }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal.d1 { transition-delay: .08s; } .reveal.d2 { transition-delay: .16s; } .reveal.d3 { transition-delay: .24s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      * { scroll-behavior: auto; }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 980px) {
+      .hero .wrap { grid-template-columns: 1fr; gap: 48px; }
+      .levels-grid { grid-template-columns: 1fr; max-width: 460px; margin-left: auto; margin-right: auto; }
+      .exp-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
+      .addon .wrap { grid-template-columns: 1fr; gap: 36px; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .step:not(:last-child) .step-n::after { display: none; }
+    }
+    @media (max-width: 620px) {
+      .wrap { padding: 0 20px; }
+      .section { padding: 64px 0; }
+      .hero { padding: 52px 0 64px; }
+      .hero-trust {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        flex-wrap: nowrap;
+      }
+      .hero-trust .ht { min-width: 0; }
+      .hero-trust .ht b { font-size: 16px; }
+      .hero-trust .ht span { font-size: 10.5px; line-height: 1.35; }
+      .steps { grid-template-columns: 1fr; }
+      .ctable-wrap { overflow-x: auto; }
+      .ctable { min-width: 560px; }
+      .final-card { padding: 44px 26px; }
+      .site-footer__inner { flex-direction: column; text-align: center; }
+      .site-footer__brand p { max-width: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV (mismo que index.html) -->
+<nav class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__logo">
+      <img src="assets/logo-elbufalo.png" alt="Elbufalo IA" class="nav__logo-img">
+    </a>
+    <a href="index.html#cta-final" class="btn-nav btn-nav--gold btn-nav--sm">Solicitar diagnóstico</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-text">
+      <span class="hero-pill"><span class="dot"></span> Atención automatizada por WhatsApp</span>
+      <h1>Tu negocio que <em>nunca pierde<br>un turno.</em></h1>
+      <p class="hero-sub">Un <strong>asistente por WhatsApp</strong> que agenda turnos, responde consultas y reduce el ausentismo — sin que tu recepción levante el teléfono. <strong>Tres niveles</strong> para crecer a tu ritmo.</p>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="#niveles">Ver las opciones</a>
+        <a class="btn btn-wa" href="https://wa.me/5491157083080?text=Hola!%20Quiero%20agendar%20una%20reuni%C3%B3n%20por%20un%20sistema%20de%20turnos." target="_blank" rel="noopener noreferrer">
+          <svg class="wa-glyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.6-.8-2.6-1.4-3.7-3.2-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2A10 10 0 0 0 3.5 17.2L2 22l4.9-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+          Hablar ahora
+        </a>
+      </div>
+      <div class="hero-trust">
+        <div class="ht"><b>24/7</b><span>Atiende solo, sin recepción</span></div>
+        <div class="ht"><b>WhatsApp</b><span>El canal que ya usan tus clientes</span></div>
+        <div class="ht"><b>Semanas</b><span>Implementación, no meses</span></div>
+      </div>
+    </div>
+
+    <!-- DEMO DE CHAT EN VIVO -->
+    <div class="demo-col">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="wa-status">
+            <span class="wa-time">11:24</span>
+            <span class="wa-sysicons">
+              <svg viewBox="0 0 18 12" fill="currentColor" aria-hidden="true"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1" opacity="0.35"/></svg>
+              <svg viewBox="0 0 18 14" fill="currentColor" aria-hidden="true"><path d="M9 2.6c2.6 0 5 1 6.8 2.7l1.5-1.6A12 12 0 0 0 9 .2 12 12 0 0 0 .7 3.7l1.5 1.6A9.6 9.6 0 0 1 9 2.6zM9 7c1.3 0 2.5.5 3.4 1.4l1.5-1.6A7.6 7.6 0 0 0 9 4.6 7.6 7.6 0 0 0 4.1 6.8l1.5 1.6A4.8 4.8 0 0 1 9 7zm0 4.4l1.9-2a2.7 2.7 0 0 0-3.8 0z"/></svg>
+              <span class="wa-batt"><span></span></span>
+            </span>
+          </div>
+          <div class="wa-header">
+            <span class="wa-back" aria-hidden="true">‹</span>
+            <span class="wa-avatar" aria-hidden="true">E</span>
+            <span class="wa-id">
+              <span class="nm" id="waName">Estética Aura <span class="verif">✔</span></span>
+              <span class="st">en línea</span>
+            </span>
+            <span class="wa-icons" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.8.6a2 2 0 0 1 1.7 2.1z"/></svg>
+            </span>
+          </div>
+          <div class="wa-body" id="waBody"></div>
+          <div class="wa-input">
+            <div class="field">Escribí tu mensaje…</div>
+            <div class="mic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4"/></svg></div>
+          </div>
+        </div>
+      </div>
+      <div class="demo-tabs" role="tablist">
+        <button class="demo-tab active" data-demo="esencial" role="tab" aria-label="Ver demo Esencial">Esencial</button>
+        <button class="demo-tab" data-demo="pro" role="tab" aria-label="Ver demo Pro">Pro</button>
+        <button class="demo-tab" data-demo="integral" role="tab" aria-label="Ver demo Integral">Integral</button>
+      </div>
+      <p class="demo-caption" id="demoCaption"></p>
+    </div>
+  </div>
+</section>
+
+<!-- RUBROS -->
+<section class="rubros">
+  <div class="wrap">
+    <div class="rubros-head reveal">
+      <h2>No es solo para consultorios médicos.</h2>
+      <p>Si tu negocio trabaja con turnos, este sistema es para vos.</p>
+    </div>
+    <div class="rubros-grid reveal d1">
+      <span class="rubro-chip"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span>Clínicas y consultorios médicos</span>
+      <span class="rubro-chip"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l1.8 4.9L18.5 9l-4 3.2L15.6 18 12 15.2 8.4 18l1.1-5.8L5.5 9l4.7-1.1z"/></svg></span>Centros de estética</span>
+      <span class="rubro-chip"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4L8.1 15.9M14.5 14.5L20 20M8.1 8.1L12 12"/></svg></span>Peluquerías y barberías</span>
+      <span class="rubro-chip"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v18M7 21h10M5 7h14M5 7l-2 5a3 3 0 0 0 6 0L7 7M19 7l-2 5a3 3 0 0 0 6 0l-2-5"/></svg></span>Estudios de abogacía</span>
+      <span class="rubro-chip"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.6 9.6 0 0 1-4-1L3 20l1.1-4.9a8.4 8.4 0 0 1-1-4A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg></span>Psicólogos y terapeutas</span>
+      <span class="rubro-chip"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3c-3 0-5 2-5 5 0 3 1 4 1 8 0 3 1 5 2 5s1-3 2-3 1 3 2 3 2-2 2-5c0-4 1-5 1-8 0-3-2-5-5-5z"/></svg></span>Odontología</span>
+      <span class="rubro-chip"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>Kinesiología</span>
+      <span class="rubro-chip"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M11 20A7 7 0 0 1 4 13c0-5 3-9 7-10 4 1 7 5 7 10a7 7 0 0 1-7 7zM11 20v-6"/></svg></span>Spa y bienestar</span>
+      <span class="rubro-chip"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-3.3 3.6-6 8-6s8 2.7 8 6"/></svg></span>…y cualquier servicio con agenda</span>
+    </div>
+  </div>
+</section>
+
+<!-- NIVELES -->
+<section class="section levels" id="niveles">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow center">Tres formas de automatizar</span>
+      <h2 class="section-title">Elegí cuánto querés que tu negocio <em>trabaje solo.</em></h2>
+      <p class="section-sub">Los tres niveles resuelven lo mismo de base —tomar turnos por WhatsApp— y suman capas de inteligencia y autonomía según lo que necesites hoy. Empezás por donde quieras y escalás sin rehacer nada.</p>
+    </div>
+
+    <div class="levels-grid">
+      <article class="lvl reveal">
+        <div class="lvl-head">
+          <span class="lvl-tier">Nivel · Esencial</span>
+          <h3 class="lvl-name">Recepcionista digital</h3>
+          <p class="lvl-tagline">Un bot con menú guiado que toma turnos por WhatsApp 24/7. Sin IA: simple, fiable y predecible.</p>
+        </div>
+        <div class="lvl-body">
+          <div class="lvl-fit"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg></span>Ideal para empezar a automatizar</div>
+          <ul class="feat">
+            <li><span class="chk">✓</span> Bot de WhatsApp con menú guiado paso a paso</li>
+            <li><span class="chk">✓</span> Reserva, cancelación y reprogramación de turnos</li>
+            <li><span class="chk">✓</span> Selección de servicio y profesional</li>
+            <li><span class="chk">✓</span> Se conecta a tu agenda actual (Google Calendar, Calendly, Doctoralia…)</li>
+            <li><span class="chk">✓</span> Escalamiento a una persona en un click</li>
+            <li><span class="chk">✓</span> Atención 24/7 sin que nadie atienda el teléfono</li>
+          </ul>
+          <div class="lvl-foot">
+            <a class="lvl-cta" href="https://wa.me/5491157083080?text=Hola!%20Me%20interesa%20el%20nivel%20Esencial%20(recepcionista%20digital)." target="_blank" rel="noopener noreferrer">Quiero el Esencial</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="lvl featured reveal d1">
+        <span class="lvl-badge">Más elegido</span>
+        <div class="lvl-head">
+          <span class="lvl-tier">Nivel · Pro</span>
+          <h3 class="lvl-name">Asistente con IA</h3>
+          <p class="lvl-tagline">Todo lo del Esencial + una IA que entiende lenguaje natural y resuelve las consultas de siempre.</p>
+        </div>
+        <div class="lvl-body">
+          <div class="lvl-fit"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2a5 5 0 0 1 5 5c0 2-1 3-2 4s-1 2-1 3H10c0-1 0-2-1-3s-2-2-2-4a5 5 0 0 1 5-5zM9 21h6"/></svg></span>El equilibrio entre simple y autónomo</div>
+          <ul class="feat">
+            <li><span class="chk">✓</span> <span class="new">Todo lo del plan Esencial</span></li>
+            <li><span class="chk">✓</span> Conversación natural, sin menús rígidos</li>
+            <li><span class="chk">✓</span> Responde precios, servicios, horarios y ubicación</li>
+            <li><span class="chk">✓</span> Base de conocimiento editable por vos</li>
+            <li><span class="chk">✓</span> Detecta urgencias y prioriza la consulta</li>
+            <li><span class="chk">✓</span> Tono y personalidad configurables</li>
+          </ul>
+          <div class="lvl-foot">
+            <a class="lvl-cta" href="https://wa.me/5491157083080?text=Hola!%20Me%20interesa%20el%20nivel%20Pro%20(asistente%20con%20IA)." target="_blank" rel="noopener noreferrer">Quiero el Pro</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="lvl reveal d2">
+        <div class="lvl-head">
+          <span class="lvl-tier">Nivel · Integral</span>
+          <h3 class="lvl-name">Sistema completo</h3>
+          <p class="lvl-tagline">Todo lo del Pro + agenda propia, base de clientes y automatizaciones que trabajan solas.</p>
+        </div>
+        <div class="lvl-body">
+          <div class="lvl-fit"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 2v4M16 2v4M8 14h3M8 17h6"/></svg></span>Para profesionalizar toda la operación</div>
+          <ul class="feat">
+            <li><span class="chk">✓</span> <span class="new">Todo lo del plan Pro</span></li>
+            <li><span class="chk">✓</span> Agenda propia integrada, sin depender de terceros</li>
+            <li><span class="chk">✓</span> Base de datos de clientes con historial</li>
+            <li><span class="chk">✓</span> Recordatorios y confirmaciones automáticas</li>
+            <li><span class="chk">✓</span> Reprogramación inteligente de cancelaciones</li>
+            <li><span class="chk">✓</span> Dashboard de demanda y ausentismo</li>
+            <li><span class="chk">✓</span> Reactivación de clientes inactivos</li>
+          </ul>
+          <div class="lvl-foot">
+            <a class="lvl-cta" href="https://wa.me/5491157083080?text=Hola!%20Me%20interesa%20el%20nivel%20Integral%20(sistema%20completo)." target="_blank" rel="noopener noreferrer">Quiero el Integral</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- TABLA COMPARATIVA -->
+<section class="section compare">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow center">Comparativa</span>
+      <h2 class="section-title">Todo lo que incluye cada nivel, <em>de un pantallazo.</em></h2>
+    </div>
+
+    <div class="ctable-wrap reveal d1">
+      <table class="ctable">
+        <thead>
+          <tr>
+            <th>Funcionalidad</th>
+            <th><span class="th-tier">Nivel</span><span class="th-name">Esencial</span></th>
+            <th class="hi"><span class="th-tier">Nivel</span><span class="th-name">Pro</span></th>
+            <th><span class="th-tier">Nivel</span><span class="th-name">Integral</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="cat"><td colspan="4">Toma de turnos</td></tr>
+          <tr><td>Turnos por WhatsApp 24/7</td><td><span class="yes">✓</span></td><td class="hi"><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Cancelación y reprogramación</td><td><span class="yes">✓</span></td><td class="hi"><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Menú guiado paso a paso</td><td><span class="yes">✓</span></td><td class="hi"><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Selección de servicio y profesional</td><td><span class="yes">✓</span></td><td class="hi"><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Escalamiento a una persona</td><td><span class="yes">✓</span></td><td class="hi"><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Conexión con tu agenda actual</td><td><span class="yes">✓</span></td><td class="hi"><span class="yes">✓</span></td><td><span class="no">—</span></td></tr>
+
+          <tr class="cat"><td colspan="4">Inteligencia artificial</td></tr>
+          <tr><td>Conversación con lenguaje natural</td><td><span class="no">—</span></td><td class="hi"><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Responde consultas frecuentes</td><td><span class="no">—</span></td><td class="hi"><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Base de conocimiento editable</td><td><span class="no">—</span></td><td class="hi"><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Detección de urgencias</td><td><span class="no">—</span></td><td class="hi"><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Tono y personalidad configurables</td><td><span class="no">—</span></td><td class="hi"><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+
+          <tr class="cat"><td colspan="4">Operación y datos</td></tr>
+          <tr><td>Agenda propia integrada</td><td><span class="no">—</span></td><td class="hi"><span class="no">—</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Base de datos de clientes con historial</td><td><span class="no">—</span></td><td class="hi"><span class="no">—</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Recordatorios y confirmaciones automáticas</td><td><span class="no">—</span></td><td class="hi"><span class="no">—</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Reprogramación inteligente de cancelaciones</td><td><span class="no">—</span></td><td class="hi"><span class="no">—</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Dashboard de demanda y ausentismo</td><td><span class="no">—</span></td><td class="hi"><span class="no">—</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Reactivación de clientes inactivos</td><td><span class="no">—</span></td><td class="hi"><span class="no">—</span></td><td><span class="yes">✓</span></td></tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td></td>
+            <td><a class="mini-cta" href="https://wa.me/5491157083080?text=Hola!%20Quiero%20el%20nivel%20Esencial." target="_blank" rel="noopener noreferrer">Consultar</a></td>
+            <td class="hi"><a class="mini-cta" href="https://wa.me/5491157083080?text=Hola!%20Quiero%20el%20nivel%20Pro." target="_blank" rel="noopener noreferrer">Consultar</a></td>
+            <td><a class="mini-cta" href="https://wa.me/5491157083080?text=Hola!%20Quiero%20el%20nivel%20Integral." target="_blank" rel="noopener noreferrer">Consultar</a></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCIA -->
+<section class="section exp">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow center">Del lado de tu cliente</span>
+      <h2 class="section-title">Así se ve la conversación <em>en cada nivel.</em></h2>
+      <p class="section-sub">Muestras reales de cómo atiende el asistente: desde el bot guiado del Esencial hasta los recordatorios automáticos del Integral.</p>
+    </div>
+    <div class="exp-grid">
+      <article class="exp-card reveal">
+        <div class="exp-shot"><img src="assets/chatbot1.png" alt="Chatbot con flujo guiado paso a paso para agendar turnos por WhatsApp" width="600" height="900" loading="lazy"></div>
+        <div class="exp-meta">
+          <span class="exp-tier">Esencial</span>
+          <h3>Flujo guiado, paso a paso</h3>
+          <p>El cliente elige opciones y el bot lo lleva hasta confirmar el turno. Predecible y a prueba de errores.</p>
+        </div>
+      </article>
+      <article class="exp-card reveal d1">
+        <div class="exp-shot"><img src="assets/chatbot2.png" alt="Asistente con IA en conversación natural por WhatsApp" width="600" height="900" loading="lazy"></div>
+        <div class="exp-meta">
+          <span class="exp-tier">Pro</span>
+          <h3>Conversación natural con IA</h3>
+          <p>El cliente escribe libre, como con una recepcionista. El asistente entiende, resuelve dudas y agenda en una sola charla.</p>
+        </div>
+      </article>
+      <article class="exp-card reveal d2">
+        <div class="exp-shot"><img src="assets/confirma.png" alt="Recordatorio y confirmación automática de turno por WhatsApp" width="600" height="900" loading="lazy"></div>
+        <div class="exp-meta">
+          <span class="exp-tier">Integral</span>
+          <h3>Recordatorios y confirmación automática</h3>
+          <p>El sistema recuerda el turno, pide confirmación y actualiza la agenda solo. El ausentismo baja sin que muevas un dedo.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ADD-ON LANDING -->
+<section class="section addon">
+  <div class="wrap">
+    <div class="addon-text reveal">
+      <span class="addon-tag">★ Extra opcional · compatible con los 3 niveles</span>
+      <h2>Sumale una <em>landing con widget de chat</em> a tu negocio.</h2>
+      <p>Un sitio simple, rápido y claro, con el mismo asistente embebido. Tu cliente agenda el turno sin salir de la web — el mismo motor que atiende por WhatsApp.</p>
+      <ul class="addon-feats">
+        <li><span class="chk">✓</span> Diseño responsive y veloz</li>
+        <li><span class="chk">✓</span> Widget de chat integrado</li>
+        <li><span class="chk">✓</span> El mismo asistente que en WhatsApp</li>
+        <li><span class="chk">✓</span> SEO local en Google Maps</li>
+        <li><span class="chk">✓</span> Sección de servicios y equipo</li>
+        <li><span class="chk">✓</span> Formulario de contacto y horarios</li>
+      </ul>
+    </div>
+    <div class="addon-visual reveal d1">
+      <div class="browser">
+        <div class="browser-bar">
+          <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+          <span class="url">tunegocio.com</span>
+        </div>
+        <img src="assets/landing1.png" alt="Landing con widget de chat para agendar turnos sin salir de la web" width="1758" height="895" loading="lazy" style="height: auto;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section class="section process">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow center">Cómo trabajamos</span>
+      <h2 class="section-title">De la primera charla a tu asistente <em>funcionando.</em></h2>
+      <p class="section-sub">Cuatro etapas con entregables concretos. Ves resultados desde la primera fase — no es un proyecto de meses sin novedades.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-n">1</div>
+        <h3>Relevamiento</h3>
+        <p>Mapeamos tus servicios, profesionales, horarios y las consultas más frecuentes de tus clientes.</p>
+      </div>
+      <div class="step reveal d1">
+        <div class="step-n">2</div>
+        <h3>Infraestructura</h3>
+        <p>Conectamos WhatsApp Business, tu agenda y la base de conocimiento del negocio.</p>
+      </div>
+      <div class="step reveal d2">
+        <div class="step-n">3</div>
+        <h3>Construcción</h3>
+        <p>Desarrollamos los flujos, la IA y las automatizaciones según el nivel que elijas.</p>
+      </div>
+      <div class="step reveal d3">
+        <div class="step-n">4</div>
+        <h3>Entrega y soporte</h3>
+        <p>Probamos con casos reales, ajustamos el tono y capacitamos a tu equipo. Y te acompañamos después.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section faq-sec" id="faq">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow center">Preguntas frecuentes</span>
+      <h2 class="section-title">Lo que <em>siempre nos preguntan</em> antes de empezar.</h2>
+    </div>
+    <div class="faq-list reveal d1">
+      <details class="faq-item">
+        <summary class="faq-q">¿En cuánto tiempo está funcionando el asistente?</summary>
+        <p class="faq-a">Depende del nivel. El Esencial suele estar activo en 1 a 2 semanas. El Pro entre 2 y 4. El Integral, que incluye agenda propia y base de clientes, entre 4 y 6 semanas. Lo importante: empezás a ver resultados desde la primera fase, no al final del proyecto.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">¿Necesito tener WhatsApp Business?</summary>
+        <p class="faq-a">Sí, trabajamos sobre WhatsApp Business (API oficial o cuenta Business). Si todavía no la tenés, nosotros te ayudamos a configurarla durante la implementación. No es un costo extra ni requiere conocimiento técnico de tu lado.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">¿Puedo empezar por el Esencial y escalar después al Pro o al Integral?</summary>
+        <p class="faq-a">Totalmente. Los tres niveles están diseñados para sumarse, no para reemplazarse. Si arrancás con el Esencial y más adelante querés agregar IA conversacional o agenda propia, lo sumamos sobre la base existente sin rehacer nada.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">¿La IA se equivoca o responde cosas raras?</summary>
+        <p class="faq-a">El asistente del Pro y el Integral trabaja sobre una base de conocimiento que vos definís: servicios, precios, horarios, ubicación, profesionales, etc. No "inventa" respuestas — y si una consulta queda fuera de su alcance, escala automáticamente a una persona del equipo.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">¿Qué pasa si un cliente quiere hablar con una persona?</summary>
+        <p class="faq-a">El asistente detecta la intención de hablar con humano y escala la conversación al instante. Vos elegís a qué número o equipo redirigir según el horario, el servicio o la urgencia. El cliente nunca queda "atrapado" con el bot.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">¿Funciona si ya uso Google Calendar, Calendly o Doctoralia?</summary>
+        <p class="faq-a">Sí. El Esencial y el Pro se conectan directamente a la agenda que ya usás. No hace falta migrar nada ni cambiar tu flujo actual. El nivel Integral te ofrece además una agenda propia integrada, si querés profesionalizar toda la operación.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">¿Cuánto cuesta?</summary>
+        <p class="faq-a">El costo depende del nivel y del volumen de conversaciones. Después de una primera charla te pasamos una propuesta clara con inversión inicial, mensualidad y retorno estimado. No hay precios fijos porque cada negocio tiene su escala.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">¿Qué pasa si después no quiero seguir?</summary>
+        <p class="faq-a">El sistema es tuyo. Te dejamos toda la documentación, los accesos y la base de conocimiento. Si querés seguir con otro proveedor o gestionarlo internamente, podés hacerlo sin perder lo construido.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final" id="cta">
+  <div class="wrap">
+    <div class="final-card reveal">
+      <h2>¿Listo para que tu negocio <em>nunca pierda un turno?</em></h2>
+      <p>Contanos cómo atendés hoy y te ayudamos a elegir el nivel justo para tu volumen. Sin compromiso.</p>
+      <div class="final-actions">
+        <a class="btn btn-wa" href="https://wa.me/5491157083080?text=Hola!%20Quiero%20automatizar%20los%20turnos%20de%20mi%20negocio.%20%C2%BFCharlamos%3F" target="_blank" rel="noopener noreferrer">
+          <svg class="wa-glyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.6-.8-2.6-1.4-3.7-3.2-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2A10 10 0 0 0 3.5 17.2L2 22l4.9-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+          Escribinos por WhatsApp
+        </a>
+        <a class="btn btn-gold" href="https://wa.me/5491157083080?text=Hola!%20Quiero%20agendar%20una%20reuni%C3%B3n%20de%2030%20minutos." target="_blank" rel="noopener noreferrer">Agendar una reunión</a>
+      </div>
+      <p class="final-note">Respondemos por WhatsApp · +54 11 5708-3080</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER (mismo que index.html) -->
+<footer class="site-footer">
+  <div class="site-footer__container site-footer__inner">
+    <div class="site-footer__brand">
+      <a href="index.html" class="nav__logo site-footer__logo">
+        <img src="assets/logo-elbufalo.png" alt="Elbufalo IA" class="site-footer__logo-img">
+      </a>
+      <p>Sistemas de ventas con inteligencia artificial para PyMEs, emprendedores y comercios. </p>
+    </div>
+    <div class="site-footer__contact">
+      <p>Buenos Aires, Argentina</p>
+      <p>
+        <a href="https://wa.me/5491157083080" target="_blank" rel="noopener noreferrer">
+          11 5708-3080
+        </a>
+      </p>
+      <a href="https://elbufalo.site" target="_blank" rel="noopener noreferrer">elbufalo.site</a>
+    </div>
+  </div>
+  <div class="site-footer__bottom">
+    <div class="site-footer__container">
+      <p>© 2026 Elbufalo IA. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  (function () {
+    const els = Array.from(document.querySelectorAll('.reveal'));
+    function check() {
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      for (let i = els.length - 1; i >= 0; i--) {
+        const el = els[i];
+        const r = el.getBoundingClientRect();
+        if (r.top < vh * 0.9 && r.bottom > 0) {
+          el.classList.add('in');
+          els.splice(i, 1);
+        }
+      }
+    }
+    check();
+    window.addEventListener('scroll', check, { passive: true });
+    window.addEventListener('resize', check, { passive: true });
+    setTimeout(() => document.querySelectorAll('.reveal:not(.in)').forEach(e => {
+      const r = e.getBoundingClientRect();
+      if (r.top < (window.innerHeight || 800)) e.classList.add('in');
+    }), 1200);
+  })();
+</script>
+
+<script>
+  // Demo de chat animado en vivo — 3 escenarios (Esencial / Pro / Integral)
+  (function () {
+    const body = document.getElementById('waBody');
+    const nameEl = document.getElementById('waName');
+    const tabs = Array.from(document.querySelectorAll('.demo-tab'));
+    const captionEl = document.getElementById('demoCaption');
+    if (!body) return;
+
+    const T = '11:24';
+
+    const SCRIPTS = {
+      esencial: {
+        name: 'Estética Aura',
+        caption: '<b>Esencial</b> — menú guiado, sin IA. El cliente elige opciones y el bot lo lleva paso a paso.',
+        steps: [
+          { typing: 900 },
+          { who: 'bot', text: '¡Hola! 👋 Soy el asistente de Estética Aura.\n¿En qué te ayudo hoy?' },
+          { wait: 500 },
+          { opts: ['Reservar un turno', 'Cancelar / reprogramar', 'Consultar servicios'], pick: 0 },
+          { wait: 650 },
+          { who: 'me', text: 'Reservar un turno' },
+          { typing: 850 },
+          { who: 'bot', text: 'Genial. ¿Qué servicio querés? 💆' },
+          { wait: 450 },
+          { opts: ['Limpieza facial', 'Depilación', 'Masajes'], pick: 0 },
+          { wait: 600 },
+          { who: 'me', text: 'Limpieza facial' },
+          { typing: 950 },
+          { who: 'bot', text: 'Estos son los horarios disponibles:' },
+          { wait: 350 },
+          { opts: ['Jue 12 · 15:00', 'Vie 13 · 11:00', 'Vie 13 · 17:30'], pick: 1 },
+          { wait: 650 },
+          { who: 'me', text: 'Vie 13 · 11:00' },
+          { typing: 1000 },
+          { who: 'bot', text: '✅ ¡Listo! Reservé tu turno:\n💆 Limpieza facial\n📅 Viernes 13 · 11:00\n📍 Estética Aura\n\n¡Te esperamos! 💛' },
+          { wait: 2600 }
+        ]
+      },
+      pro: {
+        name: 'Estudio Paz & Asociados',
+        caption: '<b>Pro</b> — IA que entiende lenguaje natural. El cliente escribe como le sale y el asistente resuelve.',
+        steps: [
+          { typing: 800 },
+          { who: 'bot', text: '¡Hola! 👋 Soy el asistente del Estudio Paz & Asociados. ¿En qué te puedo ayudar?' },
+          { wait: 700 },
+          { who: 'me', text: 'hola, necesito una consulta por un tema laboral. atienden los sábados?' },
+          { typing: 1300 },
+          { who: 'bot', text: 'Sí 😊 Los sábados atendemos consultas laborales de 9 a 13 hs. La primera consulta dura 45 min.\n¿Querés que te muestre los turnos de este sábado?' },
+          { wait: 700 },
+          { who: 'me', text: 'dale, a la mañana mejor' },
+          { typing: 1200 },
+          { who: 'bot', text: 'Perfecto. Para el sábado a la mañana tengo:\n• 09:30 — Dra. Paz\n• 11:00 — Dr. Funes\n¿Reservo alguno?' },
+          { wait: 750 },
+          { who: 'me', text: 'el de las 9:30 con la dra paz' },
+          { typing: 1100 },
+          { who: 'bot', text: '✨ Reservado. Consulta laboral con la Dra. Paz, sábado 09:30 hs. Te llega un recordatorio el día anterior. ¿Algo más?' },
+          { wait: 2600 }
+        ]
+      },
+      integral: {
+        name: 'Consultorio San Martín',
+        caption: '<b>Integral</b> — recordatorios y confirmaciones automáticas. El sistema escribe solo y actualiza la agenda.',
+        steps: [
+          { day: 'Hoy' },
+          { typing: 900 },
+          { who: 'bot', text: '¡Hola Caro! 👋 Te recordamos tu turno de mañana.\n\n🩺 Servicio: Kinesiología\n📅 Sábado 14 · 16:00\n📍 Av. Rivadavia 2200, 1º B\n\nPor favor llegá 10 min antes 🙌' },
+          { wait: 550 },
+          { opts: ['Confirmar asistencia ✅', 'Reprogramar 📅'], pick: 0 },
+          { wait: 800 },
+          { who: 'me', text: '¡Confirmo! ✅' },
+          { typing: 1100 },
+          { who: 'bot', text: '¡Genial, Caro! 🎉 Tu turno del sábado 14 a las 16:00 quedó confirmado y la agenda se actualizó sola.\n\n¡Nos vemos! 💛' },
+          { wait: 2800 }
+        ]
+      }
+    };
+
+    let token = 0;
+    let current = 'esencial';
+
+    const sleep = (ms) => new Promise(res => setTimeout(res, ms));
+
+    function clearBody() { body.innerHTML = ''; }
+
+    function timeStamp(me) {
+      if (me) return `<span class="tm">${T} <span class="dbl">✓✓</span></span>`;
+      return `<span class="tm">${T}</span>`;
+    }
+
+    function addBubble(step) {
+      const el = document.createElement('div');
+      el.className = 'bubble ' + (step.who === 'me' ? 'me' : 'bot');
+      el.innerHTML = escapeText(step.text) + timeStamp(step.who === 'me');
+      body.appendChild(el);
+      scroll();
+    }
+
+    function addDay(label) {
+      const el = document.createElement('div');
+      el.className = 'wa-daypill';
+      el.textContent = label;
+      body.appendChild(el);
+      scroll();
+    }
+
+    function addTyping() {
+      const el = document.createElement('div');
+      el.className = 'typing';
+      el.innerHTML = '<span></span><span></span><span></span>';
+      body.appendChild(el);
+      scroll();
+      return el;
+    }
+
+    async function addOptions(step, tk) {
+      const els = [];
+      for (let i = 0; i < step.opts.length; i++) {
+        if (tk !== token) return;
+        const el = document.createElement('div');
+        el.className = 'wa-opt';
+        el.textContent = step.opts[i];
+        body.appendChild(el);
+        els.push(el);
+        scroll();
+        await sleep(140);
+      }
+      await sleep(400);
+      if (tk !== token) return;
+      if (typeof step.pick === 'number' && els[step.pick]) {
+        els[step.pick].classList.add('tapped');
+        await sleep(380);
+      }
+      els.forEach(e => e.remove());
+    }
+
+    function escapeText(t) {
+      return t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>');
+    }
+
+    function scroll() { body.scrollTop = body.scrollHeight; }
+
+    async function run(key) {
+      const tk = ++token;
+      current = key;
+      const script = SCRIPTS[key];
+      nameEl.innerHTML = script.name + ' <span class="verif">✔</span>';
+      if (captionEl) captionEl.innerHTML = script.caption;
+      clearBody();
+      await sleep(300);
+
+      while (tk === token) {
+        clearBody();
+        for (const step of script.steps) {
+          if (tk !== token) return;
+          if (step.day) { addDay(step.day); await sleep(500); }
+          else if (step.typing) { const t = addTyping(); await sleep(step.typing); if (tk !== token) return; t.remove(); }
+          else if (step.opts) { await addOptions(step, tk); }
+          else if (step.wait) { await sleep(step.wait); }
+          else if (step.who) { addBubble(step); await sleep(step.who === 'me' ? 250 : 320); }
+        }
+        if (tk !== token) return;
+        await sleep(1400);
+      }
+    }
+
+    tabs.forEach(t => {
+      t.addEventListener('click', () => {
+        if (t.dataset.demo === current) return;
+        tabs.forEach(x => x.classList.remove('active'));
+        t.classList.add('active');
+        run(t.dataset.demo);
+      });
+    });
+
+    let started = false;
+    const startNow = () => { if (!started) { started = true; run('esencial'); } };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => setTimeout(startNow, 350));
+    } else {
+      setTimeout(startNow, 350);
+    }
+  })();
+</script>
+
+<!-- Schema: Service -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Atención automatizada por WhatsApp",
+  "name": "Sistema de Atención Automatizada — Chatbot WhatsApp para turnos",
+  "description": "Asistente por WhatsApp que agenda turnos, responde consultas y reduce el ausentismo 24/7. Tres niveles: Esencial, Pro e Integral, para clínicas, estética, peluquerías, abogacía, psicólogos y cualquier servicio con agenda.",
+  "url": "https://elbufalo.site/Opciones%20de%20Chatbot.html",
+  "provider": {
+    "@type": "ProfessionalService",
+    "name": "Elbufalo IA",
+    "url": "https://elbufalo.site",
+    "logo": "https://elbufalo.site/assets/logo-elbufalo.png",
+    "telephone": "+5491157083080",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Buenos Aires",
+      "addressCountry": "AR"
+    }
+  },
+  "areaServed": { "@type": "Country", "name": "Argentina" },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Niveles del Sistema de Atención Automatizada",
+    "itemListElement": [
+      { "@type": "Offer", "name": "Nivel Esencial — Recepcionista digital", "description": "Bot de WhatsApp con menú guiado paso a paso para reservar, cancelar y reprogramar turnos." },
+      { "@type": "Offer", "name": "Nivel Pro — Asistente con IA", "description": "Asistente conversacional con IA que entiende lenguaje natural y resuelve consultas frecuentes." },
+      { "@type": "Offer", "name": "Nivel Integral — Sistema completo", "description": "Agenda propia, base de clientes, recordatorios automáticos y dashboard de demanda." }
+    ]
+  }
+}
+</script>
+
+<!-- Schema: FAQPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "¿En cuánto tiempo está funcionando el asistente?", "acceptedAnswer": { "@type": "Answer", "text": "Depende del nivel. El Esencial suele estar activo en 1 a 2 semanas. El Pro entre 2 y 4. El Integral, que incluye agenda propia y base de clientes, entre 4 y 6 semanas. Empezás a ver resultados desde la primera fase." } },
+    { "@type": "Question", "name": "¿Necesito tener WhatsApp Business?", "acceptedAnswer": { "@type": "Answer", "text": "Sí, trabajamos sobre WhatsApp Business (API oficial o cuenta Business). Si todavía no la tenés, te ayudamos a configurarla durante la implementación, sin costo extra ni requisito técnico de tu lado." } },
+    { "@type": "Question", "name": "¿Puedo empezar por el Esencial y escalar después al Pro o al Integral?", "acceptedAnswer": { "@type": "Answer", "text": "Totalmente. Los tres niveles están diseñados para sumarse, no para reemplazarse. Si más adelante querés agregar IA o agenda propia, lo sumamos sobre la base existente sin rehacer nada." } },
+    { "@type": "Question", "name": "¿La IA se equivoca o responde cosas raras?", "acceptedAnswer": { "@type": "Answer", "text": "El asistente trabaja sobre una base de conocimiento que vos definís: servicios, precios, horarios, ubicación y profesionales. No inventa respuestas, y si una consulta queda fuera de su alcance escala automáticamente a una persona del equipo." } },
+    { "@type": "Question", "name": "¿Qué pasa si un cliente quiere hablar con una persona?", "acceptedAnswer": { "@type": "Answer", "text": "El asistente detecta la intención de hablar con humano y escala la conversación al instante al número o equipo que vos definas según horario, servicio o urgencia." } },
+    { "@type": "Question", "name": "¿Funciona si ya uso Google Calendar, Calendly o Doctoralia?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. El Esencial y el Pro se conectan directamente a la agenda que ya usás, sin migrar nada. El Integral te ofrece además agenda propia integrada si querés profesionalizar toda la operación." } },
+    { "@type": "Question", "name": "¿Cuánto cuesta?", "acceptedAnswer": { "@type": "Answer", "text": "Depende del nivel y del volumen de conversaciones. Después de una primera charla pasamos una propuesta clara con inversión inicial, mensualidad y retorno estimado. No hay precios fijos: cada negocio tiene su escala." } },
+    { "@type": "Question", "name": "¿Qué pasa si después no quiero seguir?", "acceptedAnswer": { "@type": "Answer", "text": "El sistema es tuyo. Te dejamos documentación, accesos y base de conocimiento. Si querés gestionarlo internamente o con otro proveedor, podés hacerlo sin perder lo construido." } }
+  ]
+}
+</script>
+
+</body>
+</html>
